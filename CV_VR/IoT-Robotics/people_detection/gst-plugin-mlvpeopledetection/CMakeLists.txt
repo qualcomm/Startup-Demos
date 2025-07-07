@@ -44,7 +44,7 @@ set(GST_QTI_ML_VIDEO_DETECTION gstqtimlvpeopledetection)
 
 add_library(${GST_QTI_ML_VIDEO_DETECTION} SHARED
   mlvdetection.c
-  publish_people_count.c
+  ./publish/publish_people_count.c
   ./roi/roi.c
   ./socket_utils/socket_utils.c
 )
