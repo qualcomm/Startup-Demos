@@ -25,7 +25,7 @@ This repository is a collection of demo applications that highlight the capabili
 | IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/) | - | - |
 | Android | - | - | - | - |
 | Connectivity | - | - | - | - |
-| CloudAI-Playground | - | - | - | - |
+| CloudAI-Playground | [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) | - | - | - |
 
 ## Hardware & Technologies Used
 
