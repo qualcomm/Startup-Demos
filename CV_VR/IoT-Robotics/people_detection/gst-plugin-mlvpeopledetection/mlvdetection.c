@@ -82,7 +82,8 @@
 
 #include <roi/roi.h>
 #include <socket_utils/socket_utils.h>
-#include "publish_people_count.h"
+#include <publish/publish_people_count.h>
+
 
 #ifdef HAVE_LINUX_DMA_BUF_H
 #include <sys/ioctl.h>
