@@ -176,19 +176,19 @@ Install necessary packages:
 
 	sudo apt update && sudo apt-get install diffstat bzip2 gcc g++ unzip gcc-aarch64-linux-gnu && sudo locale-gen en_US.UTF-8 && sudo dpkg-reconfigure locales
 
-![N|Solid](../Images/RB3-Gen2/rb3_gen2_package_installation.png)
+![N|Solid](./Images/RB3-Gen2/rb3_gen2_package_installation.png)
 
 Download the eSDK:
 
 	wget https://artifacts.codelinaro.org/artifactory/qli-ci/flashable-binaries/qimpsdk/qcs6490-rb3gen2-vision-kit/x86/qcom-6.6.52-QLI.1.3-Ver.1.1_qim-product-sdk-1.1.2.zip
 
-![N|Solid](../Images/RB3-Gen2/rb3_gen2_esdk_download.png)
+![N|Solid](./Images/RB3-Gen2/rb3_gen2_esdk_download.png)
 
 unzip the Downloaded file
 
 	unzip qcom-6.6.52-QLI.1.3-Ver.1.1_qim-product-sdk-1.1.2.zip
 
-![N|Solid](../Images/RB3-Gen2/rb3_gen2_esdk_unzip.png)
+![N|Solid](./Images/RB3-Gen2/rb3_gen2_esdk_unzip.png)
 
 Run the setup script:
 
@@ -196,7 +196,7 @@ Run the setup script:
 	umask a+rx
 	sh ./qcom-wayland-x86_64-qcom-multimedia-image-armv8-2a-qcs6490-rb3gen2-vision-kit-toolchain-ext-1.3-ver.1.1.sh
 
-![N|Solid](../Images/RB3-Gen2/rb3_gen2_esdk_script.png)
+![N|Solid](./Images/RB3-Gen2/rb3_gen2_esdk_script.png)
 
 ### 9.2. ESDK Environment Setup
 
@@ -206,4 +206,4 @@ Set the ESDK root environment variable:
 	cd $ESDK_ROOT
 	source environment-setup-armv8-2a-qcom-linux
 
-![N|Solid](../Images/RB3-Gen2/rb3_gen2_esdk_envsetup.png)
+![N|Solid](./Images/RB3-Gen2/rb3_gen2_esdk_envsetup.png)
