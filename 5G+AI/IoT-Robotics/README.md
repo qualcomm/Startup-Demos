@@ -1,4 +1,4 @@
-# AIoT-Demos/5G+AI/IoT-Robotics
+# Startup-Demos/5G+AI/IoT-Robotics
 
 Welcome to the IoT-Robotics platform documentation. This document provides an overview of the platform and its various components. For detailed hardware documentation, please refer to the [IoT-Robotics Hardware Documentation](../../Hardware/IoT-Robotics.md).
 

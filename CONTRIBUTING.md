@@ -1,4 +1,4 @@
-# Contributing to AIoT-Demos
+# Contributing to Startup-Demos
 
 Hi there!
 We’re thrilled that you’d like to contribute to this project.
@@ -14,7 +14,7 @@ Contributors are expected to base their work on the `main` branch and submit pul
 1. [Fork](https://github.com/qualcomm/<REPLACE-ME>/fork) and clone the repository.
 
     ```bash
-    git clone https://github.com/<username>/AIoT-Demos.git
+    git clone https://github.com/<username>/Startup-Demos.git
     ``` 
 
 1. Create a new branch based on `main`:
@@ -26,7 +26,7 @@ Contributors are expected to base their work on the `main` branch and submit pul
 1. Create an upstream `remote` to make it easier to keep your branches up-to-date:
 
     ```bash
-    git remote add upstream https://github.com/qualcomm/AIoT-Demos.git
+    git remote add upstream https://github.com/qualcomm/Startup-Demos.git
     ```
 
 1. Make your changes, add tests, and make sure the tests still pass.
@@ -50,7 +50,7 @@ Contributors are expected to base their work on the `main` branch and submit pul
 
     The `-u` is shorthand for `--set-upstream`. This will set up the tracking reference so subsequent runs of `git push` or `git pull` can omit the remote and branch.
 
-1. [Submit a pull request](https://github.com/qualcomm/AIoT-Demos/pulls) from your branch to `main`.
+1. [Submit a pull request](https://github.com/qualcomm/Startup-Demos/pulls) from your branch to `main`.
 1. Pat yourself on the back and wait for your pull request to be reviewed.
 
 Here are a few things you can do that will increase the likelihood of your pull request to be accepted:

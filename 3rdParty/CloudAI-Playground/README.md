@@ -1,4 +1,4 @@
-# AIoT-Demos/3rdParty/Cloud AI Playground
+# Startup-Demos/3rdParty/Cloud AI Playground
 
 Welcome to the Cloud AI Playground! This platform is designed for developing applications using Qualcomm® Cloud AI family of accelerators, which power ultra-efficient AI inference with industry-leading performance per watt, high performance density, and low total cost of ownership (TCO).
 

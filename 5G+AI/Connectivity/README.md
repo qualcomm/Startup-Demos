@@ -1,4 +1,4 @@
-# AIoT-Demos/5G+AI/Connectivity
+# Startup-Demos/5G+AI/Connectivity
 
 This document provides an overview of the Connectivity platform, including Snapdragon chipsets, device availability, and marketplace information. For more detailed information, please refer to [Hardware Documentation](../../Hardware/Connectivity.md).
 

@@ -1,6 +1,6 @@
-# AIoT-Demos/CV_VR/Android
+# Startup-Demos/CV_VR/Android
 
-Welcome to the AIoT Demos repository. This section focuses on developing applications using Qualcomm Snapdragon-based Android mobile phones and tablets, but is not limited to these devices.
+Welcome to the Startup-Demos repository. This section focuses on developing applications using Qualcomm Snapdragon-based Android mobile phones and tablets, but is not limited to these devices.
 
 ## Table of Contents
 1. [Introduction to Android Platform](#introduction-to-android-platform)

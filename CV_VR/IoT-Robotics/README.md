@@ -1,4 +1,4 @@
-# AIoT-Demos/CV_VR/IoT-Robotics
+# Startup-Demos/CV_VR/IoT-Robotics
 
 Welcome to the IoT-Robotics platform documentation. This document provides an overview of the platform and its various components. For detailed hardware documentation, please refer to the [IoT-Robotics Hardware Documentation](../../Hardware/IoT-Robotics.md).
 

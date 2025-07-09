@@ -1,4 +1,4 @@
-# AIoT-Demos/GenAI/AI_PC
+# Startup-Demos/GenAI/AI_PC
 
 This repository contains various demos and use cases for AI PCs and related technologies. Below is an overview of the sections included in this repository. For detailed information, please refer to the respective subsections in the [AI_PC Hardware Documentation](../../Hardware/AI_PC.md).
 
