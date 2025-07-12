@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="api_endpoints">
+        <item><![CDATA[https://aisuite.cirrascale.com/apis/v2]]></item>
+        <item><![CDATA[https://allam-playground.com/apis/v2]]></item>
+    </string-array>
+    <string name="api_key">"YOUR-API-KEY"</string>
+</resources>

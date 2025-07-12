@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">InferenceCloudChat</string>
+    <string name="welcome_message">"Welcome to Inference Cloud\nTry it out now"</string>
+</resources>
