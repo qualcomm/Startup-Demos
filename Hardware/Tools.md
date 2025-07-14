@@ -6,6 +6,8 @@ This document provides setup instructions for essential tools required to run th
 - [Miniconda Setup](#miniconda-setup)
 - [Git Setup](#git-setup)
 - [Setup Environment Variables](#setup-environment-variables)
+- [Android Studio Setup](#android-studio-setup)
+
 
 ---
 
@@ -38,3 +40,9 @@ To set up environment variables, follow these steps:
 2. Navigate to the project directory.
 3. Create a `.env` file in the project directory.
 4. Add the following environment variables to the `.env` file:
+---
+## Android Studio Setup
+
+1. Download and install Android Studio from the official website.
+
+---

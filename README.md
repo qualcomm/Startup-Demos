@@ -23,7 +23,7 @@ This repository is a collection of demo applications that highlight the capabili
 | --- | --- | --- | --- | --- |
 | AI PC | - | - | - | - |
 | IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/) | - | - |
-| Android | - | - | - | - |
+| Android | [InferenceCloudChat](./GenAI/Android/InferenceCloudChat/)  | - | - | - |
 | Connectivity | - | - | - | - |
 | CloudAI-Playground | [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) | - | - | - |
 
