@@ -1,6 +1,0 @@
-ultralytics
-opencv-python
-Pillow
-numpy
-pyttsx3
-qai_hub_models
