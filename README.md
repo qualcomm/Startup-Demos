@@ -22,7 +22,7 @@ This repository is a collection of demo applications that highlight the capabili
 | Platforms | [Generative AI](./GenAI/) | [CV & VR](./CV_VR/) | [5G + AI](./5G%2BAI/) | [Others](./Others/) |
 | --- | --- | --- | --- | --- |
 | AI PC | - | - | - | - |
-| IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/) | - | - |
+| IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/) | - | [Data Payload Monitor](./Others/IoT-Robotics/Data_Payload_Monitor/) |
 | Android Phones | [InferenceCloudChat](./GenAI/Android/InferenceCloudChat/)  | - | - | - |
 | Connectivity | - | - | - | - |
 | CloudAI-Playground | [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) | - | - | - |
