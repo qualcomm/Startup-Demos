@@ -38,7 +38,7 @@ This repository leverages a variety of hardware and technologies, including but 
 
 ## How to Contribute
 
-We welcome contributions from the community to enhance and expand the Startup-Demos repository. Whether you're a seasoned developer or just getting started, your input is valuable. You can contribute by reporting issues, suggesting new features, improving documentation, or submitting pull requests. Please refer to our ./Contributing.md for detailed guidelines on how to get started. By participating, you agree to abide by our ./CODE_OF_CONDUCT.md. Let's collaborate to push the boundaries of AI, IoT, and beyond!
+We welcome contributions from the community to enhance and expand the Startup-Demos repository. Whether you're a seasoned developer or just getting started, your input is valuable. You can contribute by reporting issues, suggesting new features, improving documentation, or submitting pull requests. Please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to get started. By participating, you agree to abide by our [CODE-OF-CONDUCT.md](CODE-OF-CONDUCT.md). Let's collaborate to push the boundaries of AI, IoT, and beyond!
 
 Startups and enthusiasts are especially encouraged to contribute to the documentation and share their innovative ideas. Your fresh perspectives and domain expertise can help shape a more inclusive and impactful Startup ecosystem. Whether it's refining existing demos or proposing new ones, your involvement is key to driving innovation forward.
 
