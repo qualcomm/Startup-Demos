@@ -1,5 +1,5 @@
 
-# [Startup_Demo](../../../)/[CV_VR](../../)/[AI_PC](../)/[DailyVision](./)
+# [Startup_Demo](../../../)/[3rdParty](../../)/[AI_PC](../)/[DailyVision](./)
 
 # DailyVision 🚦🧠
 
@@ -9,7 +9,7 @@
 3. [Environment Setup](#3-Environment-Setup)
 4. [Source Code Setup Instructions for Windows PC](#4-Source-Code-Setup-Instructions-for-Windows-PCs)
 5. [Running DailyVision Application](#5-Running-DailyVision-Application)
-6. [Application Output](#6-Application-Outputn)
+6. [Application Output](#6-Application-Output)
 7. [Conclusion](#7-Conclusion)
 
 ## 1. Overview
@@ -62,13 +62,13 @@ The following steps are required to set up the source code for the application o
    ```bash
     git clone -n --depth=1 --filter=tree:0 https://github.com/qualcomm/Startup-Demos.git
     cd Startup-Demos
-    git sparse-checkout set --no-cone /CV_VR/AI_PC/DailyVision/
+    git sparse-checkout set --no-cone /3rdParty/AI_PC/DailyVision
     git checkout
    ```
    
 3. **Navigate to Application Directory** :
    ```bash
-   cd ./CV_VR/AI_PC/DailyVision/src
+   cd ./3rdParty/AI_PC/DailyVision
    ```
 
 4. **Create a new Conda environment** with Python 3.12:
@@ -91,14 +91,14 @@ The following steps are required to set up the source code for the application o
 To run the DailyVision application, you will need to execute below commands in your terminal or command prompt. This section will guide you through the process of launching the application 
 
 ## Step 1: Navigate to the Application Directory
-First, ensure that you are in the correct directory. You should be in the `src` folder of the DailyVision application. If you are not, navigate to the correct directory using the following command:
+First, ensure that you are in the correct directory. You should be in the src folder of the DailyVision application. If you are not, navigate to the correct directory using the following command. Also, make sure to provide the image path as a command-line argument when running the script.
 
 ```bash
-cd ./CV_VR/AI_PC/DailyVision/src
+cd ./3rdParty/AI_PC/DailyVision/src
 ```
 ## Step 2: Run the Application
 ```bash
-python vision_main.py
+python vision_main.py ../images/traffic.jpeg
 ```
 
 # 6. Application Output
