@@ -1,0 +1,8 @@
+ultralytics==8.3.168
+opencv-python==4.11.0.86
+Pillow==11.3.0
+numpy==1.26.4
+pyttsx3==2.99
+qai_hub_models==0.32.0
+pyarrow==15.0.2
+qai-hub-models[easyocr]

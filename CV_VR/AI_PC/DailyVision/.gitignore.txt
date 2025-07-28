@@ -1,4 +1,0 @@
-__*/
-.ipynb*/
-__pycache__/
-*.pyc/
