@@ -1,0 +1,10 @@
+streamlit
+opencv-python
+numpy==1.23.5
+pandas
+pillow
+facenet-pytorch
+torch==2.2.2
+torchvision==0.17.2
+scipy
+pyttsx3
