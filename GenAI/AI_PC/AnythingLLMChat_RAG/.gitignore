@@ -1,0 +1,24 @@
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments and packaging
+env/
+.venv/
+*.egg-info/
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Streamlit and notebook cache
+.streamlit/
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Local temp files
+*.pdf

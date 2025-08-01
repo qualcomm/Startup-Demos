@@ -1,0 +1,7 @@
+api_key: YOUR API KEY
+document_folder: default_folder
+model_server_base_url: http://localhost:3001/api/v1
+stream: true
+stream_timeout: 60
+thread_name: default_thread
+workspace_slug: default_workspace
