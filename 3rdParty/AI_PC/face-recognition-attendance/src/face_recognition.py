@@ -62,7 +62,6 @@ class FaceRecognitionSystem:
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         
         boxes, _ = self.mtcnn.detect(rgb_frame)
-        e
         if boxes is None:
             return frame
         
