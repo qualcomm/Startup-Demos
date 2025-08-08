@@ -3,6 +3,6 @@ wheel>=0.40.0
 streamlit==1.44.0
 numpy>=1.25.0
 transformers==4.51.2
-requests==2.32.0
+requests==2.32.4
 protobuf>=3.21.0
 pytest
