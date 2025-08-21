@@ -1,0 +1,14 @@
+keywords:
+  bot_name: "QBot"
+  exit_prompt: "exit"
+  updateDB : "updateDB"
+
+dir:
+  QNN_SDK: "C:/path/to/QAIRT/X.XX.X.XXXXXX/"
+  genie_bundle : "C:/path/to/genie_bundle/"
+  pyarm : "C:/path/to/.venv_arm64/Scripts/python.exe"
+  dll_path : "lib/aarch64-windows-msvc/"
+
+socket:
+  addr : 127.0.0.1
+  port : 8888

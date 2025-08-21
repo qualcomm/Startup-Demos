@@ -1,0 +1,8 @@
+__*
+*.log
+__*/
+venv*/
+models/
+documents/
+src/chroma*/
+genie_bundle/*
