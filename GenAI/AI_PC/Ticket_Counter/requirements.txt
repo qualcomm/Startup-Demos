@@ -1,0 +1,6 @@
+streamlit==1.49.1
+qrcode==8.2
+matplotlib==3.10.6
+ffmpeg==1.4
+python-dotenv==1.1.1
+
