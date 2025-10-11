@@ -523,8 +523,8 @@ gst_ml_video_detection_fill_video_output (GstMLVideoDetection * detection,
         x / vmeta->width, y / vmeta->height,
         width / vmeta->width, height / vmeta->height
       );
-      if(group_id != ROI_ERROR_FAILURE) {
-        group_people_count[group_id]++;
+      if(group_id > 0 && group_id <= 10) {
+        group_people_count[group_id - 1]++;
       }
 
       color = entry->color;
