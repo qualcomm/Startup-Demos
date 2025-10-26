@@ -21,7 +21,7 @@ This repository is a collection of demo applications that highlight the capabili
 
 | Platforms | [Generative AI](./GenAI/) | [CV & VR](./CV_VR/) | [5G + AI](./5G%2BAI/) | [Others](./Others/) |
 | --- | --- | --- | --- | --- |
-| AI PC | [AnythingLLMChat_RAG](./GenAI/AI_PC/AnythingLLMChat_RAG/)<br>[History LLM](./GenAI/AI_PC/History_LLM/) <br>[NPU-Chatbot_LLM_RAG](./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/) | [ObjectDetection](./CV_VR/AI_PC/ObjectDetection) <br>[ImageClassification](./CV_VR/AI_PC/ImageClassification) | - | - |
+| AI PC | [AnythingLLMChat_RAG](./GenAI/AI_PC/AnythingLLMChat_RAG/)<br>[History LLM](./GenAI/AI_PC/History_LLM/) <br>[NPU-Chatbot_LLM_RAG](./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/) <br>[Ticket Counter](./GenAI/AI_PC/Ticket_Counter) | [ObjectDetection](./CV_VR/AI_PC/ObjectDetection) <br>[ImageClassification](./CV_VR/AI_PC/ImageClassification) | - | - |
 | IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/) | - | [Data Payload Monitor](./Others/IoT-Robotics/Data_Payload_Monitor/) |
 | Android Phones | [InferenceCloudChat](./GenAI/Android/InferenceCloudChat/)  | - | - | - |
 | Connectivity | - | - | - | - |
