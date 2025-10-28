@@ -1,0 +1,464 @@
+{
+    "Bengaluru": {
+        "Hyderabad": {
+            "fare": 950,
+            "platform": 1
+        },
+        "Chennai": {
+            "fare": 850,
+            "platform": 2
+        },
+        "Mumbai": {
+            "fare": 1600,
+            "platform": 3
+        },
+        "Delhi": {
+            "fare": 4900,
+            "platform": 4
+        },
+        "Lucknow": {
+            "fare": 2800,
+            "platform": 5
+        },
+        "Jaipur": {
+            "fare": 750,
+            "platform": 1
+        },
+        "Gandhinagar": {
+            "fare": 650,
+            "platform": 2
+        },
+        "Kolkata": {
+            "fare": 5000,
+            "platform": 3
+        },
+        "Thiruvananthapuram": {
+            "fare": 1500,
+            "platform": 4
+        },
+        "Pune": {
+            "fare": 1700,
+            "platform": 5
+        }
+    },
+    "Hyderabad": {
+        "Bengaluru": {
+            "fare": 950,
+            "platform": 1
+        },
+        "Chennai": {
+            "fare": 900,
+            "platform": 1
+        },
+        "Mumbai": {
+            "fare": 1275,
+            "platform": 2
+        },
+        "Delhi": {
+            "fare": 2925,
+            "platform": 2
+        },
+        "Lucknow": {
+            "fare": 1875,
+            "platform": 3
+        },
+        "Jaipur": {
+            "fare": 850,
+            "platform": 1
+        },
+        "Gandhinagar": {
+            "fare": 800,
+            "platform": 1
+        },
+        "Kolkata": {
+            "fare": 2975,
+            "platform": 2
+        },
+        "Thiruvananthapuram": {
+            "fare": 1225,
+            "platform": 2
+        },
+        "Pune": {
+            "fare": 1325,
+            "platform": 3
+        }
+    },
+    "Chennai": {
+        "Bengaluru": {
+            "fare": 850,
+            "platform": 2
+        },
+        "Hyderabad": {
+            "fare": 900,
+            "platform": 1
+        },
+        "Mumbai": {
+            "fare": 1225,
+            "platform": 2
+        },
+        "Delhi": {
+            "fare": 2875,
+            "platform": 3
+        },
+        "Lucknow": {
+            "fare": 1825,
+            "platform": 3
+        },
+        "Jaipur": {
+            "fare": 800,
+            "platform": 1
+        },
+        "Gandhinagar": {
+            "fare": 750,
+            "platform": 2
+        },
+        "Kolkata": {
+            "fare": 2925,
+            "platform": 2
+        },
+        "Thiruvananthapuram": {
+            "fare": 1175,
+            "platform": 3
+        },
+        "Pune": {
+            "fare": 1275,
+            "platform": 3
+        }
+    },
+    "Mumbai": {
+        "Bengaluru": {
+            "fare": 1600,
+            "platform": 3
+        },
+        "Hyderabad": {
+            "fare": 1275,
+            "platform": 2
+        },
+        "Chennai": {
+            "fare": 1225,
+            "platform": 2
+        },
+        "Delhi": {
+            "fare": 3250,
+            "platform": 3
+        },
+        "Lucknow": {
+            "fare": 2200,
+            "platform": 4
+        },
+        "Jaipur": {
+            "fare": 1175,
+            "platform": 2
+        },
+        "Gandhinagar": {
+            "fare": 1125,
+            "platform": 2
+        },
+        "Kolkata": {
+            "fare": 3300,
+            "platform": 3
+        },
+        "Thiruvananthapuram": {
+            "fare": 1550,
+            "platform": 3
+        },
+        "Pune": {
+            "fare": 1650,
+            "platform": 4
+        }
+    },
+    "Delhi": {
+        "Bengaluru": {
+            "fare": 4900,
+            "platform": 4
+        },
+        "Hyderabad": {
+            "fare": 2925,
+            "platform": 2
+        },
+        "Chennai": {
+            "fare": 2875,
+            "platform": 3
+        },
+        "Mumbai": {
+            "fare": 3250,
+            "platform": 3
+        },
+        "Lucknow": {
+            "fare": 3850,
+            "platform": 4
+        },
+        "Jaipur": {
+            "fare": 2825,
+            "platform": 2
+        },
+        "Gandhinagar": {
+            "fare": 2775,
+            "platform": 3
+        },
+        "Kolkata": {
+            "fare": 4950,
+            "platform": 3
+        },
+        "Thiruvananthapuram": {
+            "fare": 3200,
+            "platform": 4
+        },
+        "Pune": {
+            "fare": 3300,
+            "platform": 4
+        }
+    },
+    "Lucknow": {
+        "Bengaluru": {
+            "fare": 2800,
+            "platform": 5
+        },
+        "Hyderabad": {
+            "fare": 1875,
+            "platform": 3
+        },
+        "Chennai": {
+            "fare": 1825,
+            "platform": 3
+        },
+        "Mumbai": {
+            "fare": 2200,
+            "platform": 4
+        },
+        "Delhi": {
+            "fare": 3850,
+            "platform": 4
+        },
+        "Jaipur": {
+            "fare": 1775,
+            "platform": 3
+        },
+        "Gandhinagar": {
+            "fare": 1725,
+            "platform": 3
+        },
+        "Kolkata": {
+            "fare": 3900,
+            "platform": 4
+        },
+        "Thiruvananthapuram": {
+            "fare": 2150,
+            "platform": 4
+        },
+        "Pune": {
+            "fare": 2250,
+            "platform": 5
+        }
+    },
+    "Jaipur": {
+        "Bengaluru": {
+            "fare": 750,
+            "platform": 1
+        },
+        "Hyderabad": {
+            "fare": 850,
+            "platform": 1
+        },
+        "Chennai": {
+            "fare": 800,
+            "platform": 1
+        },
+        "Mumbai": {
+            "fare": 1175,
+            "platform": 2
+        },
+        "Delhi": {
+            "fare": 2825,
+            "platform": 2
+        },
+        "Lucknow": {
+            "fare": 1775,
+            "platform": 3
+        },
+        "Gandhinagar": {
+            "fare": 700,
+            "platform": 1
+        },
+        "Kolkata": {
+            "fare": 2875,
+            "platform": 2
+        },
+        "Thiruvananthapuram": {
+            "fare": 1125,
+            "platform": 2
+        },
+        "Pune": {
+            "fare": 1225,
+            "platform": 3
+        }
+    },
+    "Gandhinagar": {
+        "Bengaluru": {
+            "fare": 650,
+            "platform": 2
+        },
+        "Hyderabad": {
+            "fare": 800,
+            "platform": 1
+        },
+        "Chennai": {
+            "fare": 750,
+            "platform": 2
+        },
+        "Mumbai": {
+            "fare": 1125,
+            "platform": 2
+        },
+        "Delhi": {
+            "fare": 2775,
+            "platform": 3
+        },
+        "Lucknow": {
+            "fare": 1725,
+            "platform": 3
+        },
+        "Jaipur": {
+            "fare": 700,
+            "platform": 1
+        },
+        "Kolkata": {
+            "fare": 2825,
+            "platform": 2
+        },
+        "Thiruvananthapuram": {
+            "fare": 1075,
+            "platform": 3
+        },
+        "Pune": {
+            "fare": 1175,
+            "platform": 3
+        }
+    },
+    "Kolkata": {
+        "Bengaluru": {
+            "fare": 5000,
+            "platform": 3
+        },
+        "Hyderabad": {
+            "fare": 2975,
+            "platform": 2
+        },
+        "Chennai": {
+            "fare": 2925,
+            "platform": 2
+        },
+        "Mumbai": {
+            "fare": 3300,
+            "platform": 3
+        },
+        "Delhi": {
+            "fare": 4950,
+            "platform": 3
+        },
+        "Lucknow": {
+            "fare": 3900,
+            "platform": 4
+        },
+        "Jaipur": {
+            "fare": 2875,
+            "platform": 2
+        },
+        "Gandhinagar": {
+            "fare": 2825,
+            "platform": 2
+        },
+        "Thiruvananthapuram": {
+            "fare": 3250,
+            "platform": 3
+        },
+        "Pune": {
+            "fare": 3350,
+            "platform": 4
+        }
+    },
+    "Thiruvananthapuram": {
+        "Bengaluru": {
+            "fare": 1500,
+            "platform": 4
+        },
+        "Hyderabad": {
+            "fare": 1225,
+            "platform": 2
+        },
+        "Chennai": {
+            "fare": 1175,
+            "platform": 3
+        },
+        "Mumbai": {
+            "fare": 1550,
+            "platform": 3
+        },
+        "Delhi": {
+            "fare": 3200,
+            "platform": 4
+        },
+        "Lucknow": {
+            "fare": 2150,
+            "platform": 4
+        },
+        "Jaipur": {
+            "fare": 1125,
+            "platform": 2
+        },
+        "Gandhinagar": {
+            "fare": 1075,
+            "platform": 3
+        },
+        "Kolkata": {
+            "fare": 3250,
+            "platform": 3
+        },
+        "Pune": {
+            "fare": 1600,
+            "platform": 4
+        }
+    },
+    "Pune": {
+        "Bengaluru": {
+            "fare": 1700,
+            "platform": 5
+        },
+        "Hyderabad": {
+            "fare": 1325,
+            "platform": 3
+        },
+        "Chennai": {
+            "fare": 1275,
+            "platform": 3
+        },
+        "Mumbai": {
+            "fare": 1650,
+            "platform": 4
+        },
+        "Delhi": {
+            "fare": 3300,
+            "platform": 4
+        },
+        "Lucknow": {
+            "fare": 2250,
+            "platform": 5
+        },
+        "Jaipur": {
+            "fare": 1225,
+            "platform": 3
+        },
+        "Gandhinagar": {
+            "fare": 1175,
+            "platform": 3
+        },
+        "Kolkata": {
+            "fare": 3350,
+            "platform": 4
+        },
+        "Thiruvananthapuram": {
+            "fare": 1600,
+            "platform": 4
+        }
+    }
+}
