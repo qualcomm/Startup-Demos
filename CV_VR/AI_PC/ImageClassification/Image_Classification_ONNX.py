@@ -16,7 +16,7 @@ import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--onnx_path', type=str, required=True, help='Path to ONNX model')
-parser.add_argument('--qnn_path', type=str, required=True, help='Path to QnnHtp.dll')
+parser.add_argument('--qnn_path', type=str, default='QnnHtp.dll', help='Path to QnnHtp.dll')
 args = parser.parse_args()
 
 options = onnxruntime.SessionOptions()
