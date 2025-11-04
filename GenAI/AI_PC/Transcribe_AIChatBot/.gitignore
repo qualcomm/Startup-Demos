@@ -1,0 +1,19 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment and secrets
+.env
+
+# Streamlit cache and logs
+.streamlit/
+
+
+# Jupyter and notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# VSCode settings
+.vscode/
