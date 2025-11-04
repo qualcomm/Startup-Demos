@@ -27,6 +27,9 @@ This repository is a collection of demo applications that highlight the capabili
 | Connectivity | - | - | - | - |
 | CloudAI-Playground <br>| [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) <br>[Llama3.3_70b_chatbot](./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/)| - <br>| - <br>| - <br>|
 
+## Other Repositories
+- [Awesome Qualcomm Developer Projects](https://qualcomm.github.io/awesome-qualcomm-developer/index.html) -  Cataloge of Open Source projects that build upon Qualcomm's platforms.
+
 ## Hardware & Technologies Used
 
 This repository leverages a variety of hardware and technologies, including but not limited to:
