@@ -9,5 +9,6 @@ This directory contains information about various hardware platforms used in the
 - [Cloud AI Playground](./Cloud%20AI%20Playground.md): Overview of Cloud AI Playground hardware platforms.
 - [Connectivity](./Connectivity.md): Details about connectivity hardware platforms.
 - [IoT-Robotics](./IoT-Robotics.md): Information on IoT and Robotics hardware platforms.
+- [Arduino_UNO-Q](./Arduino_UNO-Q.md): Information on Arduino UNO-Q hardware platforms.
 
 Please refer to the respective subpages for detailed information about each hardware platform.
