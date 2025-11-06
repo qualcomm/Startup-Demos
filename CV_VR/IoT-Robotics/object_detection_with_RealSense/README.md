@@ -37,6 +37,7 @@ This sample application uses two hardware devices: the **RB3 Gen 2** and the **R
 ### 3.1 RB3 Gen 2
 
 You can find more details about the specifications and other information on the Qualcomm official website at the link below:
+
 👉 [RB3 Gen 2 Specifications](https://www.qualcomm.com/developer/hardware/rb3-gen-2-development-kit)
 
 ![N|Solid](images/RB3-Gen-2.png)
@@ -44,6 +45,7 @@ You can find more details about the specifications and other information on the 
 ### 3.2 RealSense - D435i
 
 You can find more details about the specifications and other information on the official website at the link below:
+
 👉 [RealSense D435i Specifications](https://www.intel.com/content/www/us/en/products/sku/190004/intel-realsense-depth-camera-d435i/specifications.html)
 
 ![N|Solid](images/realsense-device.png)
@@ -53,8 +55,9 @@ You can find more details about the specifications and other information on the 
 
 Before installing dependencies and building the SDK or plugin, make sure your RB3 Gen 2 device has already been flashed.
 
-💡 **Note**
+💡 **Note:**
 Follow the official Qualcomm RB3 Gen 2 Dev Kit guide to flash the image.
+
 👉 [Qualcomm RB3 Gen 2 Dev Kit Quick Start](https://docs.qualcomm.com/bundle/publicresource/topics/80-82645-1/Integrate_and_flash_software_2.html#panel-0-V2luZG93cyBob3N0)
 
 ### Step 1: Install required packages and dependencies
