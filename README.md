@@ -27,6 +27,13 @@ This repository is a collection of demo applications that highlight the capabili
 | Connectivity | - | - | - | - |
 | CloudAI-Playground <br>| [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) <br>[Llama3.3_70b_chatbot](./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/)| - <br>| - <br>| - <br>|
 
+
+## [Arduino](www.arduino.cc) Applications & Releases
+
+| Platforms | AI| IOT | Robotics |
+| --- | --- | --- | --- |
+| [Arduino UNO Q](https://www.arduino.cc/product-uno-q) | [Gesture Detection](./CV_VR/Arduino_UNO-Q/GestureDetection/)| - | - |
+
 ## Other Repositories
 - [Awesome Qualcomm Developer Projects](https://qualcomm.github.io/awesome-qualcomm-developer/index.html) -  Catalog of Open Source projects that build upon Qualcomm's platforms.
 
