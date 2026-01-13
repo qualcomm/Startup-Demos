@@ -5,7 +5,7 @@ botocore==1.40.13
 certifi==2025.8.3
 charset-normalizer==3.4.3
 deprecation==2.1.0
-filelock==3.13.1
+filelock==3.20.3
 flatbuffers==25.2.10
 fsspec==2024.6.1
 gast==0.6.0
