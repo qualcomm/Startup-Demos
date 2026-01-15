@@ -15,7 +15,7 @@ h5py==3.14.0
 idna==3.10
 Jinja2==3.1.4
 jmespath==1.0.1
-keras==3.10.0
+keras==3.13.1
 libclang==18.1.1
 Markdown==3.8.2
 markdown-it-py==3.0.0
