@@ -1,0 +1,9 @@
+# Default reviewer for all files in the repository,
+# unless overridden by more specific patterns
+* @jethinr
+
+# Reviewers for any changes in subdirectories (second level and deeper)
+/*/** @apetchi @ashwinih @benjchen @ernestl @hsiaohsu @huatu @kevichou @rtung @ryachu @shascv @vankle
+
+# Reviewers for changes in .github folder
+/.github/* @jethinr
