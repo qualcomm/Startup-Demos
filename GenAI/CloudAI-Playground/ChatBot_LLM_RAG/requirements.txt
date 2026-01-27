@@ -5,4 +5,4 @@ openai==1.93.0
 python-dotenv==1.1.1
 streamlit==1.32.0
 langchain-community==0.3.21
-pypdf==5.3.0
+pypdf==6.6.2
