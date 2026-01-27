@@ -1,6 +1,6 @@
 chromadb==1.0.15
 langchain-community==0.3.27
-pypdf==5.9.0
+pypdf==6.6.2
 PyYAML==6.0.2
 sentence-transformers==5.0.0
 streamlit==1.47.1
