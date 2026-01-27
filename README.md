@@ -22,7 +22,7 @@ This repository is a collection of demo applications that highlight the capabili
 | Platforms | [Generative AI](./GenAI/) | [CV & VR](./CV_VR/) | [5G + AI](./5G%2BAI/) | [Others](./Others/) |
 | --- | --- | --- | --- | --- |
 | AI PC | [AnythingLLMChat_RAG](./GenAI/AI_PC/AnythingLLMChat_RAG/)<br>[History LLM](./GenAI/AI_PC/History_LLM/) <br>[NPU-Chatbot_LLM_RAG](./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/) <br>[Ticket Counter](./GenAI/AI_PC/Ticket_Counter) <br>[Transcribe_AIChatBot](./GenAI/AI_PC/Transcribe_AIChatBot/) | [ObjectDetection](./CV_VR/AI_PC/ObjectDetection) <br>[ImageClassification](./CV_VR/AI_PC/ImageClassification) | - | - |
-| IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/)<br> [Feature Extraction](./CV_VR/IoT-Robotics/xfeat_qcs6490/) <br> [Object Detection with  RealSense](./CV_VR/IoT-Robotics/object_detection_with_RealSense/)| - | [Data Payload Monitor](./Others/IoT-Robotics/Data_Payload_Monitor/) |
+| IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/)<br> [Feature Extraction](./CV_VR/IoT-Robotics/xfeat_qcs6490/) <br> [Object Detection with  RealSense](./CV_VR/IoT-Robotics/object_detection_with_RealSense/) <br> [ObjectDetection on IoT](./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/) | - | [Data Payload Monitor](./Others/IoT-Robotics/Data_Payload_Monitor/) |
 | Android Phones | [InferenceCloudChat](./GenAI/Android/InferenceCloudChat/)  | - | - | - |
 | Connectivity | - | - | - | - |
 | CloudAI-Playground <br>| [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) <br>[Llama3.3_70b_chatbot](./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/)| - <br>| - <br>| - <br>|
@@ -32,7 +32,7 @@ This repository is a collection of demo applications that highlight the capabili
 
 | Platforms | AI| IOT | Robotics |
 | --- | --- | --- | --- |
-| [Arduino UNO Q](https://www.arduino.cc/product-uno-q) | [Gesture Detection](./CV_VR/Arduino_UNO-Q/GestureDetection/)| - | - |
+| [Arduino UNO Q](https://www.arduino.cc/product-uno-q) | [Gesture Detection](./CV_VR/Arduino_UNO-Q/GestureDetection/)<br>[Helmet Detection On Camera With Led](./CV_VR/Arduino_UNO-Q/helmet-detection-on-camera-with-led/) | - | - |
 
 ## Other Repositories
 - [Awesome Qualcomm Developer Projects](https://qualcomm.github.io/awesome-qualcomm-developer/index.html) -  Catalog of Open Source projects that build upon Qualcomm's platforms.
