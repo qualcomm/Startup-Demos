@@ -19,20 +19,94 @@ This repository is a collection of demo applications that highlight the capabili
 
 ## Applications & Releases
 
-| Platforms | [Generative AI](./GenAI/) | [CV & VR](./CV_VR/) | [5G + AI](./5G%2BAI/) | [Others](./Others/) |
-| --- | --- | --- | --- | --- |
-| AI PC | [AnythingLLMChat_RAG](./GenAI/AI_PC/AnythingLLMChat_RAG/)<br>[History LLM](./GenAI/AI_PC/History_LLM/) <br>[NPU-Chatbot_LLM_RAG](./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/) <br>[Ticket Counter](./GenAI/AI_PC/Ticket_Counter) <br>[Transcribe_AIChatBot](./GenAI/AI_PC/Transcribe_AIChatBot/) | [ObjectDetection](./CV_VR/AI_PC/ObjectDetection) <br>[ImageClassification](./CV_VR/AI_PC/ImageClassification) | - | - |
-| IoT-Robotics | - | [People Counter](./CV_VR/IoT-Robotics/people_detection/) <br> [ObjectDetection on IoT](./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/) | - | [Data Payload Monitor](./Others/IoT-Robotics/Data_Payload_Monitor/) |
-| Android Phones | [InferenceCloudChat](./GenAI/Android/InferenceCloudChat/)  | - | - | - |
-| Connectivity | - | - | - | - |
-| CloudAI-Playground <br>| [ChatBot_LLM_RAG](./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/) <br>[Llama3.3_70b_chatbot](./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/)| - <br>| - <br>| - <br>|
+<table>
+  <tr>
+    <th>Platforms</th>
+    <th>Generative AI</th>
+    <th>CV & VR</th>
+    <th>5G + AI</th>
+    <th>Others</th>
+  </tr>
+
+  <tr>
+    <td>AI PC</td>
+    <td>
+      <a href="./GenAI/AI_PC/AnythingLLMChat_RAG/">AnythingLLMChat_RAG</a><br>
+      <a href="./GenAI/AI_PC/History_LLM/">History LLM</a><br>
+      <a href="./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/">NPU-ChatBot_LLM_RAG</a><br>
+      <a href="./GenAI/AI_PC/Ticket_Counter/">Ticket Counter</a><br>
+      <a href="./GenAI/AI_PC/Transcribe_AIChatBot/">Transcribe_AIChatBot</a>
+    </td>
+    <td>
+      <a href="./CV_VR/AI_PC/ObjectDetection/">ObjectDetection</a><br>
+      <a href="./CV_VR/AI_PC/ImageClassification/">ImageClassification</a>
+    </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+
+  <tr>
+    <td>IoT-Robotics</td>
+    <td> - </td>
+    <td>
+      <a href="./CV_VR/IoT-Robotics/people_detection/">People Counter</a><br>
+      <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/">ObjectDetection on IoT</a>
+    </td>
+    <td> - </td>
+    <td>
+      <a href="./Others/IoT-Robotics/Data_Payload_Monitor/">Data Payload Monitor</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Android Phones</td>
+    <td>
+      <a href="./GenAI/Android/InferenceCloudChat/">InferenceCloudChat</a>
+    </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+
+  <tr>
+    <td>Connectivity</td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+
+  <tr>
+    <td>CloudAI-Playground</td>
+    <td>
+      <a href="./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/">ChatBot_LLM_RAG</a><br>
+      <a href="./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/">Llama3.3_70b_chatbot</a>
+    </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+</table>
 
 
 ## [Arduino](www.arduino.cc) Applications & Releases
 
-| Platforms | AI| IOT | Robotics |
-| --- | --- | --- | --- |
-| [Arduino UNO Q](https://www.arduino.cc/product-uno-q) | [Gesture Detection](./CV_VR/Arduino_UNO-Q/GestureDetection/)| - | - |
+<table>
+  <tr>
+    <th>Platforms</th>
+    <th>AI</th>
+    <th>IOT</th>
+    <th>Robotics</th>
+  </tr>
+  <tr>
+    <td><a href="https://www.arduino.cc/product-uno-q">Arduino UNO Q</a></td>
+    <td>
+      <a href="./CV_VR/Arduino_UNO-Q/GestureDetection/">Gesture Detection</a>
+    </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+</table>
 
 ## Other Repositories
 - [Awesome Qualcomm Developer Projects](https://qualcomm.github.io/awesome-qualcomm-developer/index.html) -  Catalog of Open Source projects that build upon Qualcomm's platforms.
