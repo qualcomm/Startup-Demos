@@ -90,7 +90,7 @@ This repository is a collection of demo applications that highlight the capabili
 </table>
 
 
-## [Arduino](www.arduino.cc) Applications & Releases
+## [Arduino](https://www.arduino.cc) Applications & Releases
 
 <table>
   <tr>
