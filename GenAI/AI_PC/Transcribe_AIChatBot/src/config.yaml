@@ -1,0 +1,4 @@
+model_size: base
+encoder_path: C:/build/whisper_base/HfWhisperEncoder/model.onnx
+decoder_path: C:/build/whisper_base/HfWhisperDecoder/model.onnx
+
