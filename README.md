@@ -50,7 +50,8 @@ This repository is a collection of demo applications that highlight the capabili
     <td> - </td>
     <td>
       <a href="./CV_VR/IoT-Robotics/people_detection/">People Counter</a><br>
-      <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/">ObjectDetection on IoT</a>
+      <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/">ObjectDetection on IoT</a><br>
+      <a href="./CV_VR/IoT-Robotics/GestureDetection/">Gesture Detection</a>
     </td>
     <td> - </td>
     <td>
@@ -101,7 +102,7 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td><a href="https://www.arduino.cc/product-uno-q">Arduino UNO Q</a></td>
     <td>
-      <a href="./CV_VR/Arduino_UNO-Q/GestureDetection/">Gesture Detection</a>
+      <a href="./CV_VR/IoT-Robotics/GestureDetection/">Gesture Detection</a>
     </td>
     <td> - </td>
     <td> - </td>
