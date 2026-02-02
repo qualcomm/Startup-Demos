@@ -1,0 +1,13 @@
+name: "Object Detection on IoT"
+description: "Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "RB3 Gen2"
+  - "Qualcomm AI Hub"
+tags:
+  - "Object Detection"
+  - "IoT"
+  - "YOLOv8"
+  - "LiteRT"
