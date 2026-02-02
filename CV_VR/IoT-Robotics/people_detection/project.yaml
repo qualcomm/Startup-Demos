@@ -1,0 +1,13 @@
+name: "People Detection on IoT"
+description: "A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "RB3 Gen2"
+tags:
+  - "People Detection"
+  - "IoT"
+  - "YOLO"
+  - "Enhanced SDK"
+  - "Retail"
