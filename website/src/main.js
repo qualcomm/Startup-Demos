@@ -214,7 +214,6 @@ function render() {
         linksHtml += ` <a href="${escapeHtml(project.demo_video)}" target="_blank">▶️ Demo Video</a>`;
       }
 
-      // nosemgrep: javascript.browser.security.insecure-document-method.insecure-document-method
       // Safe: All user-controllable data is sanitized with escapeHtml() before insertion
       article.innerHTML = `
         <header>${headerContent} ${thirdPartyBadge} ${statusBadge} ${difficultyBadge}</header>
@@ -230,7 +229,7 @@ function render() {
           <div class="tags">${tagsHtml}</div>
           <div class="links">${linksHtml}</div>
         </footer>
-      `;
+      `; // nosemgrep: javascript.browser.security.insecure-document-method.insecure-document-method
       articleGrid.appendChild(article);
     });
     categorySection.appendChild(articleGrid);
