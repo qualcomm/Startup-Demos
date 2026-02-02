@@ -127,6 +127,8 @@ function render() {
     } else {
       displayCategory = category.replace(/_/g, ' ');
     }
+    // nosemgrep: javascript.browser.security.insecure-document-method.insecure-document-method
+    // Safe: displayCategory is escaped with escapeHtml()
     categorySection.innerHTML = `<h2>${escapeHtml(displayCategory)}</h2>`;
     const articleGrid = document.createElement('div');
     articleGrid.className = 'grid';
@@ -212,6 +214,8 @@ function render() {
         linksHtml += ` <a href="${escapeHtml(project.demo_video)}" target="_blank">▶️ Demo Video</a>`;
       }
 
+      // nosemgrep: javascript.browser.security.insecure-document-method.insecure-document-method
+      // Safe: All user-controllable data is sanitized with escapeHtml() before insertion
       article.innerHTML = `
         <header>${headerContent} ${thirdPartyBadge} ${statusBadge} ${difficultyBadge}</header>
         ${stickyNote}
