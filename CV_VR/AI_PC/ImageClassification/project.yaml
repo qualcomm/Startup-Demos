@@ -1,0 +1,12 @@
+name: "Image Classification (ONNX)"
+description: "A simple image classification application using an ONNX model."
+category:
+  - "CV_VR"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Image Classification"
+  - "ONNX"
+  - "Python"
