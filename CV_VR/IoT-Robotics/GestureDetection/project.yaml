@@ -1,0 +1,12 @@
+name: "Gesture Detection"
+description: "A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+  - "Edge Impulse"
+tags:
+  - "Gesture Detection"
+  - "Computer Vision"
+  - "Real-time"
