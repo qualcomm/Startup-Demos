@@ -9,14 +9,17 @@ import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
 import glob from 'fast-glob';
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 
 // Detect repository root
 const getRepoRoot = () => {
   try {
     // Try from current working directory first
-    const root = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
-    return root;
+    const result = spawnSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' });
+    if (result.error || result.status !== 0) {
+      throw new Error('Git command failed');
+    }
+    return result.stdout.trim();
   } catch (error) {
     // Fallback: assume we're in website/ directory
     return path.resolve(process.cwd(), '..');
@@ -138,7 +141,7 @@ function detectLanguages(projectDir) {
     const languageArray = Array.from(languages);
     return languageArray.length > 4 ? languageArray.slice(0, 4) : languageArray;
   } catch (error) {
-    console.warn(`Error detecting languages for ${projectDir}:`, error.message);
+    console.warn('Error detecting languages for', projectDir + ':', error.message);
     return [];
   }
 }
@@ -149,12 +152,18 @@ function detectLanguages(projectDir) {
 function getDevelopers(projectDir) {
   try {
     // Get all commit authors for this directory, excluding merges and project.yaml-only commits
-    const cmd = `git log --no-merges --format="%ae|%s" -- "${projectDir}"`;
-    const output = execSync(cmd, {
+    // Use spawnSync with array args to prevent command injection
+    const result = spawnSync('git', ['log', '--no-merges', '--format=%ae|%s', '--', projectDir], {
       cwd: REPO_ROOT,
       encoding: 'utf8',
       maxBuffer: 10 * 1024 * 1024
     });
+    
+    if (result.error) {
+      throw result.error;
+    }
+    
+    const output = result.stdout;
 
     if (!output.trim()) {
       return [];
@@ -187,7 +196,7 @@ function getDevelopers(projectDir) {
     // Cap at 12 developers
     return devArray.length > 12 ? devArray.slice(0, 12) : devArray;
   } catch (error) {
-    console.warn(`Error getting developers for ${projectDir}:`, error.message);
+    console.warn('Error getting developers for', projectDir + ':', error.message);
     return [];
   }
 }
@@ -197,17 +206,23 @@ function getDevelopers(projectDir) {
  */
 function getLastCommitDate(projectDir) {
   try {
-    const cmd = `git log -1 --format="%ad" --date=short -- "${projectDir}"`;
-    const output = execSync(cmd, {
+    // Use spawnSync with array args to prevent command injection
+    const result = spawnSync('git', ['log', '-1', '--format=%ad', '--date=short', '--', projectDir], {
       cwd: REPO_ROOT,
       encoding: 'utf8',
       maxBuffer: 10 * 1024 * 1024
     });
+    
+    if (result.error) {
+      throw result.error;
+    }
+    
+    const output = result.stdout;
 
     const date = output.trim();
     return date || null;
   } catch (error) {
-    console.warn(`Error getting last commit date for ${projectDir}:`, error.message);
+    console.warn('Error getting last commit date for', projectDir + ':', error.message);
     return null;
   }
 }
@@ -228,7 +243,7 @@ const main = async () => {
 
       // Basic validation
       if (!doc.name || !doc.description || !doc.category || !Array.isArray(doc.category)) {
-        console.warn(`Skipping invalid project file: ${file}. Missing or invalid required fields (name, description, category as array).`);
+        console.warn('Skipping invalid project file:', file + '. Missing or invalid required fields (name, description, category as array).');
         continue;
       }
 
@@ -253,7 +268,7 @@ const main = async () => {
 
       projects.push(doc);
     } catch (e) {
-      console.error(`Error processing file ${file}:`, e);
+      console.error('Error processing file', file + ':', e);
     }
   }
 

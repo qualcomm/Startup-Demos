@@ -9,6 +9,17 @@
 import '@picocss/pico';
 import './style.css';
 
+// HTML escape helper to prevent XSS
+function escapeHtml(unsafe) {
+  if (typeof unsafe !== 'string') return '';
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 const searchInput = document.getElementById('search-input');
 const tagFiltersContainer = document.getElementById('tag-filters');
 const platformFiltersContainer = document.getElementById('platform-filters');
@@ -116,7 +127,7 @@ function render() {
     } else {
       displayCategory = category.replace(/_/g, ' ');
     }
-    categorySection.innerHTML = `<h2>${displayCategory}</h2>`;
+    categorySection.innerHTML = `<h2>${escapeHtml(displayCategory)}</h2>`;
     const articleGrid = document.createElement('div');
     articleGrid.className = 'grid';
 
@@ -126,31 +137,31 @@ function render() {
       let tagsHtml = '';
       // Add platforms first as platform tags
       if (project.platforms) {
-        tagsHtml += project.platforms.map(p => `<span class="tag platform-tag">${p}</span>`).join(' ');
+        tagsHtml += project.platforms.map(p => `<span class="tag platform-tag">${escapeHtml(p)}</span>`).join(' ');
       }
       // Then add regular tags
       if (project.tags) {
-        tagsHtml += ' ' + project.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ');
+        tagsHtml += ' ' + project.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join(' ');
       }
 
       let teamHtml = '';
       if (project.team) {
-        teamHtml = `<p><strong>Team:</strong> ${project.team}</p>`;
+        teamHtml = `<p><strong>Team:</strong> ${escapeHtml(project.team)}</p>`;
       }
 
       let hardwareHtml = '';
       if (project.hardware_requirements && project.hardware_requirements.length > 0) {
-        hardwareHtml = `<p><strong>Hardware:</strong> ${project.hardware_requirements.join(', ')}</p>`;
+        hardwareHtml = `<p><strong>Hardware:</strong> ${project.hardware_requirements.map(escapeHtml).join(', ')}</p>`;
       }
 
       let setupTimeHtml = '';
       if (project.estimated_setup_time) {
-        setupTimeHtml = `<p><strong>Setup Time:</strong> ${project.estimated_setup_time}</p>`;
+        setupTimeHtml = `<p><strong>Setup Time:</strong> ${escapeHtml(project.estimated_setup_time)}</p>`;
       }
 
       let relatedHtml = '';
       if (project.related_projects && project.related_projects.length > 0) {
-        relatedHtml = `<p><strong>Related:</strong> ${project.related_projects.join(', ')}</p>`;
+        relatedHtml = `<p><strong>Related:</strong> ${project.related_projects.map(escapeHtml).join(', ')}</p>`;
       }
 
       let thirdPartyBadge = '';
@@ -160,14 +171,14 @@ function render() {
 
       let statusBadge = '';
       if (project.status) {
-        const statusClass = project.status.toLowerCase().replace(/\s+/g, '-');
-        statusBadge = `<span class="badge status-${statusClass}">${project.status}</span>`;
+        const statusClass = escapeHtml(project.status.toLowerCase().replace(/\s+/g, '-'));
+        statusBadge = `<span class="badge status-${statusClass}">${escapeHtml(project.status)}</span>`;
       }
 
       let difficultyBadge = '';
       if (project.difficulty_level) {
-        const diffClass = project.difficulty_level.toLowerCase();
-        difficultyBadge = `<span class="badge difficulty-${diffClass}">${project.difficulty_level}</span>`;
+        const diffClass = escapeHtml(project.difficulty_level.toLowerCase());
+        difficultyBadge = `<span class="badge difficulty-${diffClass}">${escapeHtml(project.difficulty_level)}</span>`;
       }
 
       // Determine base URL and org based on hostname
@@ -179,37 +190,37 @@ function render() {
       let repoUrl = '';
       let headerContent = '';
       if (project.repo_path) {
-        repoUrl = repoBaseUrl + project.repo_path;
-        headerContent = `<a href="${repoUrl}" target="_blank" style="text-decoration: none; color: inherit;"><strong>${project.name} ↗</strong></a>`;
+        repoUrl = repoBaseUrl + encodeURI(project.repo_path);
+        headerContent = `<a href="${escapeHtml(repoUrl)}" target="_blank" style="text-decoration: none; color: inherit;"><strong>${escapeHtml(project.name)} ↗</strong></a>`;
       } else {
-        headerContent = `<strong>${project.name}</strong>`;
+        headerContent = `<strong>${escapeHtml(project.name)}</strong>`;
       }
 
       let stickyNote = '';
       if (project.last_updated) {
-        stickyNote = `<div class="last-updated-sticky">Last updated: ${project.last_updated}</div>`;
+        stickyNote = `<div class="last-updated-sticky">Last updated: ${escapeHtml(project.last_updated)}</div>`;
       }
 
       let linksHtml = '';
       if (project.homepage) {
-        linksHtml += `<a href="${project.homepage}" target="_blank">🌐 Homepage</a>`;
+        linksHtml += `<a href="${escapeHtml(project.homepage)}" target="_blank">🌐 Homepage</a>`;
       }
       if (project.docs) {
-        linksHtml += ` <a href="${project.docs}" target="_blank">📖 Docs</a>`;
+        linksHtml += ` <a href="${escapeHtml(project.docs)}" target="_blank">📖 Docs</a>`;
       }
       if (project.demo_video) {
-        linksHtml += ` <a href="${project.demo_video}" target="_blank">▶️ Demo Video</a>`;
+        linksHtml += ` <a href="${escapeHtml(project.demo_video)}" target="_blank">▶️ Demo Video</a>`;
       }
 
       article.innerHTML = `
         <header>${headerContent} ${thirdPartyBadge} ${statusBadge} ${difficultyBadge}</header>
         ${stickyNote}
         <div class="card-body">
-          <p>${project.description}</p>${teamHtml}${hardwareHtml}${setupTimeHtml}${relatedHtml}
+          <p>${escapeHtml(project.description)}</p>${teamHtml}${hardwareHtml}${setupTimeHtml}${relatedHtml}
         </div>
         <div class="card-meta">
-          <div class="card-meta-langs">${project.languages && project.languages.length > 0 ? `&lt;/&gt; ${project.languages.join(', ')}` : ''}</div>
-          <div class="card-meta-authors">${project.developers && project.developers.length > 0 ? `By: ${project.developers.join(', ')}` : ''}</div>
+          <div class="card-meta-langs">${project.languages && project.languages.length > 0 ? `&lt;/&gt; ${project.languages.map(escapeHtml).join(', ')}` : ''}</div>
+          <div class="card-meta-authors">${project.developers && project.developers.length > 0 ? `By: ${project.developers.map(escapeHtml).join(', ')}` : ''}</div>
         </div>
         <footer>
           <div class="tags">${tagsHtml}</div>
