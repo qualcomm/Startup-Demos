@@ -1,0 +1,13 @@
+name: "AnythingLLM Chat RAG"
+description: "A RAG-based chatbot using AnythingLLM."
+category:
+  - "GenAI"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "LLM"
+  - "RAG"
+  - "Chatbot"
+  - "Anything LLM"

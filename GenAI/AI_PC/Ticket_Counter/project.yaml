@@ -1,0 +1,11 @@
+name: "Ticket Counter"
+description: "A GenAI-powered ticket counter simulation."
+category:
+  - "GenAI"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "GenAI"
+  - "Simulation"
