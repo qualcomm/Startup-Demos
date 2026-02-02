@@ -1,0 +1,14 @@
+name: "YOLOv4 Object Detection"
+description: "High-performance object detection using YOLOv4 with ONNX and Pytorch conversion scripts."
+category:
+  - "AI_PC"
+  - "3rdParty"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "YOLOv4"
+  - "Object Detection"
+  - "ONNX"
+  - "Pytorch"
+is_third_party: true
