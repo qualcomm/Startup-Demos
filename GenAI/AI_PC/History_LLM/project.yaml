@@ -1,0 +1,13 @@
+name: "History LLM"
+description: "An LLM-based application for historical queries."
+category:
+  - "GenAI"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "LLM"
+  - "History"
+  - "Chatbot"
+  - "LM Studio"
