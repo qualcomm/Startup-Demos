@@ -1,0 +1,394 @@
+/*--style.css---------------------------------------------------------------*/
+/* Part of the Startup-Demos Project, under the MIT License                 */
+/* See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt      */
+/* for license information.                                                 */
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.       */
+/* SPDX-License-Identifier: MIT License                                     */
+/*--------------------------------------------------------------------------*/
+
+/* Enhanced styling for professional appearance */
+
+:root {
+  --qcom-blue: #0066cc;
+  --qcom-dark-blue: #004c99;
+}
+
+header.container-fluid {
+  background-color: var(--qcom-blue);
+  padding: 0;
+}
+
+nav {
+  padding: 0.75rem 0;
+}
+
+nav a {
+  color: white !important;
+}
+
+nav a:hover {
+  color: #e0e0e0 !important;
+}
+
+#controls input[type="search"] {
+  margin-bottom: 0.3rem;
+}
+
+.filter-section {
+  margin-bottom: 0.5rem;
+}
+
+.filter-header {
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--pico-muted-color);
+}
+
+.clear-filter {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--pico-muted-color);
+  cursor: pointer;
+}
+
+.clear-filter:hover {
+  color: var(--pico-color);
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  line-height: 1;
+}
+
+#tag-filters button,
+#platform-filters button {
+  background: var(--qcom-blue);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 0.15rem 0.48rem;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 0;
+}
+
+#platform-filters button {
+  background: #B71C1C;
+}
+
+#tag-filters button.active,
+#platform-filters button.active {
+  background: #333333;
+  color: white;
+}
+
+button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  background: var(--qcom-blue);
+  color: white;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.6rem;
+  padding: 0.18rem 0.55rem;
+}
+
+#tag-filters button:hover,
+#platform-filters button:hover {
+  background: var(--qcom-dark-blue);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+article {
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: rgba(0, 102, 204, 0.055);
+  border: 1px solid rgba(0, 102, 204, 0.26);
+  border-left: 3px solid rgba(0, 102, 204, 0.48);
+  border-top: 2px solid rgba(0, 102, 204, 0.35);
+  border-radius: 6px;
+  min-height: 400px;
+  max-height: 400px;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+article header {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+  padding-bottom: 0.5rem;
+  text-align: left;
+  min-height: 2.4rem;
+  font-size: 0.8rem;
+}
+
+article p {
+  font-size: 0.8rem;
+}
+
+.tags {
+  min-height: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.tags .tag {
+  display: inline-block;
+  background: var(--qcom-blue);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 0.1rem 0.35rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.tags .tag.platform-tag {
+  background: #B71C1C;
+}
+
+article footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--pico-muted-border-color);
+}
+
+.links a {
+  font-size: 0.85rem;
+  padding: 0;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  display: inline;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  color: var(--qcom-blue);
+}
+
+.links a:hover {
+  color: var(--qcom-dark-blue);
+  text-decoration: underline;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Try Now Button Base */
+.try-now-btn {
+  background: none !important;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 0.48rem;
+  padding: 0 !important;
+  margin-left: auto;
+  font-weight: normal;
+  color: #343a40;
+  border: none;
+}
+
+.try-now-btn:hover {
+  font-weight: bold;
+  color: #343a40;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge.third-party {
+  background-color: #6c757d;
+  color: white;
+}
+
+.badge.status-stable {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge.status-experimental {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.badge.status-beta {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.badge.status-deprecated {
+  background-color: #dc3545;
+  color: white;
+}
+
+.badge.difficulty-beginner {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge.difficulty-intermediate {
+  background-color: #fd7e14;
+  color: white;
+}
+
+.badge.difficulty-advanced {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* 3rd Party Pin/Tag - Green Sticky (Final) */
+.third-party-stamp {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  font-weight: 600;
+  font-size: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  z-index: 10;
+  background: #28a745;
+  color: white;
+  transform: rotate(-4deg);
+  border-radius: 3px;
+  box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #1e7e34;
+}
+.third-party-stamp::before { 
+  content: '3P'; 
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--qcom-blue);
+  background: rgba(0, 102, 204, 0.25);
+  padding: 0.22rem 0.7rem;
+  border-radius: 4px;
+  border-left: 6px solid var(--qcom-blue);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Card body container */
+.card-body {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.card-body > p {
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.card-body > p:first-child {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  max-height: calc(1.4em * 5);
+}
+
+/* Card metadata section - separate section below description */
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.7rem;
+  color: var(--pico-muted-color);
+  padding: 0.5rem 0 0 0;
+  margin: 0;
+  gap: 0.5rem;
+}
+
+.card-meta-langs {
+  font-family: 'Courier New', monospace;
+  color: var(--qcom-blue);
+  font-weight: 500;
+  font-size: 0.7rem;
+  flex: 1;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.card-meta-authors {
+  font-style: italic;
+  color: var(--pico-muted-color);
+  font-size: 0.7rem;
+  flex: 1;
+  text-align: right;
+  line-height: 1.2;
+}
+
+/* Responsive: allow metadata to wrap on mobile */
+@media (max-width: 768px) {
+  .card-meta {
+    font-size: 0.58rem;
+  }
+  
+  .card-meta-authors,
+  .card-meta-langs {
+    white-space: normal;
+  }
+}
+
+/* Last Updated Sticky Note - Arrow Shape */
+.last-updated-sticky {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+  opacity: 0.6;
+  color: #333;
+  font-size: 0.5rem;
+  font-weight: 600;
+  padding: 0 0.5rem 0 0.4rem;
+  line-height: 1.2;
+  clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+  border-radius: 3px;
+  z-index: 3;
+  white-space: nowrap;
+  font-family: Arial, sans-serif;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}

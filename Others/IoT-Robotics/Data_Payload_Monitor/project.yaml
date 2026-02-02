@@ -1,0 +1,14 @@
+name: "Data Payload Monitor"
+description: "Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT monitoring."
+category:
+  - "Others"
+  - "IoT-Robotics"
+platforms:
+  - "RB3 Gen2"
+tags:
+  - "IoT"
+  - "Monitoring"
+  - "Data"
+  - "Streamlit"
+  - "Real-time"
+  - "Health Metrics"
