@@ -1,0 +1,62 @@
+<!-- --index.html-------------------------------------------------------- -->
+<!-- Part of the Startup-Demos Project, under the MIT License             -->
+<!-- See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt  -->
+<!-- for license information.                                             -->
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.   -->
+<!-- SPDX-License-Identifier: MIT License                                 -->
+<!-- -------------------------------------------------------------------- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qualcomm Startup Demos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" integrity="sha384-L1dWfspMTHU/ApYnFiMz2QID/PlP1xCW9visvBdbEkOLkSSWsP6ZJWhPw6apiXxU" crossorigin="anonymous" />
+  </head>
+  <body>
+    <header class="container-fluid">
+      <nav class="container">
+        <ul>
+          <li>
+            <a href="#" class="contrast">
+              <img src="./logo.svg" alt="Qualcomm" width="24" height="24" style="vertical-align: middle; margin-right: 8px;" />
+              <strong>Qualcomm Startup Demos</strong>
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="https://www.qualcomm.com/developer" target="_blank" class="secondary">Qualcomm Developers</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <header style="text-align: center; margin: 2rem 0;">
+        <h1>Startup Demo Projects</h1>
+        <p>Discover innovative demos and applications built for Qualcomm platforms</p>
+      </header>
+
+      <div id="loading" style="text-align: center; padding: 3rem;">
+        <div aria-busy="true">Loading projects...</div>
+      </div>
+
+      <div id="app-content" style="display: none;">
+        
+        <section id="controls" style="margin-bottom: 2rem;">
+          <input type="search" id="search-input" placeholder="🔍 Search projects by name or description..." />
+          <div id="platform-filters" style="margin-top: 0.5rem;"></div>
+          <div id="tag-filters" style="margin-top: 0.5rem;"></div>
+        </section>
+
+        <section id="catalog-container"></section>
+      </div>
+    </main>
+
+    <footer class="container" style="text-align: center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid var(--pico-muted-border-color);">
+      <p><small>Brought to you by <a href="https://www.qualcomm.com" target="_blank">Qualcomm</a></small></p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
