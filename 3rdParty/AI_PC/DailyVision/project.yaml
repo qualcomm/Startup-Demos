@@ -1,0 +1,13 @@
+name: "Daily Vision"
+description: "An application that uses AI to analyze daily activities from a camera feed."
+category:
+  - "AI_PC"
+  - "3rdParty"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "AI"
+  - "Vision"
+  - "ONNX"
+is_third_party: true
