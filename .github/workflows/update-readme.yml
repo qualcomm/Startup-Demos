@@ -1,0 +1,71 @@
+﻿name: Update README Tables
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    # Skip if commit is from the bot to prevent loops
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git log dates
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+      
+      - name: Run table update script
+        run: |
+          python scripts/update_readme_tables.py
+      
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code README.md || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Generate commit message
+        if: steps.git-check.outputs.changed == 'true'
+        id: commit-msg
+        run: |
+          PROJECT_COUNT=$(find . -name "project.yaml" -path "*/[A-Z]*/*/*/project.yaml" | wc -l)
+          CHANGED_FILES=$(git diff --name-only README.md | wc -l)
+          DATE=$(date +"%Y-%m-%d")
+          echo "message=docs(readme): update project tables - ${PROJECT_COUNT} projects (${DATE})" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "${{ steps.commit-msg.outputs.message }}"
+          
+          # Try GITHUB_TOKEN first, fallback to GH_PAT if push fails (protected branch)
+          echo "Attempting push with GITHUB_TOKEN..."
+          if git push 2>&1; then
+            echo "✓ Push successful with GITHUB_TOKEN"
+          elif [ -n "$GH_PAT" ]; then
+            echo "! GITHUB_TOKEN failed (likely protected branch), retrying with GH_PAT..."
+            git remote set-url origin https://x-access-token:${GH_PAT}@github.qualcomm.com/${{ github.repository }}.git
+            git push
+            echo "✓ Push successful with GH_PAT"
+          else
+            echo "✗ Push failed: Branch may be protected and GH_PAT secret is not configured"
+            exit 1
+          fi
