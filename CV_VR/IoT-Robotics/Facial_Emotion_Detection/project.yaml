@@ -1,0 +1,15 @@
+name: "Facial Emotion Detection"
+description: "A real-time facial emotion detection application running on RB3 Gen2."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "RB3 Gen2"
+  - "Qualcomm AI Hub"
+tags:
+  - "Facial Emotion Detection"
+  - "Computer Vision"
+  - "Real-time"
+  - "MediaPipe"
+  - "ResNet-50"
+  - "AffectNet"
