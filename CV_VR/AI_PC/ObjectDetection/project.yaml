@@ -1,0 +1,12 @@
+name: "Object Detection (ONNX)"
+description: "An object detection application using an ONNX model."
+category:
+  - "CV_VR"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Object Detection"
+  - "ONNX"
+  - "Python"

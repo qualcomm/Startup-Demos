@@ -1,0 +1,13 @@
+name: "NPU ChatBot LLM RAG"
+description: "A RAG-based chatbot accelerated by an NPU."
+category:
+  - "GenAI"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "LLM"
+  - "RAG"
+  - "Chatbot"
+  - "NPU"

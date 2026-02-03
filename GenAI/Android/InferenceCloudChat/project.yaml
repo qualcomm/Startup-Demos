@@ -1,0 +1,13 @@
+name: "Inference Cloud Chat"
+description: "Android RAG chatbot application using Cloud AI Playground for intelligent document querying."
+category:
+  - "GenAI"
+  - "Android"
+platforms:
+  - "Android"
+  - "Cloud AI Playground"
+tags:
+  - "GenAI"
+  - "Chatbot"
+  - "RAG"
+  - "ChromaDB"

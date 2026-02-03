@@ -21,71 +21,94 @@ This repository is a collection of demo applications that highlight the capabili
 
 <table>
   <tr>
-    <th>Platforms</th>
-    <th>Generative AI</th>
-    <th>CV & VR</th>
-    <th>5G + AI</th>
-    <th>Others</th>
+    <th align="center"><strong>Platforms</strong></th>
+    <th align="center"><strong>Generative AI</strong></th>
+    <th align="center"><strong>CV & VR</strong></th>
+    <th align="center"><strong>5G+AI</strong></th>
+    <th align="center"><strong>Others</strong></th>
   </tr>
-
   <tr>
-    <td>AI PC</td>
+    <td align="left"><strong>AI PC</strong></td>
     <td>
-      <a href="./GenAI/AI_PC/AnythingLLMChat_RAG/">AnythingLLMChat_RAG</a><br>
-      <a href="./GenAI/AI_PC/History_LLM/">History LLM</a><br>
-      <a href="./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/">NPU-ChatBot_LLM_RAG</a><br>
-      <a href="./GenAI/AI_PC/Ticket_Counter/">Ticket Counter</a><br>
-      <a href="./GenAI/AI_PC/Transcribe_AIChatBot/">Transcribe_AIChatBot</a>
+      <a href="./GenAI/AI_PC/AnythingLLMChat_RAG/" title="A RAG-based chatbot using AnythingLLM.">
+        <img src="https://img.shields.io/badge/AnythingLLM_Chat_RAG-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="AnythingLLM Chat RAG"/>
+      </a><br>
+      <a href="./GenAI/AI_PC/History_LLM/" title="An LLM-based application for historical queries.">
+        <img src="https://img.shields.io/badge/History_LLM-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="History LLM"/>
+      </a><br>
+      <a href="./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/" title="A RAG-based chatbot accelerated by an NPU.">
+        <img src="https://img.shields.io/badge/NPU_ChatBot_LLM_RAG-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="NPU ChatBot LLM RAG"/>
+      </a><br>
+      <a href="./GenAI/AI_PC/Ticket_Counter/" title="A GenAI-powered ticket counter simulation.">
+        <img src="https://img.shields.io/badge/Ticket_Counter-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Ticket Counter"/>
+      </a><br>
+      <a href="./GenAI/AI_PC/Transcribe_AIChatBot/" title="An AI chatbot that can transcribe audio.">
+        <img src="https://img.shields.io/badge/Transcribe_AI_ChatBot-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Transcribe AI ChatBot"/>
+      </a>
     </td>
     <td>
-      <a href="./CV_VR/AI_PC/ObjectDetection/">ObjectDetection</a><br>
-      <a href="./CV_VR/AI_PC/ImageClassification/">ImageClassification</a>
+      <a href="./CV_VR/AI_PC/ImageClassification/" title="A simple image classification application using an ONNX model.">
+        <img src="https://img.shields.io/badge/Image_Classification_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Image Classification (ONNX)"/>
+      </a><br>
+      <a href="./CV_VR/AI_PC/ObjectDetection/" title="An object detection application using an ONNX model.">
+        <img src="https://img.shields.io/badge/Object_Detection_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection (ONNX)"/>
+      </a>
     </td>
-    <td> - </td>
-    <td> - </td>
+    <td align="center">—</td>
+    <td align="center">—</td>
   </tr>
-
   <tr>
-    <td>IoT-Robotics</td>
-    <td> - </td>
+    <td align="left"><strong>IoT-Robotics</strong></td>
+    <td align="center">—</td>
     <td>
-      <a href="./CV_VR/IoT-Robotics/people_detection/">People Counter</a><br>
-      <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/">ObjectDetection on IoT</a><br>
-      <a href="./CV_VR/IoT-Robotics/GestureDetection/">Gesture Detection</a>
+      <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
+        <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/" title="Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub.">
+        <img src="https://img.shields.io/badge/Object_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection on IoT"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
+        <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
+      </a>
     </td>
-    <td> - </td>
+    <td align="center">—</td>
     <td>
-      <a href="./Others/IoT-Robotics/Data_Payload_Monitor/">Data Payload Monitor</a>
+      <a href="./Others/IoT-Robotics/Data_Payload_Monitor/" title="Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT monitoring.">
+        <img src="https://img.shields.io/badge/Data_Payload_Monitor-2026.02.03-grey?style=flat-square&labelColor=orange" alt="Data Payload Monitor"/>
+      </a>
     </td>
   </tr>
-
   <tr>
-    <td>Android Phones</td>
+    <td align="left"><strong>Android Phones</strong></td>
     <td>
-      <a href="./GenAI/Android/InferenceCloudChat/">InferenceCloudChat</a>
+      <a href="./GenAI/Android/InferenceCloudChat/" title="Android RAG chatbot application using Cloud AI Playground for intelligent document querying.">
+        <img src="https://img.shields.io/badge/Inference_Cloud_Chat-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Inference Cloud Chat"/>
+      </a>
     </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
+    <td align="center">—</td>
+    <td align="center">—</td>
+    <td align="center">—</td>
   </tr>
-
   <tr>
-    <td>Connectivity</td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
+    <td align="left"><strong>Connectivity</strong></td>
+    <td align="center">—</td>
+    <td align="center">—</td>
+    <td align="center">—</td>
+    <td align="center">—</td>
   </tr>
-
   <tr>
-    <td>CloudAI-Playground</td>
+    <td align="left"><strong>CloudAI-Playground</strong></td>
     <td>
-      <a href="./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/">ChatBot_LLM_RAG</a><br>
-      <a href="./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/">Llama3.3_70b_chatbot</a>
+      <a href="./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/" title="RAG-based chatbot using Cloud AI Playground with ChromaDB for document querying.">
+        <img src="https://img.shields.io/badge/ChatBot_LLM_RAG_(Cloud)-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="ChatBot LLM RAG (Cloud)"/>
+      </a><br>
+      <a href="./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/" title="High-performance chatbot using Llama 3.3 70B model on AIC100 Ultra accelerator.">
+        <img src="https://img.shields.io/badge/Llama3.3_70B_Chatbot-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Llama3.3 70B Chatbot"/>
+      </a>
     </td>
-    <td> - </td>
-    <td> - </td>
-    <td> - </td>
+    <td align="center">—</td>
+    <td align="center">—</td>
+    <td align="center">—</td>
   </tr>
 </table>
 
@@ -94,18 +117,20 @@ This repository is a collection of demo applications that highlight the capabili
 
 <table>
   <tr>
-    <th>Platforms</th>
-    <th>AI</th>
-    <th>IOT</th>
-    <th>Robotics</th>
+    <th align="center"><strong>Platforms</strong></th>
+    <th align="center"><strong>🤖 AI</strong></th>
+    <th align="center"><strong>🌐 IOT</strong></th>
+    <th align="center"><strong>🤖 Robotics</strong></th>
   </tr>
   <tr>
-    <td><a href="https://www.arduino.cc/product-uno-q">Arduino UNO Q</a></td>
+    <td align="left"><strong><a href="https://www.arduino.cc/product-uno-q">Arduino UNO Q</a></strong></td>
     <td>
-      <a href="./CV_VR/IoT-Robotics/GestureDetection/">Gesture Detection</a>
+      <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
+        <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
+      </a>
     </td>
-    <td> - </td>
-    <td> - </td>
+    <td align="center">—</td>
+    <td align="center">—</td>
   </tr>
 </table>
 

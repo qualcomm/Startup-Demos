@@ -1,0 +1,12 @@
+name: "Transcribe AI ChatBot"
+description: "An AI chatbot that can transcribe audio."
+category:
+  - "GenAI"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "GenAI"
+  - "Chatbot"
+  - "Transcription"

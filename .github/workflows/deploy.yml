@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch full git history for developer attribution
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: website/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('website/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies
+        run: cd website && npm install
+
+      - name: Build website
+        run: cd website && npm run build
+
+      - name: Deploy to GitHub Pages
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SERVER: ${{ github.server_url }}
+        run: |
+          cd website/dist
+          git init
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Deploy to GitHub Pages"
+          SERVER_HOST=${SERVER#https://}
+          
+          # Try GITHUB_TOKEN first, fallback to GH_PAT if push fails (protected branch)
+          echo "Attempting deployment with GITHUB_TOKEN..."
+          if git push -f https://x-access-token:${GITHUB_TOKEN}@${SERVER_HOST}/${REPO}.git HEAD:gh-pages 2>&1; then
+            echo "✓ Deployment successful with GITHUB_TOKEN"
+          elif [ -n "$GH_PAT" ]; then
+            echo "! GITHUB_TOKEN failed (likely protected branch), retrying with GH_PAT..."
+            git push -f https://x-access-token:${GH_PAT}@${SERVER_HOST}/${REPO}.git HEAD:gh-pages
+            echo "✓ Deployment successful with GH_PAT"
+          else
+            echo "✗ Deployment failed: Branch may be protected and GH_PAT secret is not configured"
+            exit 1
+          fi
+

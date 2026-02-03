@@ -1,0 +1,13 @@
+name: "Face Recognition Attendance"
+description: "A system to take attendance using face recognition technology."
+category:
+  - "AI_PC"
+  - "3rdParty"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Face Recognition"
+  - "Attendance"
+  - "Python"
+is_third_party: true
