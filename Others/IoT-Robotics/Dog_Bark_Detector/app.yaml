@@ -1,0 +1,11 @@
+name: Dog_Bark_Detector
+description: Use a pre-trained model to classify audio files in the browser.
+ports: []
+bricks:
+- arduino:audio_classification: {
+    variables: {
+      EI_AUDIO_CLASSIFICATION_MODEL: /home/arduino/.arduino-bricks/ei-models/dog-sound-classification.eim
+    }
+ }
+- arduino:web_ui: {}
+icon: 🦮
