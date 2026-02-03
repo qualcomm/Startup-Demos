@@ -1,0 +1,20 @@
+name: "LED Matrix Generator"
+description: "Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices."
+category:
+  - "Others"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+tags:
+  - "Image Processing"
+  - "LED Matrix"
+  - "Animation"
+  - "Arduino"
+  - "Embedded"
+license: "MIT"
+status: "stable"
+difficulty_level: "beginner"
+estimated_setup_time: "15 minutes"
+hardware_requirements:
+  - "13x8 LED Matrix Display"
+  - "Arduino-compatible microcontroller"
