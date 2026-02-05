@@ -76,6 +76,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./Others/IoT-Robotics/Data_Payload_Monitor/" title="Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT monitoring.">
         <img src="https://img.shields.io/badge/Data_Payload_Monitor-2026.02.03-grey?style=flat-square&labelColor=orange" alt="Data Payload Monitor"/>
       </a><br>
+      <a href="./Others/IoT-Robotics/Dog_Bark_Detector/" title="An audio-based edge-AI demo on Arduino UNO-Q that detects dog barking sounds using a machine-learning model trained with Edge Impulse">
+        <img src="https://img.shields.io/badge/Dog_Bark_Detector-2026.02.04-grey?style=flat-square&labelColor=orange" alt="Dog Bark Detector"/>
+      </a><br>
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
         <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=orange" alt="LED Matrix Generator"/>
       </a>
@@ -128,6 +131,9 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td align="left"><strong><a href="https://www.arduino.cc/product-uno-q">Arduino UNO Q</a></strong></td>
     <td>
+      <a href="./Others/IoT-Robotics/Dog_Bark_Detector/" title="An audio-based edge-AI demo on Arduino UNO-Q that detects dog barking sounds using a machine-learning model trained with Edge Impulse">
+        <img src="https://img.shields.io/badge/Dog_Bark_Detector-2026.02.04-grey?style=flat-square&labelColor=blue" alt="Dog Bark Detector"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
         <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
       </a><br>
