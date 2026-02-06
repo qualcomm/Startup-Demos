@@ -1,0 +1,19 @@
+#===--app.yaml----------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===--------------------------------------------------------===//
+
+name: Helmet Detection with LED Matrix
+icon: 🪖
+description: Detect Helmet / No Helmet using Edge Impulse and control LED matrix on MCU.
+
+bricks:
+- arduino:video_object_detection: {
+ variables: {
+   EI_OBJ_DETECTION_MODEL: /home/arduino/.arduino-bricks/ei-models/helmet-detection-linux-aarch64-v8.eim
+ }
+}
+- arduino:web_ui: {}
