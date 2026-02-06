@@ -1,0 +1,14 @@
+name: "Helmet Detection on Camera with LED"
+description: "This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+  - "Edge Impulse"
+tags:
+  - "Computer Vision"
+  - "IoT"
+  - "YOLO"
+  - "Real-time"
+  - "MCU"
