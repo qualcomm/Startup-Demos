@@ -13,10 +13,7 @@ from tool.darknet2pytorch import Darknet
 
 # ----------------- user config -----------------
 cfg_file = "/path-to-folder/yolov4.cfg"
-
-# This must be produced by convert2pytorch.py using:
-#   torch.save(model.state_dict(), output_file)
-pt_file = "/path-to-folder/yolov4_state_dict.pt"
+weight_file = "/path-to-folder/yolov4.weights"
 
 trace_out = "/path-to-folder/yolov4_traced.pt"
 onnx_out = "/path-to-folder/yolov4.onnx"
@@ -29,40 +26,12 @@ use_cuda = False
 device = torch.device("cuda" if (use_cuda and torch.cuda.is_available()) else "cpu")
 print("Device:", device)
 
-def load_state_dict_weights_only(path: str):
-    """
-    Load a state_dict/checkpoint dict with restricted unpickling surface.
-    weights_only=True limits what can be deserialized.
-    """
-    # nosemgrep: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch
-    obj = torch.load(path, map_location="cpu", weights_only=True)
-
-    if isinstance(obj, dict):
-        # Accept common checkpoint key patterns or pure state_dict
-        for k in ("state_dict", "model_state_dict", "model"):
-            if k in obj and isinstance(obj[k], dict):
-                return obj[k]
-        return obj
-
-    raise ValueError(
-        f"Unsupported content type from {path}: {type(obj)}. "
-        "Expected a state_dict/checkpoint dict."
-    )
-
-# Build model architecture from cfg
+# Build model architecture and load darknet weights directly (NO torch.load here)
 print("Building model from cfg:", cfg_file)
 model = Darknet(cfg_file)
-model.eval()
 
-# Load weights from state_dict
-print("Loading state_dict:", pt_file)
-state_dict = load_state_dict_weights_only(pt_file)
-
-missing, unexpected = model.load_state_dict(state_dict, strict=False)
-if missing:
-    print("[WARN] Missing keys (first 20):", missing[:20], ("..." if len(missing) > 20 else ""))
-if unexpected:
-    print("[WARN] Unexpected keys (first 20):", unexpected[:20], ("..." if len(unexpected) > 20 else ""))
+print("Loading darknet weights:", weight_file)
+model.load_weights(weight_file)
 
 model.to(device)
 model.eval()
@@ -114,6 +83,9 @@ def normalize_to_B_N_C(t, B):
 
     d = t.dim()
     if d == 4:
+        # two possibilities:
+        # 1) shape like [B, N, 1, C] -> last dim small (C small, e.g., 4)
+        # 2) shape like [B, C, H, W] -> conv feature map
         last = t.shape[-1]
         if last <= 16:
             B_, a, b, c = t.shape
@@ -135,6 +107,7 @@ def normalize_to_B_N_C(t, B):
         except Exception:
             return torch.zeros(B, 0, 1, device=device)
 
+# wrapper module for export
 class ExportWrapper(torch.nn.Module):
     def __init__(self, model):
         super().__init__()
@@ -142,34 +115,48 @@ class ExportWrapper(torch.nn.Module):
 
     def forward(self, x):
         outs = self.model(x)
-        tensors = flatten_tensors(outs)
+        tensors = flatten_tensors(outs)  # list of tensors
         B = x.shape[0]
         normed = [normalize_to_B_N_C(t, B) for t in tensors]
 
         if len(normed) == 0:
             return torch.zeros(B, 0, 1, device=x.device)
 
+        # decide concat axis:
         N_vals = [int(t.shape[1]) for t in normed]
+        # if all N same -> concat on channels (dim=2)
         if all(n == N_vals[0] for n in N_vals):
-            return torch.cat(normed, dim=2)  # [B, N, sumC]
+            out = torch.cat(normed, dim=2)  # [B, N, sumC]
         else:
-            return torch.cat(normed, dim=1)  # [B, total_preds, C?]
+            out = torch.cat(normed, dim=1)  # [B, total_preds, C_maybe_diff]
+        return out
 
+# instantiate wrapper and test
 wrapper = ExportWrapper(model).to(device)
 wrapper.eval()
 
 with torch.no_grad():
-    out_nontraced = wrapper(dummy)
-    print("Wrapper (non-traced) output shape:", tuple(out_nontraced.shape))
+    try:
+        out_nontraced = wrapper(dummy)
+        print("Wrapper (non-traced) output shape:", tuple(out_nontraced.shape))
+    except Exception as e:
+        print("ERROR running wrapper(dummy) BEFORE tracing:", e)
+        raise
 
+# Trace and save
 print("Tracing to TorchScript (strict=False)...")
 with torch.no_grad():
     traced = torch.jit.trace(wrapper, dummy, strict=False)
-    out_traced = traced(dummy)
-    print("Traced output shape:", tuple(out_traced.shape))
+    try:
+        out_traced = traced(dummy)
+        print("Traced output shape:", tuple(out_traced.shape))
+    except Exception as e:
+        print("Warning: traced(dummy) raised:", e)
+
     traced.save(trace_out)
     print("Saved traced model to:", trace_out)
 
+# Try ONNX export (from traced)
 print("Attempting ONNX export to:", onnx_out)
 try:
     torch.onnx.export(
