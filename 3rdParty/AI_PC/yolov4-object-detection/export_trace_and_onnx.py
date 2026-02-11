@@ -32,8 +32,9 @@ print("Device:", device)
 def load_state_dict_weights_only(path: str):
     """
     Load a state_dict/checkpoint dict with restricted unpickling surface.
-    weights_only=True limits what can be deserialized. [1](https://qualcomm-my.sharepoint.com/personal/ryachu_qti_qualcomm_com/Documents/Microsoft%20Teams%20Chat%20Files/README%202.pdf?web=1)
+    weights_only=True limits what can be deserialized.
     """
+    # nosemgrep: trailofbits.python.pickles-in-pytorch.pickles-in-pytorch
     obj = torch.load(path, map_location="cpu", weights_only=True)
 
     if isinstance(obj, dict):
