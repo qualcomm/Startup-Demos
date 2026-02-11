@@ -1,4 +1,4 @@
-#===--export_trace_and_onnx_fixed2.py--------------------------------------===//
+#===--export_trace_and_onnx.py-------------------------------------------===//
 # Part of the Startup-Demos Project, under the MIT License
 # See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
 # for license information.
@@ -8,12 +8,16 @@
 
 import torch
 import numpy as np
-import os, sys
+
+from tool.darknet2pytorch import Darknet
 
 # ----------------- user config -----------------
-pt_file = "/path-to-folder/yolov4.pt"
+cfg_file = "/path-to-folder/yolov4.cfg"
+weight_file = "/path-to-folder/yolov4.weights"
+
 trace_out = "/path-to-folder/yolov4_traced.pt"
 onnx_out = "/path-to-folder/yolov4.onnx"
+
 inference_size = 832
 opset_version = 11
 use_cuda = False
@@ -22,10 +26,15 @@ use_cuda = False
 device = torch.device("cuda" if (use_cuda and torch.cuda.is_available()) else "cpu")
 print("Device:", device)
 
-print("Loading model:", pt_file)
-model = torch.load(pt_file, map_location=device)
-model.eval()
+# Build model architecture and load darknet weights directly (NO torch.load here)
+print("Building model from cfg:", cfg_file)
+model = Darknet(cfg_file)
+
+print("Loading darknet weights:", weight_file)
+model.load_weights(weight_file)
+
 model.to(device)
+model.eval()
 
 # inspect raw output once
 dummy = torch.randn(1, 3, inference_size, inference_size, device=device)
@@ -66,7 +75,6 @@ def flatten_tensors(obj):
 
 # normalize a tensor to shape [B, N, C]
 def normalize_to_B_N_C(t, B):
-    # ensure tensor and float
     if not isinstance(t, torch.Tensor):
         t = torch.as_tensor(t, device=device)
     t = t.to(device)
@@ -80,42 +88,23 @@ def normalize_to_B_N_C(t, B):
         # 2) shape like [B, C, H, W] -> conv feature map
         last = t.shape[-1]
         if last <= 16:
-            # treat last dim as channel; collapse middle dims
             B_, a, b, c = t.shape
-            # reshape to [B, a*b, c]  (if a==N and b==1 -> ok)
-            res = t.reshape(B_, -1, c)
-            return res
+            return t.reshape(B_, -1, c)
         else:
-            # assume [B, C, H, W]
             B_, C, H, W = t.shape
-            res = t.permute(0, 2, 3, 1).contiguous().view(B_, -1, C)
-            return res
+            return t.permute(0, 2, 3, 1).contiguous().view(B_, -1, C)
     elif d == 3:
-        # likely already [B, N, C]
-        if t.shape[0] == B:
-            return t
-        else:
-            # try to add batch dim
-            return t.unsqueeze(0)
+        return t if t.shape[0] == B else t.unsqueeze(0)
     elif d == 2:
-        # could be [N, C] or [B, C]
-        if t.shape[0] == B:
-            # [B, C] -> [B, 1, C]
-            return t.unsqueeze(1)
-        else:
-            # [N, C] -> [1, N, C]
-            return t.unsqueeze(0)
+        return t.unsqueeze(1) if t.shape[0] == B else t.unsqueeze(0)
     elif d == 1:
-        # [C] -> [1,1,C]
         return t.unsqueeze(0).unsqueeze(0)
     else:
-        # fallback: flatten trailing dims after batch
         try:
             B_ = t.shape[0]
             rest = int(np.prod(t.shape[1:]))
             return t.view(B_, rest, 1)
         except Exception:
-            # give an empty tensor
             return torch.zeros(B, 0, 1, device=device)
 
 # wrapper module for export
@@ -128,9 +117,7 @@ class ExportWrapper(torch.nn.Module):
         outs = self.model(x)
         tensors = flatten_tensors(outs)  # list of tensors
         B = x.shape[0]
-        normed = []
-        for t in tensors:
-            normed.append(normalize_to_B_N_C(t, B))
+        normed = [normalize_to_B_N_C(t, B) for t in tensors]
 
         if len(normed) == 0:
             return torch.zeros(B, 0, 1, device=x.device)
@@ -139,11 +126,8 @@ class ExportWrapper(torch.nn.Module):
         N_vals = [int(t.shape[1]) for t in normed]
         # if all N same -> concat on channels (dim=2)
         if all(n == N_vals[0] for n in N_vals):
-            # first ensure same N across; then pad if needed (shouldn't be)
-            # concat on channels
             out = torch.cat(normed, dim=2)  # [B, N, sumC]
         else:
-            # different N -> concat preds along dim=1
             out = torch.cat(normed, dim=1)  # [B, total_preds, C_maybe_diff]
         return out
 
@@ -168,6 +152,7 @@ with torch.no_grad():
         print("Traced output shape:", tuple(out_traced.shape))
     except Exception as e:
         print("Warning: traced(dummy) raised:", e)
+
     traced.save(trace_out)
     print("Saved traced model to:", trace_out)
 
@@ -190,7 +175,5 @@ try:
 except Exception as e:
     print("ONNX export failed with error:")
     print(e)
-    print("If ONNX export fails, paste the full traceback here and I'll debug further.")
 
 print("Done.")
-
