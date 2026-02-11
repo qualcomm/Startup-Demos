@@ -1,0 +1,511 @@
+[
+  {
+    "name": "Daily Vision",
+    "description": "An application that uses AI to analyze daily activities from a camera feed.",
+    "category": [
+      "AI_PC",
+      "3rdParty"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "AI",
+      "Vision",
+      "ONNX"
+    ],
+    "is_third_party": true,
+    "repo_path": "3rdParty/AI_PC/DailyVision",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "ashwinih"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Face Recognition Attendance",
+    "description": "A system to take attendance using face recognition technology.",
+    "category": [
+      "AI_PC",
+      "3rdParty"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "Face Recognition",
+      "Attendance",
+      "Python"
+    ],
+    "is_third_party": true,
+    "repo_path": "3rdParty/AI_PC/face-recognition-attendance",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "eoyyavur"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "YOLOv4 Object Detection",
+    "description": "High-performance object detection using YOLOv4 with ONNX and Pytorch conversion scripts.",
+    "category": [
+      "AI_PC",
+      "3rdParty"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "YOLOv4",
+      "Object Detection",
+      "ONNX",
+      "Pytorch"
+    ],
+    "is_third_party": true,
+    "repo_path": "3rdParty/AI_PC/yolov4-object-detection",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "rtung",
+      "jethinr"
+    ],
+    "last_updated": "2026-02-11"
+  },
+  {
+    "name": "Image Classification (ONNX)",
+    "description": "A simple image classification application using an ONNX model.",
+    "category": [
+      "CV_VR",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "Image Classification",
+      "ONNX",
+      "Python"
+    ],
+    "repo_path": "CV_VR/AI_PC/ImageClassification",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "kevichou"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Object Detection (ONNX)",
+    "description": "An object detection application using an ONNX model.",
+    "category": [
+      "CV_VR",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "Object Detection",
+      "ONNX",
+      "Python"
+    ],
+    "repo_path": "CV_VR/AI_PC/ObjectDetection",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "kevichou"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Gesture Detection",
+    "description": "A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.",
+    "category": [
+      "CV_VR",
+      "IoT-Robotics"
+    ],
+    "platforms": [
+      "Arduino UNO-Q",
+      "Edge Impulse"
+    ],
+    "tags": [
+      "Gesture Detection",
+      "Computer Vision",
+      "Real-time"
+    ],
+    "repo_path": "CV_VR/IoT-Robotics/GestureDetection",
+    "languages": [],
+    "developers": [
+      "jethinr"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Object Detection on IoT",
+    "description": "Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub.",
+    "category": [
+      "CV_VR",
+      "IoT-Robotics"
+    ],
+    "platforms": [
+      "RB3 Gen2",
+      "Qualcomm AI Hub"
+    ],
+    "tags": [
+      "Object Detection",
+      "IoT",
+      "YOLOv8",
+      "LiteRT"
+    ],
+    "repo_path": "CV_VR/IoT-Robotics/ObjectDetection_on_IoT",
+    "languages": [],
+    "developers": [
+      "jethinr",
+      "hsiaohsu"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Helmet Detection on Camera with LED",
+    "description": "This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.",
+    "category": [
+      "CV_VR",
+      "IoT-Robotics"
+    ],
+    "platforms": [
+      "Arduino UNO-Q",
+      "Edge Impulse"
+    ],
+    "tags": [
+      "Computer Vision",
+      "IoT",
+      "YOLO",
+      "Real-time",
+      "MCU"
+    ],
+    "repo_path": "CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "rtung"
+    ],
+    "last_updated": "2026-02-11"
+  },
+  {
+    "name": "People Detection on IoT",
+    "description": "A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.",
+    "category": [
+      "CV_VR",
+      "IoT-Robotics"
+    ],
+    "platforms": [
+      "RB3 Gen2"
+    ],
+    "tags": [
+      "People Detection",
+      "IoT",
+      "YOLO",
+      "Enhanced SDK",
+      "Retail"
+    ],
+    "repo_path": "CV_VR/IoT-Robotics/people_detection",
+    "languages": [
+      "C",
+      "C/C++",
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "ashwinih"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "AnythingLLM Chat RAG",
+    "description": "A RAG-based chatbot using AnythingLLM.",
+    "category": [
+      "GenAI",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "LLM",
+      "RAG",
+      "Chatbot",
+      "Anything LLM"
+    ],
+    "repo_path": "GenAI/AI_PC/AnythingLLMChat_RAG",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "History LLM",
+    "description": "An LLM-based application for historical queries.",
+    "category": [
+      "GenAI",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "LLM",
+      "History",
+      "Chatbot",
+      "LM Studio"
+    ],
+    "repo_path": "GenAI/AI_PC/History_LLM",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "shascv"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "NPU ChatBot LLM RAG",
+    "description": "A RAG-based chatbot accelerated by an NPU.",
+    "category": [
+      "GenAI",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "LLM",
+      "RAG",
+      "Chatbot",
+      "NPU"
+    ],
+    "repo_path": "GenAI/AI_PC/NPU-ChatBot_LLM_RAG",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "apetchi"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Ticket Counter",
+    "description": "A GenAI-powered ticket counter simulation.",
+    "category": [
+      "GenAI",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "GenAI",
+      "Simulation"
+    ],
+    "repo_path": "GenAI/AI_PC/Ticket_Counter",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "ashwinih"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Transcribe AI ChatBot",
+    "description": "An AI chatbot that can transcribe audio.",
+    "category": [
+      "GenAI",
+      "AI_PC"
+    ],
+    "platforms": [
+      "AI PC",
+      "XElite"
+    ],
+    "tags": [
+      "GenAI",
+      "Chatbot",
+      "Transcription"
+    ],
+    "repo_path": "GenAI/AI_PC/Transcribe_AIChatBot",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "ashwinih"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Inference Cloud Chat",
+    "description": "Android RAG chatbot application using Cloud AI Playground for intelligent document querying.",
+    "category": [
+      "GenAI",
+      "Android"
+    ],
+    "platforms": [
+      "Android",
+      "Cloud AI Playground"
+    ],
+    "tags": [
+      "GenAI",
+      "Chatbot",
+      "RAG",
+      "ChromaDB"
+    ],
+    "repo_path": "GenAI/Android/InferenceCloudChat",
+    "languages": [
+      "Kotlin"
+    ],
+    "developers": [
+      "jethinr"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "ChatBot LLM RAG (Cloud)",
+    "description": "RAG-based chatbot using Cloud AI Playground with ChromaDB for document querying.",
+    "category": [
+      "GenAI",
+      "CloudAI-Playground"
+    ],
+    "platforms": [
+      "Cloud AI Playground"
+    ],
+    "tags": [
+      "LLM",
+      "RAG",
+      "Chatbot",
+      "ChromaDB"
+    ],
+    "repo_path": "GenAI/CloudAI-Playground/ChatBot_LLM_RAG",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Llama3.3 70B Chatbot",
+    "description": "High-performance chatbot using Llama 3.3 70B model on AIC100 Ultra accelerator.",
+    "category": [
+      "GenAI",
+      "CloudAI-Playground"
+    ],
+    "platforms": [
+      "AIC100 Ultra"
+    ],
+    "tags": [
+      "LLM",
+      "Chatbot",
+      "Llama3.3",
+      "QEfficient"
+    ],
+    "repo_path": "GenAI/CloudAI-Playground/llama3.3_70b_chatbot",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "rtung"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "Data Payload Monitor",
+    "description": "Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT monitoring.",
+    "category": [
+      "Others",
+      "IoT-Robotics"
+    ],
+    "platforms": [
+      "RB3 Gen2"
+    ],
+    "tags": [
+      "IoT",
+      "Monitoring",
+      "Data",
+      "Streamlit",
+      "Real-time",
+      "Health Metrics"
+    ],
+    "repo_path": "Others/IoT-Robotics/Data_Payload_Monitor",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "ashwinih"
+    ],
+    "last_updated": "2026-02-02"
+  },
+  {
+    "name": "LED Matrix Generator",
+    "description": "Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.",
+    "category": [
+      "Others",
+      "IoT-Robotics"
+    ],
+    "platforms": [
+      "Arduino UNO-Q"
+    ],
+    "tags": [
+      "Image Processing",
+      "LED Matrix",
+      "Animation",
+      "Arduino",
+      "Embedded"
+    ],
+    "license": "MIT",
+    "status": "stable",
+    "difficulty_level": "beginner",
+    "estimated_setup_time": "15 minutes",
+    "hardware_requirements": [
+      "13x8 LED Matrix Display",
+      "Arduino-compatible microcontroller"
+    ],
+    "repo_path": "Others/IoT-Robotics/LED_Matrix_Generator",
+    "languages": [
+      "Python"
+    ],
+    "developers": [
+      "jethinr",
+      "shascv"
+    ],
+    "last_updated": "2026-02-03"
+  }
+]
