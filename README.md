@@ -65,7 +65,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
-        <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.02.06-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
+        <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.02.11-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/" title="Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub.">
         <img src="https://img.shields.io/badge/Object_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection on IoT"/>
@@ -135,7 +135,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
-        <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.02.06-grey?style=flat-square&labelColor=blue" alt="Helmet Detection on Camera with LED"/>
+        <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.02.11-grey?style=flat-square&labelColor=blue" alt="Helmet Detection on Camera with LED"/>
       </a><br>
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
         <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=blue" alt="LED Matrix Generator"/>
