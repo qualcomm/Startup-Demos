@@ -61,6 +61,9 @@ This repository is a collection of demo applications that highlight the capabili
     <td align="left"><strong>IoT-Robotics</strong></td>
     <td align="center">—</td>
     <td>
+      <a href="./CV_VR/IoT-Robotics/Facial_Emotion_Detection/" title="A real-time facial emotion detection application running on RB3 Gen2.">
+        <img src="https://img.shields.io/badge/Facial_Emotion_Detection-2026.02.06-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
         <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
       </a><br>

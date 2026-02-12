@@ -1,0 +1,15 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment and secrets
+.env
+
+# Jupyter and notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# VSCode settings
+.vscode/

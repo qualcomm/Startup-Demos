@@ -1,0 +1,13 @@
+huggingface-hub==0.36.0
+nbformat==5.10.4
+torch==2.2.2
+protobuf==4.25.8
+jupyterlab==4.4.10
+onnx==1.19.1
+torchvision==0.17.2
+qai-hub==0.40.0
+numpy>=1.24.0
+certifi
+pip-system-certs
+opencv-python
+
