@@ -1,0 +1,5 @@
+opencv-python
+PyGObject==3.50.0
+mediapipe==0.10.18
+tflite-runtime==2.14.0
+
