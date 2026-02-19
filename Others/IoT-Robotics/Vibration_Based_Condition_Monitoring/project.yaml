@@ -1,0 +1,21 @@
+name: "Vibration-Based Condition Monitoring"
+description: "A vibration-based edge-AI demo that detects machine health using vibration data on Arduino UNO-Q"
+category:
+  - "Others"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+tags:
+  - "IoT"
+  - "Monitoring"
+  - "Sensor Data"
+  - "Edge Impulse"
+  - "Real-time"
+  - "Vibration Analysis"
+license: "MIT"
+status: "stable"
+difficulty_level: "beginner"
+estimated_setup_time: "10 minutes"
+hardware_requirements:
+  - "Modulino Movement Sensor"
+

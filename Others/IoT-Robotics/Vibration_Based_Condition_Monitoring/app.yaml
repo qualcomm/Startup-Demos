@@ -1,0 +1,12 @@
+name: Vibration_Based_Condition_Monitoring
+description: Vibration-Based-Condition-Monitoring using the Modulino Movement sensor
+ports: []
+bricks:
+- arduino:motion_detection: {
+    variables: {
+      EI_MOTION_DETECTION_MODEL: /home/arduino/.arduino-bricks/ei-models/Vibration-Based-Condition-Monitoring.eim
+    }
+}
+- arduino:web_ui: {}
+icon: 🐍
+

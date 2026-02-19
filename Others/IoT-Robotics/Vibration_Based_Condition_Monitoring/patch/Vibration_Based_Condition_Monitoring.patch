@@ -1,0 +1,110 @@
+diff --git a/examples/real-time-accelerometer/assets/app.js b/examples/real-time-accelerometer/assets/app.js
+index 0944d1e..abcfc82 100644
+--- a/examples/real-time-accelerometer/assets/app.js
++++ b/examples/real-time-accelerometer/assets/app.js
+@@ -69,7 +69,7 @@ function pushSample(s){
+ }
+ 
+ function renderClasses(d){
+-  const orderedKeys = ['snake', 'wave', 'updown', 'idle'];
++  const orderedKeys = ['healthy', 'faulty'];
+   
+   let maxKey = null;
+   let maxValue = -1;
+@@ -83,18 +83,14 @@ function renderClasses(d){
+   classesRoot.innerHTML = '';
+ 
+   const icons = {
+-    snake: '🐍',
+-    updown: '↕',
+-    wave: '🌊',
+-    idle: '💤'
+-  };
++  healthy: '✅',
++  faulty: '❌'
++};
+ 
+   const names = {
+-    snake: 'Snake',
+-    updown: 'Up Down',
+-    wave: 'Wave',
+-    idle: 'Idle'
+-  };
++  healthy: 'healthy',
++  faulty: 'faulty'
++};
+ 
+   orderedKeys.forEach(key => {
+     const value = d[key] || 0;
+diff --git a/examples/real-time-accelerometer/assets/index.html b/examples/real-time-accelerometer/assets/index.html
+index 5a72350..eafe463 100644
+--- a/examples/real-time-accelerometer/assets/index.html
++++ b/examples/real-time-accelerometer/assets/index.html
+@@ -9,14 +9,14 @@ SPDX-License-Identifier: MPL-2.0
+   <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>Real-time Accelerometer</title>
++    <title>Vibration-Based Condition Monitoring</title>
+     <link rel="stylesheet" type="text/css" href="style.css">
+     <link rel="icon" type="image/png" href="img/favicon.png">
+   </head>
+   <body>
+     <div class="container">
+         <div class="header">
+-            <h1 class="arduino-text">Real-time Accelerometer</h1>
++            <h1 class="arduino-text">Vibration-Based Condition Monitoring</h1>
+             <img class="arduino-logo" src="img/RGB-Arduino-Logo_Color Inline Loop.svg" alt="Arduino Logo">
+         </div>
+         <div class="main-content">
+diff --git a/examples/real-time-accelerometer/python/main.py b/examples/real-time-accelerometer/python/main.py
+index 3af01ab..6416183 100644
+--- a/examples/real-time-accelerometer/python/main.py
++++ b/examples/real-time-accelerometer/python/main.py
+@@ -21,10 +21,8 @@ logger.debug(f"MotionDetection instantiated with confidence={CONFIDENCE}")
+ # Dataframe holding the last classification probabilities
+ detection_df = pd.DataFrame(
+     {
+-        'idle': [0.0],
+-        'snake': [0.0],
+-        'updown': [0.0],
+-        'wave' : [0.0]
++        'healthy': [0.0],
++        'faulty': [0.0]
+     }
+ )
+ 
+@@ -57,13 +55,11 @@ def on_movement_detected(classification: dict):
+     try:
+         global detection_df
+         detection_df = pd.DataFrame(
+-            {
+-                'idle': [classification.get('idle', 0.0)],
+-                'snake': [classification.get('snake', 0.0)],
+-                'updown': [classification.get('updown', 0.0)],
+-                'wave' : [classification.get('wave', 0.0)]
+-            }
+-        )
++    {
++        'healthy': [classification.get('healthy', 0.0)],
++        'faulty': [classification.get('faulty', 0.0)]
++    }
++)
+ 
+         logger.debug(f"Updated detection_df: {detection_df.to_dict(orient='records')[0]}")
+ 
+@@ -78,11 +74,9 @@ def on_movement_detected(classification: dict):
+         logger.exception(f"dataframe: Error: {e}")
+ 
+ # Register movement callbacks
+-motion_detection.on_movement_detection('idle', on_movement_detected)
+-motion_detection.on_movement_detection('snake', on_movement_detected)
+-motion_detection.on_movement_detection('updown', on_movement_detected)
+-motion_detection.on_movement_detection('wave', on_movement_detected)
+-logger.debug("Registered movement detection callbacks for idle,snake,updown,wave")
++motion_detection.on_movement_detection('healthy', on_movement_detected)
++motion_detection.on_movement_detection('faulty', on_movement_detected)
++logger.debug("Registered movement detection callbacks for healthy,faulty")
+ 
+ # Bridge handler: called from the sketch via Bridge.notify("record_sensor_movement", x, y, z)
+ # buffer of samples for the simple time-series chart
