@@ -1,0 +1,16 @@
+name: "Dog Bark Detector"
+description: "An audio-based edge-AI demo on Arduino UNO-Q that detects dog barking sounds using a machine-learning model trained with Edge Impulse"
+category:
+  - "Others"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+tags:
+  - "IoT"
+  - "Audio"
+  - "Sound Classification"
+  - "Edge Impulse"
+  - "Dog Bark Detection"
+license: "MIT"
+status: "stable"
+
