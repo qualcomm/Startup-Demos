@@ -1,0 +1,11 @@
+name: Dog_Bark_Detector
+description: Detection of dog barking sounds Classifications.
+ports: []
+bricks:
+- arduino:audio_classification: {
+    variables: {
+      EI_AUDIO_CLASSIFICATION_MODEL: /home/arduino/.arduino-bricks/ei-models/dog-sound-classification.eim
+    }
+ }
+- arduino:web_ui: {}
+icon: 🦮
