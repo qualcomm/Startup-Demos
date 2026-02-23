@@ -1,0 +1,13 @@
+name: "Noise Suppression (ONNX)"
+description: "A noise suppression application using an ONNX model."
+category:
+  - "Others"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Audio"
+  - "Noise Suppression"
+  - "ONNX"
+  - "Python"
