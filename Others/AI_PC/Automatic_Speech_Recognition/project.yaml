@@ -1,0 +1,13 @@
+name: "Automatic Speech Recognition: Transcription and Translation (ONNX)"
+description: "An automatic speech recognition application with both transcription and translation features using an ONNX model."
+category:
+  - "Others"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Audio"
+  - "Automatic Speech Recognition"
+  - "ONNX"
+  - "Python"
