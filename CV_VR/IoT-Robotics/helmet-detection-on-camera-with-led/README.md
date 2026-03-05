@@ -17,8 +17,8 @@
   - [5.2 Clone the Edge Impulse Project](#52-clone-the-edge-impulse-project)
   - [5.3 Build and Download Deployable Model](#53-build-and-download-deployable-model)
 - [6. Prepare the Application](#6-prepare-the-application)
-  - [6.1 Copy Exisiting Video Detection on camera Application](#61-copy-exisiting-video-detection-on-camera-application)
-  - [6.2 Copy sketch files from exisiting Air quality on LED matrix Application](#62-copy-sketch-files-from-exisiting-air-quality-on-led-matrix-application)
+  - [6.1 Copy existing Video Detection on camera Application](#61-copy-existing-video-detection-on-camera-application)
+  - [6.2 Copy sketch files from existing Air quality on LED matrix Application](#62-copy-sketch-files-from-existing-air-quality-on-led-matrix-application)
   - [6.3 Upload Model to the Device](#63-upload-model-to-the-device)
   - [6.4 Modify the Configuration file](#64-modify-the-configuration-file)
   - [6.5 Modify the sketch file](#65-modify-the-sketch-file)
@@ -103,7 +103,7 @@ For detailed steps, refer to the documentation:
 ## 5. Get the Model from Edge Impulse.
 Edge Impulse empowers you to build datasets, train machine learning models, and optimize libraries for deployment directly on-device.
 
-Click here to know more about [Edge Impluse]( ../../../Tools/Software/Edge_Impluse/README.md)
+Click here to know more about [Edge Impulse]( ../../../Tools/Software/Edge_Impluse/README.md)
 
 ### 5.1 Setup an Edge Impulse Account.
 An Edge Impulse account is required to access the platform’s full suite of tools for building, training, and deploying machine learning models on the Arduino UNO Q. Please follow the setup instructions carefully to ensure proper integration with your device and development workflow.
@@ -136,7 +136,7 @@ For detailed steps, refer to the documentation:
 
 This section will guide you on how to create a new application from existing examples, configure Edge Impulse models, set up the application parameters, and build the final App for deployment on the Arduino UNO Q.Starting from pre-built examples is recommended for first-time users to better understand the structure and workflow.
 
-### 6.1 Copy Exisiting Video Detection on camera Application.
+### 6.1 Copy existing Video Detection on camera Application.
 Arduino App Lab provides a ready-to-use Video Detection on Camera application that can be copied and customized for your specific use case. This section will guide you through duplicating the existing application, modifying its components, integrating Edge Impulse models, and tailoring the detection logic to suit your deployment on the Arduino UNO Q.
 
 In this example we are taking the Video Detection on camera Application for helmet detection.
@@ -146,9 +146,9 @@ In this example we are taking the Video Detection on camera Application for helm
   ![N|Solid](Images/uno_q_app_helmetdetection.jpg)
 
 For detailed steps, refer to the documentation: 
-[Copy and Edit Exisiting sample]( ../../../Tools/Software/Arduino_App_Lab/README.md#duplicate-an-existing-example)
+[Copy and Edit existing sample]( ../../../Tools/Software/Arduino_App_Lab/README.md#duplicate-an-existing-example)
 
-### 6.2 Copy sketch files from exisiting Air quality on LED matrix Application.
+### 6.2 Copy sketch files from existing Air quality on LED matrix Application.
 We would like to control the LED matrix on Arduino UNO Q board. Arduino App Lab provides a ready-to-use LED matrix control example Air quality on LED matrix Application that can be copied and customized for your specific use case. This section will guide you through duplicating the existing application, modifying its components, integrating Edge Impulse models, and tailoring the detection logic to suit your deployment on the Arduino UNO Q.
 
 In this example we are coping the LED matrix control sketch from Air quality on LED matrix Application.
@@ -163,8 +163,8 @@ cp -r sketch/* /home/arduino/ArduinoApps/helmet-detection-on-camera-with-led/ske
 
 Once the deployable model is built in Edge Impulse, it must be uploaded to the Arduino UNO Q to enable real-time inference and application integration. This section will guide you through transferring the compiled model to the device, verifying compatibility, and preparing it for execution within your App Lab application.
 
-Here mention about usage of the model which download from edge impluse in the previous step.
-[Build and Deploy Model](../../../CV_VR/Arduino_UNO-Q/helmet-detection-on-camera-with-led/README.md#53-build-and-download-deployable-model)
+Here mention about usage of the model which download from edge impulse in the previous step.
+[Build and Deploy Model](../../../CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/README.md#53-build-and-download-deployable-model)
 
 **Upload location**:Make sure to upload the model file to **/home/arduino/.arduino-bricks/ei-models/helmet-detection-linux-aarch64-v8.eim**
 
@@ -194,7 +194,6 @@ For detailed steps, refer to the documentation:
    cd ./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/
    ```
 
-
 The app.yaml file defines the structure, behavior, and dependencies of your Arduino App Lab application. Modifying this configuration allows you to customize how your app interacts with hardware, integrates Edge Impulse models, and launches on the Arduino UNO Q. This section will guide you through editing key parameters such as bricks, model paths, and runtime settings. Please follow the setup instructions carefully to ensure your application runs as expected.
 
    ```bash
@@ -217,7 +216,7 @@ cp main.py /home/arduino/ArduinoApps/helmet-detection-on-camera-with-led/python/
    ```
 ## 7. Run the Helmet Detection with LED application.
 
-Once your application is configured and built in Arduino App Lab, it can be deployed and executed directly on the Arduino UNO Q. This section will guide you through launching the application, verifying sensor inputform camera, and observing real-time result.
+Once your application is configured and built in Arduino App Lab, it can be deployed and executed directly on the Arduino UNO Q. This section will guide you through launching the application, verifying sensor input form camera, and observing real-time result.
 
  ![N|Solid](Images/uno_q_app_run.jpg)
 

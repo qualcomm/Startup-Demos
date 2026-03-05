@@ -85,10 +85,14 @@ For detailed information, refer to the documentation,
 [Deployment](https://docs.edgeimpulse.com/studio/projects/deployment)
 
 ### 2.9 Clone Project Repository
-Edge Impulse allows you to copy or clone an existing project, making it easy to reuse configurations, datasets, and pipelines without starting from scratch.
 
-For detailed steps, refer to the documentation: 
-[Clone Repository](https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html)
+Edge Impulse allows you to copy or clone an existing project, making it easy to reuse configurations, datasets, impulses, and processing pipelines without starting from scratch. This is especially useful when you want to build a new solution based on an existing workflow or experiment with variations of the same model.
+In Edge Impulse Studio, you can clone a project directly from the user interface:
+
+- Open the existing project in Edge Impulse Studio
+- Navigate to the project dashboard
+- In the top‑right corner, you will find the ``Clone project`` option
+- Clicking this creates a new project with the same impulse configuration and setup, allowing you to continue development independently
 
 ## 3. Tutorials
 Getting started with Edge Impulse is easy thanks to a wide range of tutorials and resources designed for beginners. These guides help you learn the fundamentals of edge AI development and walk you through building your first machine learning project.
