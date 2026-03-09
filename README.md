@@ -36,6 +36,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./GenAI/AI_PC/History_LLM/" title="An LLM-based application for historical queries.">
         <img src="https://img.shields.io/badge/History_LLM-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="History LLM"/>
       </a><br>
+      <a href="./GenAI/AI_PC/Multimodal_LLM/" title="A multimodal model application accelerated by NPU.">
+        <img src="https://img.shields.io/badge/Multimodal_LLM-2026.03.02-grey?style=flat-square&labelColor=brightgreen" alt="Multimodal LLM"/>
+      </a><br>
       <a href="./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/" title="A RAG-based chatbot accelerated by an NPU.">
         <img src="https://img.shields.io/badge/NPU_ChatBot_LLM_RAG-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="NPU ChatBot LLM RAG"/>
       </a><br>
