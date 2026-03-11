@@ -1,0 +1,12 @@
+name: "Segmentation (ONNX)"
+description: "A segmentation application using an ONNX model."
+category:
+  - "CV_VR"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Segmentation"
+  - "ONNX"
+  - "Python"
