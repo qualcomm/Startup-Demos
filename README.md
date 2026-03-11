@@ -55,6 +55,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/AI_PC/ObjectDetection/" title="An object detection application using an ONNX model.">
         <img src="https://img.shields.io/badge/Object_Detection_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection (ONNX)"/>
+      </a><br>
+      <a href="./CV_VR/AI_PC/Segmentation/" title="A segmentation application using an ONNX model.">
+        <img src="https://img.shields.io/badge/Segmentation_(ONNX)-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Segmentation (ONNX)"/>
       </a>
     </td>
     <td align="center">—</td>
