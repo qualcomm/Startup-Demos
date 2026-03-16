@@ -1,0 +1,13 @@
+name: "Multimodal LLM"
+description: "A multimodal model application accelerated by NPU."
+category:
+  - "GenAI"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "LLM"
+  - "VLM"
+  - "Multimodal"
+  - "Nexa AI"

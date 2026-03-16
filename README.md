@@ -36,6 +36,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./GenAI/AI_PC/History_LLM/" title="An LLM-based application for historical queries.">
         <img src="https://img.shields.io/badge/History_LLM-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="History LLM"/>
       </a><br>
+      <a href="./GenAI/AI_PC/Multimodal_LLM/" title="A multimodal model application accelerated by NPU.">
+        <img src="https://img.shields.io/badge/Multimodal_LLM-2026.03.02-grey?style=flat-square&labelColor=brightgreen" alt="Multimodal LLM"/>
+      </a><br>
       <a href="./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/" title="A RAG-based chatbot accelerated by an NPU.">
         <img src="https://img.shields.io/badge/NPU_ChatBot_LLM_RAG-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="NPU ChatBot LLM RAG"/>
       </a><br>
@@ -52,6 +55,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/AI_PC/ObjectDetection/" title="An object detection application using an ONNX model.">
         <img src="https://img.shields.io/badge/Object_Detection_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection (ONNX)"/>
+      </a><br>
+      <a href="./CV_VR/AI_PC/Segmentation/" title="A segmentation application using an ONNX model.">
+        <img src="https://img.shields.io/badge/Segmentation_(ONNX)-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Segmentation (ONNX)"/>
       </a>
     </td>
     <td align="center">—</td>
@@ -72,6 +78,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/" title="Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub.">
         <img src="https://img.shields.io/badge/Object_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection on IoT"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/object_detection_with_RealSense/" title="A quick guide to running RealSense D435i object detection on RB3 Gen2 using Python and GStreamer.">
+        <img src="https://img.shields.io/badge/Object_Detection_with_RealSense-2026.03.11-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection with RealSense"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
         <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
