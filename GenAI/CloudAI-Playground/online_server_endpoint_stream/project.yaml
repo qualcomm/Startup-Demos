@@ -1,0 +1,13 @@
+name: "Online server endpoint stream"
+description: "Online service server endpoint with streaming support (stream=true) using Llama 3.3 70B 32K ctx_len on AIC100 Ultra."
+category:
+  - "GenAI"
+  - "CloudAI-Playground"
+platforms:
+  - "AIC100 Ultra"
+tags:
+  - "LLM"
+  - "Chatbot"
+  - "QEfficient"
+  - "vLLM"
+  - "OpenAI"
