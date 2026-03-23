@@ -70,6 +70,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/Facial_Emotion_Detection/" title="A real-time facial emotion detection application running on RB3 Gen2.">
         <img src="https://img.shields.io/badge/Facial_Emotion_Detection-2026.02.11-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/xfeat_qcs6490/" title="A project to port the XFeat model to QCS6490 for NPU acceleration and use it on RB3 Gen2 for feature‑point detection.">
+        <img src="https://img.shields.io/badge/Feature_Extraction-2026.03.13-grey?style=flat-square&labelColor=blueviolet" alt="Feature Extraction"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
         <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
       </a><br>
