@@ -1,0 +1,15 @@
+diff --git a/examples/online_serving/openai_chat_completion_client.py b/examples/online_serving/openai_chat_completion_client.py
+index 4b8c0d1..abcdef0 100644
+--- a/examples/online_serving/openai_chat_completion_client.py
++++ b/examples/online_serving/openai_chat_completion_client.py
+@@ -31,6 +31,7 @@ def main():
+     chat_completion = client.chat.completions.create(
+         messages=messages,
+         model=model,
++        stream=True,
+     )
+
+-    print(chat_completion)
++    for chunk in chat_completion:
++        if chunk.choices[0].delta.content:
++            print(chunk.choices[0].delta.content, end="", flush=True)
