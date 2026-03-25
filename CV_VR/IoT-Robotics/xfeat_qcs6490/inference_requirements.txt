@@ -32,7 +32,7 @@ optree==0.16.0
 packaging==25.0
 pillow==11.0.0
 prettytable==3.16.0
-protobuf==5.29.5
+protobuf==5.29.6
 pycairo==1.28.0
 Pygments==2.19.2
 PyGObject==3.50.0
