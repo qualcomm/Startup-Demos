@@ -1,0 +1,11 @@
+name: "Object_detection_via_Tflite_model"
+description: "Integrate YOLOX TFLite model for real-time object detection on UNO Q"
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+tags:
+  - "Computer Vision"
+  - "Object detection"
+  - "LiteRT"

@@ -70,6 +70,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/Facial_Emotion_Detection/" title="A real-time facial emotion detection application running on RB3 Gen2.">
         <img src="https://img.shields.io/badge/Facial_Emotion_Detection-2026.02.11-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/xfeat_qcs6490/" title="A project to port the XFeat model to QCS6490 for NPU acceleration and use it on RB3 Gen2 for feature‑point detection.">
+        <img src="https://img.shields.io/badge/Feature_Extraction-2026.03.13-grey?style=flat-square&labelColor=blueviolet" alt="Feature Extraction"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
         <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
       </a><br>
@@ -81,6 +84,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/object_detection_with_RealSense/" title="A quick guide to running RealSense D435i object detection on RB3 Gen2 using Python and GStreamer.">
         <img src="https://img.shields.io/badge/Object_Detection_with_RealSense-2026.03.11-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection with RealSense"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
+        <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blueviolet" alt="Object_detection_via_Tflite_model"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
         <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
@@ -160,6 +166,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
         <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=blue" alt="LED Matrix Generator"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
+        <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
       </a>
     </td>
     <td>

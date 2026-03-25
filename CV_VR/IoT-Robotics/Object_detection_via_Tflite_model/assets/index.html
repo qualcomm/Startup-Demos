@@ -1,0 +1,46 @@
+<!--
+#===--YOLOX (TFLite) Object Detection Streaming Demo--===
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Camera Stream</title>
+  <style>
+    body { margin:0; background:#000; display:flex; align-items:center; justify-content:center; height:100vh; }
+    img  { max-width:95vw; max-height:95vh; border:1px solid #222; }
+    #info{ position:fixed; left:8px; bottom:8px; color:#bbb; font:12px/1.3 system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <img id="live" alt="camera frame" />
+  <div id="info">init…</div>
+  <script>
+    const img  = document.getElementById('live');
+    const info = document.getElementById('info');
+
+    async function pull(){
+      try{
+        const r = await fetch('/frame/latest', { cache: 'no-store' });
+        if(!r.ok){ info.textContent = 'HTTP ' + r.status; return; }
+        const j = await r.json();
+        const mime = j.mime || 'image/jpeg';
+        img.src = `data:${mime};base64,${j.payload_b64}`;
+        info.textContent = `ts=${j.ts} • ${new Date(j.ts).toLocaleString()}`;
+      }catch(e){
+        info.textContent = 'Error: ' + e;
+      }
+    }
+    // Poll at higher frequency for smoother playback (~10–16 FPS)
+    setInterval(pull, 80);
+    pull();
+  </script>
+</body>
+</html>
