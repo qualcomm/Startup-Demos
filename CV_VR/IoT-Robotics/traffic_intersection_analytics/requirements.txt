@@ -1,0 +1,7 @@
+# Python runtime requirements for rb3_intersection_traffic_measure.py
+# NOTE:
+# - GStreamer core/plugins and QNN/IM-SDK are system-level dependencies
+#   and must be installed via apt / vendor SDK, not pip.
+
+PyGObject>=3.42
+pycairo>=1.20
