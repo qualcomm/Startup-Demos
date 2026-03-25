@@ -74,7 +74,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/Feature_Extraction-2026.03.13-grey?style=flat-square&labelColor=blueviolet" alt="Feature Extraction"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
-        <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
+        <img src="https://img.shields.io/badge/Gesture_Detection-2026.03.25-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
         <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
@@ -159,7 +159,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/Dog_Bark_Detector-2026.02.09-grey?style=flat-square&labelColor=blue" alt="Dog Bark Detector"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
-        <img src="https://img.shields.io/badge/Gesture_Detection-2026.02.03-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
+        <img src="https://img.shields.io/badge/Gesture_Detection-2026.03.25-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
         <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blue" alt="Helmet Detection on Camera with LED"/>
