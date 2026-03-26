@@ -1,4 +1,4 @@
-streamlit==1.49.1
+streamlit==1.54.0
 qrcode==8.2
 matplotlib==3.10.6
 ffmpeg==1.4
