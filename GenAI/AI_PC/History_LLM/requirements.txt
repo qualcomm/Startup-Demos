@@ -1,6 +1,6 @@
 setuptools>=68.0.0
 wheel>=0.40.0
-streamlit==1.44.0
+streamlit==1.54.0
 numpy>=1.25.0
 transformers==4.51.2
 requests==2.32.0
