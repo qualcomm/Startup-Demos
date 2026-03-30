@@ -34,7 +34,7 @@ pillow==11.0.0
 prettytable==3.16.0
 protobuf==5.29.5
 pycairo==1.28.0
-Pygments==2.19.2
+Pygments==2.20.0
 PyGObject==3.50.0
 python-dateutil==2.9.0.post0
 requests==2.32.5
