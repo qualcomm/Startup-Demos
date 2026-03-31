@@ -65,7 +65,11 @@ This repository is a collection of demo applications that highlight the capabili
   </tr>
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
-    <td align="center">—</td>
+    <td>
+      <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
+        <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Voice Enabled Gate Control System"/>
+      </a>
+    </td>
     <td>
       <a href="./CV_VR/IoT-Robotics/Facial_Emotion_Detection/" title="A real-time facial emotion detection application running on RB3 Gen2.">
         <img src="https://img.shields.io/badge/Facial_Emotion_Detection-2026.02.11-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
@@ -172,6 +176,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
         <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
+      </a><br>
+      <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
+        <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
       </a>
     </td>
     <td>
