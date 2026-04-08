@@ -2,7 +2,7 @@ setuptools>=68.0.0
 wheel>=0.40.0
 streamlit==1.44.0
 numpy>=1.25.0
-transformers==4.51.2
+transformers==5.0.0rc3
 requests==2.32.0
 protobuf>=3.21.0
 pytest
