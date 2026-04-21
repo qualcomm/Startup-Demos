@@ -1,5 +1,5 @@
 ffmpeg==1.4
-python-dotenv==1.1.1
+python-dotenv==1.2.2
 pydub==0.25.1
 streamlit==1.50.0
 pyyaml==6.0.3
