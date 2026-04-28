@@ -139,6 +139,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/" title="High-performance chatbot using Llama 3.3 70B model on AIC100 Ultra accelerator.">
         <img src="https://img.shields.io/badge/Llama3.3_70B_Chatbot-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Llama3.3 70B Chatbot"/>
       </a><br>
+      <a href="./GenAI/CloudAI-Playground/Multi‑VLM_Serving_on_AIC100_with_vLLM/" title="A Guide to Building a Multi‑VLM Model Server and WebUI Client using vLLM on the AIC100.">
+        <img src="https://img.shields.io/badge/Multi‑VLM_Serving_on_AIC100_with_vLLM-2026.03.27-grey?style=flat-square&labelColor=brightgreen" alt="Multi‑VLM Serving on AIC100 with vLLM"/>
+      </a><br>
       <a href="./GenAI/CloudAI-Playground/online_server_endpoint_stream/" title="Online service server endpoint with streaming support (stream=true) using Llama 3.3 70B 32K ctx_len on AIC100 Ultra.">
         <img src="https://img.shields.io/badge/Online_server_endpoint_stream-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Online server endpoint stream"/>
       </a>

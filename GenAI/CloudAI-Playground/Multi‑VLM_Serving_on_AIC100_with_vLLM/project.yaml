@@ -1,0 +1,11 @@
+name: "Multi‑VLM Serving on AIC100 with vLLM"
+description: "A Guide to Building a Multi‑VLM Model Server and WebUI Client using vLLM on the AIC100."
+category:
+  - "GenAI"
+  - "CloudAI-Playground"
+platforms:
+  - "AIC100 Ultra"
+tags:
+  - "VLM"
+  - "Chatbot"
+  - "QEfficient"
