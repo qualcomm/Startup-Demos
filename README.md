@@ -83,6 +83,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
         <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/traffic_intersection_analytics/" title="RB3 Gen2 sample for measuring traffic flow and queue using YOLOv8, with visualization and agent-ready outputs.">
+        <img src="https://img.shields.io/badge/Intersection_Traffic_Flow_&_Queue_Measurement-2026.03.25-grey?style=flat-square&labelColor=blueviolet" alt="Intersection Traffic Flow & Queue Measurement"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/" title="Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub.">
         <img src="https://img.shields.io/badge/Object_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection on IoT"/>
       </a><br>
