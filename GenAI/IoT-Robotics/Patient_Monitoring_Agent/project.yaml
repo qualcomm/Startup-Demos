@@ -1,0 +1,12 @@
+name: "Patient_Monitoring_Agent"
+description: "Agent-driven health monitoring using AI for continuous patient condition analysis"
+category:
+  - "GenAI"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+tags:
+  - "IoT"
+  - "Llama Models"
+license: "MIT"
+
