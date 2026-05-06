@@ -149,7 +149,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/Online_server_endpoint_stream-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Online server endpoint stream"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/traffic_ai_agent/" title="An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra.">
-        <img src="https://img.shields.io/badge/Traffic_AI_Agent_–_Dual_Intersection_(On‑Prem,_Analysis)-2026.04.14-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
+        <img src="https://img.shields.io/badge/Traffic_AI_Agent_–_Dual_Intersection_(On‑Prem,_Analysis)-2026.05.04-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
       </a>
     </td>
     <td align="center">—</td>
