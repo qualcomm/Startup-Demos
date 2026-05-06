@@ -1,0 +1,14 @@
+name: "MediaPipe Hand Detection (ONNX)"
+description: "A real-time hand detection application running on Snapdragon X Elite."
+category:
+  - "CV_VR"
+  - "AI_PC"
+platforms:
+  - "AI PC"
+  - "XElite"
+tags:
+  - "Computer Vision"
+  - "Hand Detection"
+  - "Real-time"
+  - "ONNX"
+  - "Python"
