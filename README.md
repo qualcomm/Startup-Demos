@@ -53,6 +53,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/AI_PC/ImageClassification/" title="A simple image classification application using an ONNX model.">
         <img src="https://img.shields.io/badge/Image_Classification_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Image Classification (ONNX)"/>
       </a><br>
+      <a href="./CV_VR/AI_PC/MediaPipe_Hand_Detection/" title="A real-time hand detection application running on Snapdragon X Elite.">
+        <img src="https://img.shields.io/badge/MediaPipe_Hand_Detection_(ONNX)-2026.04.01-grey?style=flat-square&labelColor=blueviolet" alt="MediaPipe Hand Detection (ONNX)"/>
+      </a><br>
       <a href="./CV_VR/AI_PC/ObjectDetection/" title="An object detection application using an ONNX model.">
         <img src="https://img.shields.io/badge/Object_Detection_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection (ONNX)"/>
       </a><br>
