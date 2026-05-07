@@ -1,0 +1,10 @@
+name: Industrial anomaly detection 
+description: This example showcases Anamoly detection within a live feed from a USB camera.
+ports: []
+bricks:
+- arduino:video_object_detection: {variables: {
+      EI_OBJ_DETECTION_MODEL: /home/arduino/.arduino-bricks/ei-models/industrial-anomaly-detection-linux-aarch64-v6.eim
+    }}
+- arduino:web_ui: {}
+icon: 📽️
+
