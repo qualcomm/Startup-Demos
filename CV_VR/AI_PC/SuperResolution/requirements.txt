@@ -1,0 +1,4 @@
+numpy==2.4.4
+onnxruntime-qnn==1.24.4
+opencv-python==4.13.0.92
+matplotlib==3.10.9

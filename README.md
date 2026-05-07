@@ -58,6 +58,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/AI_PC/Segmentation/" title="A segmentation application using an ONNX model.">
         <img src="https://img.shields.io/badge/Segmentation_(ONNX)-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Segmentation (ONNX)"/>
+      </a><br>
+      <a href="./CV_VR/AI_PC/SuperResolution/" title="A real-time image super resolution application running on Snapdragon X Elite.">
+        <img src="https://img.shields.io/badge/Super_Resolution_(ONNX)-2026.04.29-grey?style=flat-square&labelColor=blueviolet" alt="Super Resolution (ONNX)"/>
       </a>
     </td>
     <td align="center">—</td>
