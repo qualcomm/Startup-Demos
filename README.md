@@ -100,6 +100,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
         <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam. It detects 16 different plant disease scenarios including Apple Black Rot, Apple Scab, Bell Pepper Bacterial Spot, Cherry Powdery Mildew, Corn Common Rust, Corn Northern Leaf Blight, Grape Black Rot, Grape Leaf Blight, Tomato Late Blight, Tomato Mosaic Virus, and healthy states for Tomato, Grape, Cherry, Corn, Bell Pepper, and Apple.">
+        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.07-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
       </a>
     </td>
     <td align="center">—</td>
@@ -188,6 +191,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
         <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam. It detects 16 different plant disease scenarios including Apple Black Rot, Apple Scab, Bell Pepper Bacterial Spot, Cherry Powdery Mildew, Corn Common Rust, Corn Northern Leaf Blight, Grape Black Rot, Grape Leaf Blight, Tomato Late Blight, Tomato Mosaic Virus, and healthy states for Tomato, Grape, Cherry, Corn, Bell Pepper, and Apple.">
+        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.07-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
