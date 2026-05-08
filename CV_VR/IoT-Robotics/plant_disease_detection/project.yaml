@@ -1,0 +1,14 @@
+name: "Plant_Disease_Detection"
+description: "This application enables real-time plant disease classification from a live video feed captured by a USB webcam. It detects 16 different plant disease scenarios including Apple Black Rot, Apple Scab, Bell Pepper Bacterial Spot, Cherry Powdery Mildew, Corn Common Rust, Corn Northern Leaf Blight, Grape Black Rot, Grape Leaf Blight, Tomato Late Blight, Tomato Mosaic Virus, and healthy states for Tomato, Grape, Cherry, Corn, Bell Pepper, and Apple."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+  - "Edge Impulse"
+tags:
+  - "Computer Vision"
+  - "IoT"
+  - "Image Classification"
+  - "Real-time"
+  - "MCU"
