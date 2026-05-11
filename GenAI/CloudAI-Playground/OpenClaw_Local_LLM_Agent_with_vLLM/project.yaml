@@ -1,0 +1,11 @@
+name: "OpenClaw Local LLM Agent with vLLM"
+description: "A sample demonstrating how to build a tool-enabled AI agent by integrating OpenClaw with a locally hosted vLLM service."
+category:
+  - "GenAI"
+  - "CloudAI-Playground"
+platforms:
+  - "AIC100 Ultra"
+tags:
+  - "vLLM"
+  - "OpenClaw"
+  - "Agent"
