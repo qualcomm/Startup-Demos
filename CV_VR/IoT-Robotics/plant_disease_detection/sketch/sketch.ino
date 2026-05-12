@@ -3,6 +3,7 @@
 // See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
 // for license information.
 // Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+// SPDX-License-Identifier: MIT License
 //===----------------------------------------------------------------------===//
 
 #include <Arduino_RouterBridge.h>
