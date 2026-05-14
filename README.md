@@ -67,6 +67,9 @@ This repository is a collection of demo applications that highlight the capabili
     <td>
       <a href="./Others/AI_PC/Automatic_Speech_Recognition/" title="An automatic speech recognition application with both transcription and translation features using an ONNX model.">
         <img src="https://img.shields.io/badge/Automatic_Speech_Recognition:_Transcription_and_Translation_(ONNX)-2026.05.12-grey?style=flat-square&labelColor=orange" alt="Automatic Speech Recognition: Transcription and Translation (ONNX)"/>
+      </a><br>
+      <a href="./Others/AI_PC/Noise_Suppression/" title="A noise suppression application using an ONNX model.">
+        <img src="https://img.shields.io/badge/Noise_Suppression_(ONNX)-2026.05.13-grey?style=flat-square&labelColor=orange" alt="Noise Suppression (ONNX)"/>
       </a>
     </td>
   </tr>
