@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+===--litertlm_strings.xml----------------------------------------------===//
+Part of the Startup-Demos Project, under the MIT License
+See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+for license information.
+Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+SPDX-License-Identifier: MIT
+===----------------------------------------------------------------------===//
+-->
+<resources>
+    <string name="litertlm_app_name">litertlm</string>
+    <string name="litertlm_hint_model_path">Enter model path or browse</string>
+    <string name="litertlm_btn_browse">Browse</string>
+    <string name="litertlm_hint_message">Type your message...</string>
+    <string name="litertlm_btn_send">Send</string>
+    <string name="litertlm_error_message_empty">Please enter a message</string>
+</resources>
