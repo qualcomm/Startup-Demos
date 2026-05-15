@@ -136,6 +136,9 @@ This repository is a collection of demo applications that highlight the capabili
     <td>
       <a href="./GenAI/Android/InferenceCloudChat/" title="Android RAG chatbot application using Cloud AI Playground for intelligent document querying.">
         <img src="https://img.shields.io/badge/Inference_Cloud_Chat-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Inference Cloud Chat"/>
+      </a><br>
+      <a href="./GenAI/Android/LiteRT_LM/" title="Android demo application for fully offline, on-device LLM chat using LiteRT-LM with Gemma-4 models.">
+        <img src="https://img.shields.io/badge/LiteRT--LM_On--Device_Chat_Application-2026.05.15-grey?style=flat-square&labelColor=brightgreen" alt="LiteRT-LM On-Device Chat Application"/>
       </a>
     </td>
     <td align="center">—</td>
