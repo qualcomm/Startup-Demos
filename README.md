@@ -113,6 +113,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
         <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.14-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="">
+        <img src="https://img.shields.io/badge/tile_based_small_object_detection-2026.04.21-grey?style=flat-square&labelColor=blueviolet" alt="tile_based_small_object_detection"/>
       </a>
     </td>
     <td align="center">—</td>
