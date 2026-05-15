@@ -1,0 +1,14 @@
+name: "Plant_Disease_Detection"
+description: "This application enables real-time plant disease classification from a live video feed captured by a USB webcam."
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "Arduino UNO-Q"
+  - "Edge Impulse"
+tags:
+  - "Computer Vision"
+  - "IoT"
+  - "Image Classification"
+  - "Real-time"
+  - "MCU"
