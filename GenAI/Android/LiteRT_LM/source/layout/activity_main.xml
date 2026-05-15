@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+File: activity_main.xml
+Part of the Startup-Demos Project, under the MIT License
+See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+for license information.
+Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+SPDX-License-Identifier: MIT
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/litertlm_spacing_lg"
+    tools:context=".MainActivity">
+
+    <!-- Model File Path Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/litertlm_spacing_lg">
+
+        <EditText
+            android:id="@+id/modelPathInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/litertlm_hint_model_path"
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/litertlm_spacing_md"
+            android:paddingVertical="@dimen/litertlm_spacing_sm"
+            android:textSize="@dimen/litertlm_text_small" />
+
+        <Button
+            android:id="@+id/browseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/litertlm_spacing_xs"
+            android:text="@string/litertlm_btn_browse"
+            android:textSize="@dimen/litertlm_text_small"
+            android:padding="@dimen/litertlm_spacing_sm" />
+    </LinearLayout>
+
+    <!-- Loading Indicator -->
+    <ProgressBar
+        android:id="@+id/loadingIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/litertlm_spacing_sm" />
+
+    <!-- Error Message -->
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/litertlm_error_text"
+        android:textSize="@dimen/litertlm_text_small"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/litertlm_spacing_sm"
+        android:padding="@dimen/litertlm_spacing_sm"
+        android:background="@color/litertlm_error_bg" />
+
+    <!-- Chat Message History -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/litertlm_spacing_sm"
+        android:layout_marginBottom="@dimen/litertlm_spacing_sm" />
+
+    <!-- User Input Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/litertlm_spacing_sm">
+
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/litertlm_hint_message"
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/litertlm_spacing_md"
+            android:paddingVertical="@dimen/litertlm_spacing_sm"
+            android:maxLines="3"
+            android:textSize="@dimen/litertlm_text_normal" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/litertlm_spacing_md"
+            android:text="@string/litertlm_btn_send"
+            android:textSize="@dimen/litertlm_text_small"
+            android:padding="@dimen/litertlm_spacing_sm" />
+    </LinearLayout>
+
+</LinearLayout>

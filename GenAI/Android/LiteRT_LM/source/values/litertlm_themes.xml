@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+===--litertlm_themes.xml-----------------------------------------------===//
+Part of the Startup-Demos Project, under the MIT License
+See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+for license information.
+Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+SPDX-License-Identifier: MIT
+===----------------------------------------------------------------------===//
+-->
+<resources>
+    <style name="Base.Theme.LiteRTLM" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.LiteRTLM" parent="Base.Theme.LiteRTLM" />
+</resources>
