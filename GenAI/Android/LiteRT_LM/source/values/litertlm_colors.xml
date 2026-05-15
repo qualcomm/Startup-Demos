@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+===--litertlm_colors.xml-----------------------------------------------===//
+Part of the Startup-Demos Project, under the MIT License
+See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+for license information.
+Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+SPDX-License-Identifier: MIT
+===----------------------------------------------------------------------===//
+-->
+<resources>
+    <color name="litertlm_user_message_bg">#2196F3</color>
+    <color name="litertlm_user_message_text">#FFFFFF</color>
+    <color name="litertlm_model_message_bg">#E0E0E0</color>
+    <color name="litertlm_model_message_text">#000000</color>
+    <color name="litertlm_error_bg">#FFE5E5</color>
+    <color name="litertlm_error_text">#FF0000</color>
+</resources>
