@@ -1,0 +1,17 @@
+#===--app.yaml----------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===--------------------------------------------------------===//
+
+name: Plant Disease Detection
+description: This example showcases plant disease classification within a live feed from a USB camera using Edge Impulse model.
+ports: []
+bricks:
+- arduino:video_image_classification: {variables: {
+      EI_IMAGE_CLASSIFICATION_MODEL: /home/arduino/.arduino-bricks/ei-models/plant-disease-detection-linux-aarch64-v1.eim
+    }}
+- arduino:web_ui: {}
+icon: 🌱
