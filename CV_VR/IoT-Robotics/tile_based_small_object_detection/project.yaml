@@ -1,0 +1,11 @@
+name: "tile_based_small_object_detection"
+description: ""
+category:
+  - "CV_VR"
+  - "IoT-Robotics"
+platforms:
+  - "IQ9"
+tags:
+  - "Computer Vision"
+  - "Object Detection"
+  - "YOLO"
