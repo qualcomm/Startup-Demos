@@ -116,6 +116,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="">
         <img src="https://img.shields.io/badge/tile_based_small_object_detection-2026.04.21-grey?style=flat-square&labelColor=blueviolet" alt="tile_based_small_object_detection"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/vslam-npu-6490/" title="Real-time Visual SLAM (monocular Visual Odometry) pipeline** running on **Radxa Dragon Q6A (QCS6490 platform)">
+        <img src="https://img.shields.io/badge/Visual_SLAM_Demo_on_QCS6490_(Monocular_VO_with_NPU_Acceleration)-2026.05.18-grey?style=flat-square&labelColor=blueviolet" alt="Visual SLAM Demo on QCS6490 (Monocular VO with NPU Acceleration)"/>
       </a>
     </td>
     <td align="center">—</td>
