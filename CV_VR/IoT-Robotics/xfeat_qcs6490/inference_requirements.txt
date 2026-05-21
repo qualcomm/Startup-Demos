@@ -12,7 +12,7 @@ gast==0.6.0
 google-pasta==0.2.0
 grpcio==1.73.1
 h5py==3.14.0
-idna==3.10
+idna==3.15
 Jinja2==3.1.4
 jmespath==1.0.1
 keras==3.10.0
