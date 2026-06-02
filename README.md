@@ -50,6 +50,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a>
     </td>
     <td>
+      <a href="./CV_VR/AI_PC/EasyOCR/" title="A real-time Optical Character Recognition (OCR) application running on Snapdragon X Elite.">
+        <img src="https://img.shields.io/badge/EasyOCR_(ONNX)-2026.05.15-grey?style=flat-square&labelColor=blueviolet" alt="EasyOCR (ONNX)"/>
+      </a><br>
       <a href="./CV_VR/AI_PC/ImageClassification/" title="A simple image classification application using an ONNX model.">
         <img src="https://img.shields.io/badge/Image_Classification_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Image Classification (ONNX)"/>
       </a><br>
