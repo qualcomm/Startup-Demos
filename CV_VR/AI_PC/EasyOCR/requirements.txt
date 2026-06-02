@@ -1,0 +1,2 @@
+qai_hub_models==0.53.1
+easyocr==1.7.2
