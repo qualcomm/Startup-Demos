@@ -268,7 +268,9 @@ Edge Impulse allows you to build optimized machine learning models tailored for 
 ### Build Steps:
 
 1. Navigate to **Deployment** tab in Edge Impulse Studio
-2. Select **Ardduino UNO Q** as the deployment target
+
+2. Select **Arduino UNO Q** as the deployment target
+
 3. Click **Build** to create the deployable model
 4. The model will automatically download as a `.eim` file
 
@@ -283,7 +285,7 @@ For detailed steps, refer to the documentation:
 
 Arduino App Lab provides a ready-to-use Video Image Classification on Camera application that can be copied and customized for your specific use case. This section will guide you through duplicating the existing application, modifying its components, integrating Edge Impulse models, and tailoring the classification logic to suit your deployment on the Arduino UNO Q.
 
-In this example, we are using the Person classifer on Camera application for Plant Disease Detection.
+In this example, we are using the Person classifier on Camera application for Plant Disease Detection.
 
 ![N|Solid](assets/images/uno_q_plantdisease_dashboard.png)
 
@@ -329,7 +331,7 @@ Clone the Plant Disease Detection application from the repository to get started
 cd ~
 git clone -n --depth=1 --filter=tree:0 https://github.com/qualcomm/Startup-Demos.git
 cd Startup-Demos
-git sparse-checkout set --no-cone /CV_VR/IoT-Robotics/plant_disesase_detection/
+git sparse-checkout set --no-cone /CV_VR/IoT-Robotics/plant_disease_detection/
 git checkout
 ```
 

@@ -50,6 +50,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a>
     </td>
     <td>
+      <a href="./CV_VR/AI_PC/EasyOCR/" title="A real-time Optical Character Recognition (OCR) application running on Snapdragon X Elite.">
+        <img src="https://img.shields.io/badge/EasyOCR_(ONNX)-2026.05.15-grey?style=flat-square&labelColor=blueviolet" alt="EasyOCR (ONNX)"/>
+      </a><br>
       <a href="./CV_VR/AI_PC/ImageClassification/" title="A simple image classification application using an ONNX model.">
         <img src="https://img.shields.io/badge/Image_Classification_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Image Classification (ONNX)"/>
       </a><br>
@@ -64,7 +67,14 @@ This repository is a collection of demo applications that highlight the capabili
       </a>
     </td>
     <td align="center">—</td>
-    <td align="center">—</td>
+    <td>
+      <a href="./Others/AI_PC/Automatic_Speech_Recognition/" title="An automatic speech recognition application with both transcription and translation features using an ONNX model.">
+        <img src="https://img.shields.io/badge/Automatic_Speech_Recognition:_Transcription_and_Translation_(ONNX)-2026.05.12-grey?style=flat-square&labelColor=orange" alt="Automatic Speech Recognition: Transcription and Translation (ONNX)"/>
+      </a><br>
+      <a href="./Others/AI_PC/Noise_Suppression/" title="A noise suppression application using an ONNX model.">
+        <img src="https://img.shields.io/badge/Noise_Suppression_(ONNX)-2026.05.14-grey?style=flat-square&labelColor=orange" alt="Noise Suppression (ONNX)"/>
+      </a>
+    </td>
   </tr>
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
@@ -86,6 +96,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
         <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/Industrial_Anomaly_Detection/" title="This application enables real-time Anomaly recognition from a live video feed captured by a USB webcam and control the LED matrix for detects Anomalies and other status.">
+        <img src="https://img.shields.io/badge/Industrial_Anomaly_Detection-2026.05.14-grey?style=flat-square&labelColor=blueviolet" alt="Industrial_Anomaly_Detection"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/traffic_intersection_analytics/" title="RB3 Gen2 sample for measuring traffic flow and queue using YOLOv8, with visualization and agent-ready outputs.">
         <img src="https://img.shields.io/badge/Intersection_Traffic_Flow_&_Queue_Measurement-2026.03.25-grey?style=flat-square&labelColor=blueviolet" alt="Intersection Traffic Flow & Queue Measurement"/>
       </a><br>
@@ -101,8 +114,14 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
         <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
       </a><br>
-      <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam. It detects 16 different plant disease scenarios including Apple Black Rot, Apple Scab, Bell Pepper Bacterial Spot, Cherry Powdery Mildew, Corn Common Rust, Corn Northern Leaf Blight, Grape Black Rot, Grape Leaf Blight, Tomato Late Blight, Tomato Mosaic Virus, and healthy states for Tomato, Grape, Cherry, Corn, Bell Pepper, and Apple.">
-        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.07-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
+      <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
+        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.14-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="">
+        <img src="https://img.shields.io/badge/tile_based_small_object_detection-2026.04.21-grey?style=flat-square&labelColor=blueviolet" alt="tile_based_small_object_detection"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/vslam-npu-6490/" title="Real-time Visual SLAM (monocular Visual Odometry) pipeline** running on **Radxa Dragon Q6A (QCS6490 platform)">
+        <img src="https://img.shields.io/badge/Visual_SLAM_Demo_on_QCS6490_(Monocular_VO_with_NPU_Acceleration)-2026.05.18-grey?style=flat-square&labelColor=blueviolet" alt="Visual SLAM Demo on QCS6490 (Monocular VO with NPU Acceleration)"/>
       </a>
     </td>
     <td align="center">—</td>
@@ -126,6 +145,9 @@ This repository is a collection of demo applications that highlight the capabili
     <td>
       <a href="./GenAI/Android/InferenceCloudChat/" title="Android RAG chatbot application using Cloud AI Playground for intelligent document querying.">
         <img src="https://img.shields.io/badge/Inference_Cloud_Chat-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Inference Cloud Chat"/>
+      </a><br>
+      <a href="./GenAI/Android/LiteRT_LM/" title="Android demo application for fully offline, on-device LLM chat using LiteRT-LM with Gemma-4 models.">
+        <img src="https://img.shields.io/badge/LiteRT--LM_On--Device_Chat_Application-2026.05.15-grey?style=flat-square&labelColor=brightgreen" alt="LiteRT-LM On-Device Chat Application"/>
       </a>
     </td>
     <td align="center">—</td>
@@ -186,14 +208,17 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
         <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blue" alt="Helmet Detection on Camera with LED"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/Industrial_Anomaly_Detection/" title="This application enables real-time Anomaly recognition from a live video feed captured by a USB webcam and control the LED matrix for detects Anomalies and other status.">
+        <img src="https://img.shields.io/badge/Industrial_Anomaly_Detection-2026.05.14-grey?style=flat-square&labelColor=blue" alt="Industrial_Anomaly_Detection"/>
+      </a><br>
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
         <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=blue" alt="LED Matrix Generator"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
         <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
       </a><br>
-      <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam. It detects 16 different plant disease scenarios including Apple Black Rot, Apple Scab, Bell Pepper Bacterial Spot, Cherry Powdery Mildew, Corn Common Rust, Corn Northern Leaf Blight, Grape Black Rot, Grape Leaf Blight, Tomato Late Blight, Tomato Mosaic Virus, and healthy states for Tomato, Grape, Cherry, Corn, Bell Pepper, and Apple.">
-        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.07-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
+      <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
+        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.14-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
