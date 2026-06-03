@@ -1,0 +1,13 @@
+name: "Selfie Bokeh Sample Using Semantic Segmentation App"
+description: "This sample app performs semantic segmentation on live camera input and generate Bokeh effect output."
+category:
+  - "CV_VR"
+  - "Android"
+platforms:
+  - "Android"
+tags:
+  - "Semantic Segmentation"
+  - "Android Phone"
+  - "Mediapipe"
+  - "Selfie"
+  - "Camera"

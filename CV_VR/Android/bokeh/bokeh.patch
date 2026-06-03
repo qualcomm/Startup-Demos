@@ -1,0 +1,1603 @@
+diff --git a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/MainActivity.java b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/MainActivity.java
+index 09b69bf..0c81d1c 100644
+--- a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/MainActivity.java
++++ b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/MainActivity.java
+@@ -2,6 +2,7 @@
+ // Copyright (c) 2025 Qualcomm Technologies, Inc. and/or its subsidiaries.
+ // SPDX-License-Identifier: BSD-3-Clause
+ // ---------------------------------------------------------------------
++
+ package com.quicinc.semanticsegmentation;
+ 
+ import android.Manifest;
+@@ -9,6 +10,7 @@
+ import android.os.Bundle;
+ import android.os.Handler;
+ import android.os.Looper;
++import android.util.Log;
+ import android.view.View;
+ import android.view.WindowManager;
+ import android.widget.ProgressBar;
+@@ -22,6 +24,7 @@
+ import java.security.NoSuchAlgorithmException;
+ import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.Executors;
++import java.util.concurrent.TimeUnit;
+ 
+ public class MainActivity extends AppCompatActivity {
+     private ProgressBar progressBar;
+@@ -34,24 +37,17 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.main_activity);
+         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+-        progressBar = (ProgressBar)findViewById(R.id.indeterminateBar);
+-
+-        // Load model
++        progressBar = (ProgressBar) findViewById(R.id.indeterminateBar);
+         createTFLiteClassifiersAsync();
+     }
+ 
+-    /**
+-     * Method to request Camera permission
+-     */
+     private void cameraPermission() {
+         requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+     }
+ 
+-    /**
+-     * Method to navigate to CameraFragment
+-     */
+     private void overToCamera() {
+-        boolean passToFragment = MainActivity.this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
++        boolean passToFragment = MainActivity.this.checkSelfPermission(Manifest.permission.CAMERA)
++                == PackageManager.PERMISSION_GRANTED;
+         if (passToFragment) {
+             if (segmentor != null) {
+                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+@@ -67,26 +63,18 @@
+         runOnUiThread(() -> progressBar.setVisibility(loading ? View.VISIBLE : View.INVISIBLE));
+     }
+ 
+-    /**
+-     * Create inference segmentor objects.
+-     * Loading the TF Lite model takes time, so this is done asynchronously to the main UI thread.
+-     * Disables the inference UI during load and reenables it afterwards.
+-     */
+     void createTFLiteClassifiersAsync() {
+         if (segmentor != null) {
+             throw new RuntimeException("Segmentor was already created");
+         }
+         setLoadingUI(true);
+-
+-        // Exit the UI thread and instantiate the model in the background.
+         backgroundTaskExecutor.execute(() -> {
+-            // Create a SemanticSegmentation object with all available compute units (NPU, GPU, CPU)
+             String tfLiteModelAsset = this.getResources().getString(R.string.tfLiteModelAsset);
+             try {
+                 segmentor = new SemanticSegmentation(
+                         this,
+                         tfLiteModelAsset,
+-                        AIHubDefaults.delegatePriorityOrder /* AI Hub Defaults */
++                        AIHubDefaults.delegatePriorityOrder // NPU/GPU/CPU
+                 );
+             } catch (IOException | NoSuchAlgorithmException e) {
+                 throw new RuntimeException(e.getMessage());
+@@ -96,15 +84,33 @@
+         });
+     }
+ 
+-
+-    @Override
+-    protected void onResume()
+-    {
++    @Override protected void onResume() {
+         super.onResume();
+         overToCamera();
+     }
+-    @Override
+-    protected void onStop() {
+-        super.onStop();
++
++    @Override protected void onDestroy() {
++        super.onDestroy();
++        if (backgroundTaskExecutor != null && !backgroundTaskExecutor.isShutdown()) {
++            backgroundTaskExecutor.shutdown();
++            try {
++                if (!backgroundTaskExecutor.awaitTermination(5, TimeUnit.SECONDS)) {
++                    Log.w("MainActivity", "Background task did not complete in time, forcing shutdown");
++                    backgroundTaskExecutor.shutdownNow();
++                    if (!backgroundTaskExecutor.awaitTermination(2, TimeUnit.SECONDS)) {
++                        Log.e("MainActivity", "Background task did not terminate after forced shutdown");
++                    }
++                }
++            } catch (InterruptedException e) {
++                Log.w("MainActivity", "Interrupted while waiting for executor shutdown");
++                backgroundTaskExecutor.shutdownNow();
++                Thread.currentThread().interrupt();
++            }
++        }
++        if (segmentor != null) {
++            try { segmentor.close(); } catch (Exception e) {
++                Log.e("MainActivity", "Error closing segmentor", e);
++            }
++        }
+     }
+-}
++}
+
+diff --git a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/FragmentRender.java b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/FragmentRender.java
+index 4dc1898..822b52d 100644
+--- a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/FragmentRender.java
++++ b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/FragmentRender.java
+@@ -2,6 +2,8 @@
+ // Copyright (c) 2025 Qualcomm Technologies, Inc. and/or its subsidiaries.
+ // SPDX-License-Identifier: BSD-3-Clause
+ // ---------------------------------------------------------------------
++
++
+ package com.quicinc.semanticsegmentation;
+ 
+ import android.annotation.SuppressLint;
+@@ -15,13 +17,11 @@
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
++
+ import android.util.AttributeSet;
+ import android.view.View;
++
+ import java.util.concurrent.locks.ReentrantLock;
+-
+-/**
+- * FragmentRender draws the final prediction image and overlays debugging text.
+- */
+ 
+ public class FragmentRender extends View {
+     private final ReentrantLock mLock = new ReentrantLock();
+@@ -33,18 +33,16 @@
+     private long postprocessTime = 0;
+     private final Paint mTextColor = new Paint();
+ 
+-
+     public FragmentRender(Context context, @Nullable AttributeSet attrs) {
+         super(context, attrs);
+-
+         mTextColor.setColor(Color.WHITE);
+         mTextColor.setTypeface(Typeface.DEFAULT_BOLD);
+         mTextColor.setStyle(Paint.Style.FILL);
+-        mTextColor.setTextSize(50);
++        mTextColor.setTextSize(48);
++        mTextColor.setShadowLayer(4f, 2f, 2f, Color.BLACK);
+     }
+ 
+-    public void render(Bitmap image, float fps, long inferTime, long preprocessTime, long postprocessTime)
+-    {
++    public void render(Bitmap image, float fps, long inferTime, long preprocessTime, long postprocessTime) {
+         this.mBitmap = image;
+         this.fps = fps;
+         this.inferTime = inferTime;
+@@ -57,36 +55,32 @@
+     @Override
+     protected void onDraw(@NonNull Canvas canvas) {
+         mLock.lock();
++        try {
++            if (mBitmap != null) {
++                int vw = getWidth(), vh = getHeight();
++                float canvasRatio = (float) vw / (float) vh;
++                float bitmapRatio = (float) mBitmap.getWidth() / mBitmap.getHeight();
++                int dw, dh;
++                if (canvasRatio > bitmapRatio) {
++                    dh = vh;
++                    dw = (int) (vh * bitmapRatio);
++                } else {
++                    dw = vw;
++                    dh = (int) (vw / bitmapRatio);
++                }
++                int ox = (vw - dw) / 2;
++                int oy = (vh - dh) / 2;
++                mTargetRect.set(ox, oy, ox + dw, oy + dh);
++                canvas.drawBitmap(mBitmap, null, mTargetRect, null);
+ 
+-        if (mBitmap != null) {
+-            int insetHeight, insetWidth;
+-
+-            float canvasRatio = (float) getWidth() / (float) getHeight();
+-            float bitmapRatio = (float) mBitmap.getWidth() / mBitmap.getHeight();
+-            if (canvasRatio > bitmapRatio) {
+-                insetHeight = getHeight();
+-                insetWidth = (int) ((float) getHeight() * bitmapRatio);
+-            } else {
+-                insetWidth = getWidth();
+-                insetHeight = (int) ((float) getWidth() / bitmapRatio);
++                int tx = 16, ty = 32 + oy;
++                canvas.drawText("FPS: " + String.format("%.0f", fps), tx, ty + 50, mTextColor);
++                canvas.drawText("Pre: " + String.format("%.1f", (float)preprocessTime/1_000_000) + " ms", tx, ty + 110, mTextColor);
++                canvas.drawText("Infer: " + String.format("%.1f", (float)inferTime/1_000_000) + " ms", tx, ty + 170, mTextColor);
++                canvas.drawText("Post: " + String.format("%.1f", (float)postprocessTime/1_000_000) + " ms", tx, ty + 230, mTextColor);
+             }
+-
+-            int offsetWidth = (getWidth() - insetWidth) / 2;
+-            int offsetHeight = (getHeight() - insetHeight) / 2;
+-            mTargetRect.left = offsetWidth;
+-            mTargetRect.top = offsetHeight;
+-            mTargetRect.right = offsetWidth + insetWidth;
+-            mTargetRect.bottom = offsetHeight + insetHeight;
+-            canvas.drawBitmap(mBitmap, null, mTargetRect, null);
+-            canvas.rotate(90, 0, 0);
+-            canvas.translate(offsetHeight, -insetWidth - offsetWidth);
+-
+-            canvas.drawText("FPS: " + String.format("%.0f", fps), 15, 50, mTextColor);
+-            canvas.drawText("Preprocess: " + String.format("%.0f", (float)preprocessTime / 1_000_000) + "ms", 15, 55 + 60 * 2, mTextColor);
+-            canvas.drawText("Infer: " + String.format("%.0f", (float)inferTime / 1_000_000) + "ms", 15, 55 + 60 * 3, mTextColor);
+-            canvas.drawText("Postprocess: " + String.format("%.0f", (float)postprocessTime / 1_000_000) + "ms", 15, 55 + 60 * 4, mTextColor);
+-            canvas.drawText("Note: Will only produce sensible results on street scenes", 15, insetWidth - 15  , mTextColor);
++        } finally {
++            mLock.unlock();
+         }
+-        mLock.unlock();
+     }
+-}
++}
+
+diff --git a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/CameraFragment.java b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/CameraFragment.java
+index 12a4dec..548060a 100644
+--- a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/CameraFragment.java
++++ b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/CameraFragment.java
+@@ -2,6 +2,7 @@
+ // Copyright (c) 2025 Qualcomm Technologies, Inc. and/or its subsidiaries.
+ // SPDX-License-Identifier: BSD-3-Clause
+ // ---------------------------------------------------------------------
++
+ package com.quicinc.semanticsegmentation;
+ 
+ import android.Manifest;
+@@ -11,24 +12,27 @@
+ import android.content.Context;
+ import android.content.pm.PackageManager;
+ import android.graphics.Bitmap;
++import android.graphics.Matrix;
++import android.util.Log;
+ import android.util.Size;
+ import android.graphics.SurfaceTexture;
++
+ import androidx.activity.result.ActivityResultLauncher;
+ import androidx.activity.result.contract.ActivityResultContracts;
+ import androidx.core.content.ContextCompat;
+ import androidx.annotation.NonNull;
+ import androidx.fragment.app.DialogFragment;
+ import androidx.fragment.app.Fragment;
++
+ import android.hardware.camera2.CameraAccessException;
+ import android.hardware.camera2.CameraCaptureSession;
+ import android.hardware.camera2.CameraCharacteristics;
+ import android.hardware.camera2.CameraDevice;
+ import android.hardware.camera2.CameraManager;
+-import android.hardware.camera2.CaptureFailure;
+ import android.hardware.camera2.CaptureRequest;
+-import android.hardware.camera2.CaptureResult;
+ import android.hardware.camera2.TotalCaptureResult;
+ import android.hardware.camera2.params.StreamConfigurationMap;
++
+ import android.os.Bundle;
+ import android.os.Handler;
+ import android.os.HandlerThread;
+@@ -37,6 +41,7 @@
+ import android.view.TextureView;
+ import android.view.View;
+ import android.view.ViewGroup;
++
+ import org.opencv.android.OpenCVLoader;
+ 
+ import java.util.ArrayList;
+@@ -47,91 +52,26 @@
+ import java.util.concurrent.Semaphore;
+ import java.util.concurrent.TimeUnit;
+ 
+-public class CameraFragment extends Fragment
+-{
++public class CameraFragment extends Fragment {
+     private long lastTic = 0;
+-
+     private FragmentRender mFragmentRender;
+-    private float fps = 0;
++    private float fps = 0f;
++
+     private String mCameraId;
+     private static final String FRAGMENT_DIALOG = "dialog";
+-    private SemanticSegmentation segmentor;
+-
++
++    private volatile SemanticSegmentation segmentor; // reduce stale reads
+     private TextureView mTextureView;
+-    /**
+-     * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
+-     * {@link TextureView}.
+-     */
+-    private final TextureView.SurfaceTextureListener mSurfaceTextureListener
+-            = new TextureView.SurfaceTextureListener() {
+-
+-        @Override
+-        public void onSurfaceTextureAvailable(@NonNull SurfaceTexture texture, int width, int height) {
+-            openCamera();
+-        }
+-
+-        @Override
+-        public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture texture, int width, int height) {
+-        }
+-
+-        @Override
+-        public boolean onSurfaceTextureDestroyed(@NonNull SurfaceTexture texture) {
+-            return true;
+-        }
+-
+-        @Override
+-        public void onSurfaceTextureUpdated(@NonNull SurfaceTexture texture) {
+-        }
+-
+-    };
+-
+-    /**
+-     * A {@link CameraCaptureSession } for camera preview.
+-     */
+     private CameraCaptureSession mCaptureSession;
+-
+-    /**
+-     * A reference to the opened {@link CameraDevice}.
+-     */
+     private CameraDevice mCameraDevice;
+-
+-    /**
+-     * The {@link android.util.Size} of camera preview.
+-     */
+     private Size mPreviewSize;
+ 
+-    /**
+-     * {@link CameraDevice.StateCallback} is called when {@link CameraDevice} changes its state.
+-     */
+-    private final CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
+-
+-        @Override
+-        public void onOpened(@NonNull CameraDevice cameraDevice) {
+-            // This method is called when the camera is opened.  We start camera preview here.
+-            mCameraOpenCloseLock.release();
+-            mCameraDevice = cameraDevice;
+-            createCameraPreviewSession();
+-        }
+-
+-        @Override
+-        public void onDisconnected(@NonNull CameraDevice cameraDevice) {
+-            mCameraOpenCloseLock.release();
+-            cameraDevice.close();
+-            mCameraDevice = null;
+-        }
+-
+-        @Override
+-        public void onError(@NonNull CameraDevice cameraDevice, int error) {
+-            mCameraOpenCloseLock.release();
+-            cameraDevice.close();
+-            mCameraDevice = null;
+-            Activity activity = getActivity();
+-            if (null != activity) {
+-                activity.finish();
+-            }
+-        }
+-
+-    };
++    private HandlerThread mBackgroundThread;
++    private Handler mBackgroundHandler;
++    private CaptureRequest.Builder mPreviewRequestBuilder;
++    private final Semaphore mCameraOpenCloseLock = new Semaphore(1);
++    private int mSensorOrientation;
++    private boolean usingFrontCamera = true;
+ 
+     public static CameraFragment create(SemanticSegmentation segmentor) {
+         final CameraFragment fragment = new CameraFragment();
+@@ -139,73 +79,23 @@
+         return fragment;
+     }
+ 
+-    /**
+-     * An additional thread for running tasks that shouldn't block the UI.
+-     */
+-    private HandlerThread mBackgroundThread;
+-
+-    /**
+-     * A {@link Handler} for running tasks in the background.
+-     */
+-    private Handler mBackgroundHandler;
+-
+-
+-    /**
+-     * {@link CaptureRequest.Builder} for the camera preview
+-     */
+-    private CaptureRequest.Builder mPreviewRequestBuilder;
+-
+-    /**
+-     * A {@link Semaphore} to prevent the app from exiting before closing the camera.
+-     */
+-    private final Semaphore mCameraOpenCloseLock = new Semaphore(1);
+-
+-    /**
+-     * Orientation of the camera sensor in degrees
+-     */
+-    private int mSensorOrientation;
+-
+-    /**
+-     * Given {@code choices} of {@code Size}s supported by a camera, choose the smallest one that
+-     * is at least as large as the minimum width/height.
+-     *
+-     * @param choices The list of sizes that the camera supports for the intended output class
+-     * @param minWidth Minimum width
+-     * @param minHeight Minimum height
+-     * @return The smallest {@code Size} satisfying the minimum constraints
+-     */
+-    private static Size chooseOptimalSize(Size[] choices,
+-                                          int minWidth,
+-                                          int minHeight) {
+-
+-        // Collect the supported resolutions that are at least as the target size
+-        List<Size> bigEnough = new ArrayList<>();
+-        for (Size option : choices) {
+-            if (option.getWidth() >= minWidth &&
+-                    option.getHeight() >= minHeight) {
+-                bigEnough.add(option);
+-            }
+-        }
+-
+-        // Pick the smallest of those big enough. If there is no one big enough, we error out
+-        if (bigEnough.size() > 0) {
+-            return Collections.min(bigEnough, new CompareSizesByArea());
+-        } else {
+-            throw new RuntimeException("No suitable camera size found");
+-        }
+-    }
++    private final TextureView.SurfaceTextureListener mSurfaceTextureListener =
++            new TextureView.SurfaceTextureListener() {
++                @Override public void onSurfaceTextureAvailable(@NonNull SurfaceTexture texture, int width, int height) { openCamera(); }
++                @Override public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture texture, int width, int height) {}
++                @Override public boolean onSurfaceTextureDestroyed(@NonNull SurfaceTexture texture) { return true; }
++                @Override public void onSurfaceTextureUpdated(@NonNull SurfaceTexture texture) {}
++            };
+ 
+     private ActivityResultLauncher<String> requestPermissionLauncher;
++
+     @Override
+-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-                             Bundle savedInstanceState) {
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         OpenCVLoader.initDebug();
+-
+         requestPermissionLauncher = registerForActivityResult(
+                 new ActivityResultContracts.RequestPermission(),
+                 isGranted -> {
+                     if (!isGranted) {
+-                        // Permission has been denied, show an error dialog or a message
+                         ErrorDialog.newInstance(getString(R.string.request_permission))
+                                 .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+                     }
+@@ -222,31 +112,20 @@
+         mFragmentRender = view.findViewById(R.id.fragmentRender);
+     }
+ 
+-    @Override
+-    public void onResume() {
++    @Override public void onResume() {
+         super.onResume();
+         startBackgroundThread();
+-
+-        // When the screen is turned off and turned back on, the SurfaceTexture is already
+-        // available, and "onSurfaceTextureAvailable" will not be called. In that case, we can open
+-        // a camera and start preview from here (otherwise, we wait until the surface is ready in
+-        // the SurfaceTextureListener).
+-        if (mTextureView.isAvailable()) {
+-            openCamera();
+-        } else {
+-            mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
+-        }
+-    }
+-
+-    @Override
+-    public void onPause() {
++        if (mTextureView != null && mTextureView.isAvailable()) openCamera();
++        else if (mTextureView != null) mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
++    }
++
++    @Override public void onPause() {
+         closeCamera();
+         stopBackgroundThread();
+         super.onPause();
+     }
+ 
+-    @Override
+-    public void onDestroy() {
++    @Override public void onDestroy() {
+         stopBackgroundThread();
+         closeCamera();
+         super.onDestroy();
+@@ -260,124 +139,115 @@
+         }
+     }
+ 
+-    /**
+-     * Sets up member variables related to camera.
+-     */
++    private static Size chooseOptimalSize(Size[] choices, int minWidth, int minHeight) {
++        List<Size> bigEnough = new ArrayList<>();
++        for (Size option : choices) {
++            if (option.getWidth() >= minWidth && option.getHeight() >= minHeight) {
++                bigEnough.add(option);
++            }
++        }
++        if (bigEnough.size() > 0) return Collections.min(bigEnough, new CompareSizesByArea());
++        Size fallback = choices[0];
++        for (Size s : choices)
++            if ((long) s.getWidth() * s.getHeight() > (long) fallback.getWidth() * fallback.getHeight())
++                fallback = s;
++        return fallback;
++    }
++
+     private void setUpCameraOutputs() {
+-        Activity activity = getActivity();
+-        assert activity != null;
+-        CameraManager mCameraManager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
++        final Activity activity = getActivity();
++        if (activity == null) return;
+         try {
+-            for (String cameraId : mCameraManager.getCameraIdList()) {
+-                CameraCharacteristics characteristics
+-                        = mCameraManager.getCameraCharacteristics(cameraId);
+-
+-                // We don't use a front facing camera in this sample.
+-                Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
++            CameraManager cm = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
++            // Prefer front camera
++            CameraCharacteristics selected = null;
++            for (String id : cm.getCameraIdList()) {
++                CameraCharacteristics c = cm.getCameraCharacteristics(id);
++                Integer facing = c.get(CameraCharacteristics.LENS_FACING);
+                 if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
+-                    continue;
++                    selected = c; mCameraId = id; usingFrontCamera = true; break;
+                 }
+-
+-                StreamConfigurationMap map = characteristics.get(
+-                        CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+-                if (map == null) {
+-                    continue;
++            }
++            // Fallback to back camera
++            if (selected == null) {
++                for (String id : cm.getCameraIdList()) {
++                    CameraCharacteristics c = cm.getCameraCharacteristics(id);
++                    Integer facing = c.get(CameraCharacteristics.LENS_FACING);
++                    if (facing != null && facing == CameraCharacteristics.LENS_FACING_BACK) {
++                        selected = c; mCameraId = id; usingFrontCamera = false; break;
++                    }
+                 }
+-
+-                // Get sensor orientation. Depending on the sensor orientation, we may need to
+-                // rotate the input image. This happens in SemanticSegmentation
+-                Integer sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+-                if (sensorOrientation != null) {
+-                    mSensorOrientation = sensorOrientation;
+-                }
+-
+-                Size[] surfaceSizes = map.getOutputSizes(SurfaceTexture.class);
+-
+-                assert(segmentor != null);
+-                int targetWidth, targetHeight;
+-                if (mSensorOrientation == 90 || mSensorOrientation == 270) {
+-                    targetWidth = segmentor.getInputHeight();
+-                    targetHeight = segmentor.getInputWidth();
+-                } else {
+-                    targetWidth = segmentor.getInputWidth();
+-                    targetHeight = segmentor.getInputHeight();
+-                }
+-
+-                // Select camera feed image size to be close to the target size
+-                mPreviewSize = chooseOptimalSize(surfaceSizes, targetWidth, targetHeight);
+-                mCameraId = cameraId;
+-                return;
+-            }
++            }
++            if (selected == null) throw new RuntimeException("No camera available");
++
++            StreamConfigurationMap map = selected.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
++            if (map == null) throw new RuntimeException("No stream config map");
++            Integer sensorOrientation = selected.get(CameraCharacteristics.SENSOR_ORIENTATION);
++            if (sensorOrientation != null) mSensorOrientation = sensorOrientation;
++
++            Size[] surfaceSizes = map.getOutputSizes(SurfaceTexture.class);
++
++            final SemanticSegmentation s = segmentor;
++            if (s == null) throw new IllegalStateException("Segmentor is null");
++            int targetWidth, targetHeight;
++            if (mSensorOrientation == 90 || mSensorOrientation == 270) {
++                targetWidth = s.getInputHeight();
++                targetHeight = s.getInputWidth();
++            } else {
++                targetWidth = s.getInputWidth();
++                targetHeight = s.getInputHeight();
++            }
++            mPreviewSize = chooseOptimalSize(surfaceSizes, targetWidth, targetHeight);
+         } catch (CameraAccessException e) {
+-            e.printStackTrace();
+-        } catch (NullPointerException e) {
+-            // Currently an NPE is thrown when the Camera2API is used but not supported on the
+-            // device this code runs.
++            Log.e("CameraFragment", "Camera access error while setting up outputs", e);
+             ErrorDialog.newInstance(getString(R.string.camera_error))
+                     .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+         }
+     }
+ 
+-    /**
+-     * Opens the camera specified by {@link CameraFragment#mCameraId}.
+-     */
+     private void openCamera() {
+-        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)
++        final Activity activity = getActivity();
++        if (activity == null) return;
++        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)
+                 != PackageManager.PERMISSION_GRANTED) {
+             requestCameraPermission();
+             return;
+         }
+-
+         setUpCameraOutputs();
+-        Activity activity = requireActivity();
+         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
+         try {
+-            if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
++            if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS))
+                 throw new RuntimeException("Time out waiting to lock camera opening.");
+-            }
+             manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
+         } catch (CameraAccessException e) {
+-            e.printStackTrace();
++            Log.e("CameraFragment", "Camera access error during openCamera", e);
++            throw new RuntimeException(e);
+         } catch (InterruptedException e) {
+-            throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
+-        }
+-    }
+-
+-    /**
+-     * Closes the current {@link CameraDevice}.
+-     */
++            Thread.currentThread().interrupt();
++            throw new RuntimeException(e);
++        }
++    }
++
+     private void closeCamera() {
+         try {
+             mCameraOpenCloseLock.acquire();
+-            if (null != mCaptureSession) {
+-                mCaptureSession.close();
+-                mCaptureSession = null;
+-            }
+-            if (null != mCameraDevice) {
+-                mCameraDevice.close();
+-                mCameraDevice = null;
+-            }
++            if (mCaptureSession != null) { mCaptureSession.close(); mCaptureSession = null; }
++            if (mCameraDevice != null) { mCameraDevice.close(); mCameraDevice = null; }
+         } catch (InterruptedException e) {
++            Thread.currentThread().interrupt();
+             throw new RuntimeException("Interrupted while trying to lock camera closing.", e);
+         } finally {
+             mCameraOpenCloseLock.release();
+         }
+     }
+ 
+-    /**
+-     * Starts a background thread and its {@link Handler}.
+-     */
+     private void startBackgroundThread() {
+         mBackgroundThread = new HandlerThread("CameraBackground");
+         mBackgroundThread.start();
+         mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
+     }
+ 
+-    /**
+-     * Stops the background thread and its {@link Handler}.
+-     */
+     private void stopBackgroundThread() {
+-
+         if (mBackgroundThread != null) {
+             mBackgroundThread.quitSafely();
+             mBackgroundThread = null;
+@@ -385,57 +255,117 @@
+         }
+     }
+ 
+-    /**
+-     * Creates a new {@link CameraCaptureSession} for camera preview.
+-     */
++    private final CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
++        @Override public void onOpened(@NonNull CameraDevice cameraDevice) {
++            mCameraOpenCloseLock.release();
++            mCameraDevice = cameraDevice;
++            createCameraPreviewSession();
++        }
++        @Override public void onDisconnected(@NonNull CameraDevice cameraDevice) {
++            mCameraOpenCloseLock.release();
++            cameraDevice.close();
++            mCameraDevice = null;
++        }
++        @Override public void onError(@NonNull CameraDevice cameraDevice, int error) {
++            mCameraOpenCloseLock.release();
++            cameraDevice.close();
++            mCameraDevice = null;
++            Activity activity = getActivity();
++            if (activity != null) activity.finish();
++        }
++    };
++
+     private void createCameraPreviewSession() {
+         try {
++            if (mTextureView == null) return;
+             SurfaceTexture texture = mTextureView.getSurfaceTexture();
+-            assert texture != null;
+-
+-            // We configure the size of default buffer to be the size of camera preview we want.
++            if (texture == null) return;
++            if (mPreviewSize == null) return;
++
+             texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+-
+-            // This is the output Surface we need to start preview.
+             Surface surface = new Surface(texture);
+-
+-            // We set up a CaptureRequest.Builder with the output Surface.
+-            mPreviewRequestBuilder
+-                    = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
++            mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+             mPreviewRequestBuilder.addTarget(surface);
+-
++            mCameraDevice.createCaptureSession(
++                    Collections.singletonList(surface),
++                    new CameraCapture(),
++                    null
++            );
++        } catch (CameraAccessException e) {
++            Log.e("CameraFragment", "Camera access error during preview session creation", e);
++        }
++    }
++
++    private class CameraCapture extends CameraCaptureSession.StateCallback {
++        @Override public void onConfigured(@NonNull CameraCaptureSession session) {
++            mCaptureSession = session;
+             try {
+-                mCameraDevice.createCaptureSession(List.of(surface), new CameraCapture(),
+-                        null);
++                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
++                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
++                session.setRepeatingRequest(mPreviewRequestBuilder.build(), new CameraSession(), mBackgroundHandler);
+             } catch (CameraAccessException e) {
+-                e.printStackTrace();
+-            }
+-        } catch (CameraAccessException e) {
+-            e.printStackTrace();
+-        }
+-    }
+-
+-    /**
+-     * Compares two {@code Size}s based on their areas.
+-     */
++                Log.e("CameraFragment", "Camera access error during preview setup", e);
++                ErrorDialog.newInstance(getString(R.string.camera_error))
++                        .show(getChildFragmentManager(), FRAGMENT_DIALOG);
++            } catch (IllegalStateException e) {
++                Log.e("CameraFragment", "Camera in invalid state during preview setup", e);
++            } catch (IllegalArgumentException e) {
++                Log.e("CameraFragment", "Invalid camera configuration", e);
++            }
++        }
++        @Override public void onConfigureFailed(@NonNull CameraCaptureSession session) {}
++    }
++
++    private class CameraSession extends CameraCaptureSession.CaptureCallback {
++        @Override
++        public void onCaptureCompleted(@NonNull CameraCaptureSession session,
++                                       @NonNull CaptureRequest request,
++                                       @NonNull TotalCaptureResult result) {
++            super.onCaptureCompleted(session, request, result);
++
++            if (lastTic == 0) lastTic = System.currentTimeMillis();
++            else {
++                long now = System.currentTimeMillis();
++                if (lastTic != now) fps = 1000.f / (float) (now - lastTic);
++                lastTic = now;
++            }
++
++            final SemanticSegmentation s = segmentor;
++            final TextureView textureView = mTextureView;
++            final FragmentRender fragmentRender = mFragmentRender;
++
++            if (s == null || textureView == null || fragmentRender == null) return;
++
++            Bitmap frame = textureView.getBitmap();
++            if (frame == null) return;
++
++            Bitmap output = s.predict(frame, mSensorOrientation);
++            if (output == null) return;
++
++            if (usingFrontCamera) {
++                Matrix m = new Matrix();
++                m.preScale(-1f, 1f);
++                output = Bitmap.createBitmap(output, 0, 0, output.getWidth(), output.getHeight(), m, true);
++            }
++
++            fragmentRender.render(
++                    output,
++                    fps,
++                    s.getLastInferenceTime(),
++                    s.getLastPreprocessingTime(),
++                    s.getLastPostprocessingTime()
++            );
++        }
++    }
++
+     static class CompareSizesByArea implements Comparator<Size> {
+-
+-        @Override
+-        public int compare(Size lhs, Size rhs) {
+-            // We cast here to ensure the multiplications won't overflow
+-            return Long.signum((long) lhs.getWidth() * lhs.getHeight() -
+-                    (long) rhs.getWidth() * rhs.getHeight());
+-        }
+-
+-    }
+-
+-    /**
+-     * Shows an error message dialog.
+-     */
++        @Override public int compare(Size lhs, Size rhs) {
++            return Long.signum((long) lhs.getWidth()*lhs.getHeight() - (long) rhs.getWidth()*rhs.getHeight());
++        }
++    }
++
+     public static class ErrorDialog extends DialogFragment {
+-
+         private static final String ARG_MESSAGE = "message";
+-
+         public static ErrorDialog newInstance(String message) {
+             ErrorDialog dialog = new ErrorDialog();
+             Bundle args = new Bundle();
+@@ -443,140 +373,40 @@
+             dialog.setArguments(args);
+             return dialog;
+         }
+-
+-        @NonNull
+-        @Override
+-        public Dialog onCreateDialog(Bundle savedInstanceState) {
++        @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
+             final Activity activity = getActivity();
+             return new AlertDialog.Builder(activity)
+                     .setMessage(requireArguments().getString(ARG_MESSAGE))
+-                    .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> Objects.requireNonNull(activity).finish())
++                    .setPositiveButton(android.R.string.ok, (d, i) -> Objects.requireNonNull(activity).finish())
+                     .create();
+         }
+-
+-    }
+-
+-    /**
+-     * Shows OK/Cancel confirmation dialog about camera permission.
+-     */
++    }
++
+     public static class ConfirmationDialog extends DialogFragment {
+-
+         private ActivityResultLauncher<String> requestPermissionLauncher;
+-
+-        @Override
+-
+-        public void onCreate(Bundle savedInstanceState) {
++        @Override public void onCreate(Bundle savedInstanceState) {
+             super.onCreate(savedInstanceState);
+-
+-            // Initialize the ActivityResultLauncher
+             requestPermissionLauncher = registerForActivityResult(
+                     new ActivityResultContracts.RequestPermission(),
+                     isGranted -> {
+                         if (!isGranted) {
+-                            // Permission denied, close the parent activity if it's not null
+                             Activity activity = getActivity();
+-                            if (activity != null) {
+-                                activity.finish();
+-                            }
++                            if (activity != null) activity.finish();
+                         }
+                     }
+             );
+         }
+-        @NonNull
+-        @Override
+-        public Dialog onCreateDialog(Bundle savedInstanceState) {
++        @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
+             final Fragment parent = getParentFragment();
+             return new AlertDialog.Builder(getActivity())
+                     .setMessage(R.string.request_permission)
+-                    .setPositiveButton(android.R.string.ok, (dialog, which) -> requestPermissionLauncher.launch(Manifest.permission.CAMERA))
+-                    .setNegativeButton(android.R.string.cancel,
+-                            (dialog, which) -> {
+-                                Activity activity = Objects.requireNonNull(parent).getActivity();
+-                                if (activity != null) {
+-                                    activity.finish();
+-                                }
+-                            })
++                    .setPositiveButton(android.R.string.ok, (dialog, which) ->
++                            requestPermissionLauncher.launch(Manifest.permission.CAMERA))
++                    .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
++                        Activity activity = Objects.requireNonNull(parent).getActivity();
++                        if (activity != null) activity.finish();
++                    })
+                     .create();
+         }
+     }
+-
+-    public class CameraCapture extends android.hardware.camera2.CameraCaptureSession.StateCallback {
+-        @Override
+-        public void onConfigured(@NonNull android.hardware.camera2.CameraCaptureSession
+-                                         cameraCaptureSession) {
+-            mCaptureSession = cameraCaptureSession;
+-
+-            try {
+-                // Auto focus should be continuous for camera preview.
+-                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
+-                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
+-
+-                // Finally, we start displaying the camera preview.
+-                cameraCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(), new CameraSession(),
+-                        mBackgroundHandler);
+-            } catch (Exception e) {
+-                e.printStackTrace();
+-            }
+-        }
+-
+-        @Override
+-        public void onConfigureFailed(@NonNull android.hardware.camera2.CameraCaptureSession
+-                                              cameraCaptureSession) {
+-        }
+-
+-    }
+-
+-    private class CameraSession extends android.hardware.camera2.CameraCaptureSession.CaptureCallback {
+-
+-        @Override
+-        public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull
+-                CaptureRequest request, @NonNull TotalCaptureResult result) {
+-
+-            super.onCaptureCompleted(session, request, result);
+-
+-            if (lastTic == 0) {
+-                lastTic = System.currentTimeMillis();
+-            } else {
+-                long newTic = System.currentTimeMillis();
+-                if (lastTic != newTic) {
+-                    fps = 1000.f / (float)(newTic - lastTic);
+-                }
+-                lastTic = newTic;
+-            }
+-
+-            if (segmentor != null) {
+-                // Save camera feed to Bitmap at its native resolution
+-                Bitmap mBitmap = mTextureView.getBitmap();
+-                if (mBitmap == null) {
+-                    return;
+-                }
+-
+-                Bitmap outputImage = segmentor.predict(mBitmap, mSensorOrientation);
+-                mFragmentRender.render(
+-                        outputImage,
+-                        fps,
+-                        segmentor.getLastInferenceTime(),
+-                        segmentor.getLastPreprocessingTime(),
+-                        segmentor.getLastPostprocessingTime());
+-            }
+-        }
+-
+-        @Override
+-        public void onCaptureFailed(@NonNull CameraCaptureSession session, @NonNull
+-                CaptureRequest request, @NonNull CaptureFailure failure) {
+-            super.onCaptureFailed(session, request, failure);
+-        }
+-
+-        @Override
+-        public void onCaptureProgressed(@NonNull CameraCaptureSession session, @NonNull
+-                CaptureRequest request, @NonNull CaptureResult partialResult) {
+-            super.onCaptureProgressed(session, request, partialResult);
+-        }
+-
+-        @Override
+-        public void onCaptureStarted(@NonNull CameraCaptureSession session, @NonNull
+-                CaptureRequest request, long timestamp, long frameNumber) {
+-            super.onCaptureStarted(session, request, timestamp, frameNumber);
+-        }
+-    }
+-}
++}
+
+diff --git a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/SemanticSegmentation.java b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/SemanticSegmentation.java
+index 7ed5253..985ab74 100644
+--- a/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/SemanticSegmentation.java
++++ b/apps/semantic_segmentation_android/src/main/java/com/quicinc/semanticsegmentation/SemanticSegmentation.java
+@@ -2,10 +2,12 @@
+ // Copyright (c) 2025 Qualcomm Technologies, Inc. and/or its subsidiaries.
+ // SPDX-License-Identifier: BSD-3-Clause
+ // ---------------------------------------------------------------------
++
+ package com.quicinc.semanticsegmentation;
+ 
+ import android.content.Context;
+ import android.graphics.Bitmap;
++import android.util.Log;
+ import android.util.Pair;
+ 
+ import com.quicinc.tflite.AIHubDefaults;
+@@ -16,8 +18,10 @@
+ import org.opencv.core.CvType;
+ import org.opencv.core.Mat;
+ import org.opencv.core.Scalar;
++import org.opencv.core.Size;
+ import org.opencv.imgproc.Imgproc;
+ import org.opencv.osgi.OpenCVNativeLoader;
++
+ import org.tensorflow.lite.DataType;
+ import org.tensorflow.lite.Delegate;
+ import org.tensorflow.lite.Interpreter;
+@@ -26,269 +30,308 @@
+ import java.io.IOException;
+ import java.nio.ByteBuffer;
+ import java.nio.ByteOrder;
+-import java.nio.FloatBuffer;
+ import java.nio.MappedByteBuffer;
+ import java.security.NoSuchAlgorithmException;
+ import java.util.HashMap;
+ import java.util.Map;
+ 
+ public class SemanticSegmentation implements AutoCloseable {
++    private static final String TAG = "SemanticSegmentation";
++
+     private final Interpreter tfLiteInterpreter;
+     private final Map<TFLiteHelpers.DelegateType, Delegate> tfLiteDelegateStore;
+-    private final int[] inputShape;
+-    private final int[] outputShape;
++
++    private final int[] inputShape;   // [1, H, W, 3]
++    private final int[] outputShape;  // [1, H, W, C]
++    private final DataType inputType;
++    private final DataType outputType;
++
+     private long preprocessingTime;
+     private long inferenceTime;
+     private long postprocessingTime;
+-    private final int NUM_CLASSES = 19; // Output classes (CityScapes dataset)
+-    // Re-usable memory
++
++    private static final Scalar INPUT_MEAN = new Scalar(0.485f, 0.456f, 0.406f);
++    private static final Scalar INPUT_STD  = new Scalar(.229f, .224f, .225f);
++
+     private final ByteBuffer inputByteBuffer;
+-    private final float[] inputFloatArray;
+-    private final Mat inputMatAbgr;
+-    private final Mat inputMatBgr;
++    private final float[] inputFloatArray; // for FLOAT32 input
++    private final byte[]  inputByteArray;  // for UINT8 input
++
++    // Persistent Mats (match model input size)
++    private final Mat inputMatRgba;
+     private final Mat inputMatRgb;
+-    private Mat outputCategories;
+-
+-    /**
+-     * Create an Semantic Segmentor from the given model.
+-     * Uses default compute units: NPU, GPU, CPU.
+-     * Ignores compute units that fail to load.
+-     *
+-     * @param context App context.
+-     * @param modelPath Model path to load.
+-     * @throws IOException If the model can't be read from disk.
+-     */
+-    public SemanticSegmentation(Context context,
+-                               String modelPath,
+-                               TFLiteHelpers.DelegateType[][] delegatePriorityOrder) throws IOException, NoSuchAlgorithmException {
+-        // Initialize OpenCV
++    private final Mat inputMatForBlend;
++
++    // Re-usable output buffer
++    private final ByteBuffer outputByteBuffer;
++
++    // Thread-safety lock
++    private final Object lock = new Object();
++
++    public SemanticSegmentation(
++            Context context,
++            String modelPath,
++            TFLiteHelpers.DelegateType[][] delegatePriorityOrder
++    ) throws IOException, NoSuchAlgorithmException {
++
+         new OpenCVNativeLoader().init();
+ 
+-        // Load TF Lite model
+-        Pair<MappedByteBuffer, String> modelAndHash = TFLiteHelpers.loadModelFile(context.getAssets(), modelPath);
+-        Pair<Interpreter, Map<TFLiteHelpers.DelegateType, Delegate>> iResult = TFLiteHelpers.CreateInterpreterAndDelegatesFromOptions(
+-                modelAndHash.first,
+-                delegatePriorityOrder,
+-                AIHubDefaults.numCPUThreads,
+-                context.getApplicationInfo().nativeLibraryDir,
+-                context.getCacheDir().getAbsolutePath(),
+-                modelAndHash.second
+-        );
++        Pair<MappedByteBuffer, String> modelAndHash =
++                TFLiteHelpers.loadModelFile(context.getAssets(), modelPath);
++
++        Pair<Interpreter, Map<TFLiteHelpers.DelegateType, Delegate>> iResult =
++                TFLiteHelpers.CreateInterpreterAndDelegatesFromOptions(
++                        modelAndHash.first,
++                        delegatePriorityOrder,
++                        AIHubDefaults.numCPUThreads,
++                        context.getApplicationInfo().nativeLibraryDir,
++                        context.getCacheDir().getAbsolutePath(),
++                        modelAndHash.second
++                );
++
+         tfLiteInterpreter = iResult.first;
+         tfLiteDelegateStore = iResult.second;
+ 
+-        // Validate TF Lite model fits requirements for this app
+-        assert tfLiteInterpreter.getInputTensorCount() == 1;
+-        Tensor inputTensor = tfLiteInterpreter.getInputTensor(0);
+-        inputShape = inputTensor.shape();
+-        DataType inputType = inputTensor.dataType();
+-        assert inputShape.length == 4; // 4D Input Tensor: [Batch, Input Height, Input Width, Color Channels]
+-        assert inputShape[0] == 1; // Batch size is 1
+-        assert inputShape[3] == 3; // Input tensor should have 3 channels
+-        assert inputType == DataType.FLOAT32; // Requires an unquantized FFNet variant
+-
+-        assert tfLiteInterpreter.getOutputTensorCount() == 1;
+-        Tensor outputTensor = tfLiteInterpreter.getOutputTensor(0);
+-        outputShape = outputTensor.shape();
+-        DataType outputType = outputTensor.dataType();
+-        assert outputShape.length == 4; // 4D Output Tensor: [Batch, Output Height, Output Width, Classes]
+-        assert outputShape[0] == 1; // Batch size is 1
+-        assert outputShape[3] == NUM_CLASSES;
+-        assert outputType == DataType.FLOAT32; // Requires an unquantized FFNet variant
+-
+-        int inputHeight = inputShape[1];
+-        int inputWidth = inputShape[2];
+-
+-        int outputHeight = outputShape[1];
+-        int outputWidth = outputShape[2];
+-
+-        // Allocate re-usable memory
+-        inputByteBuffer = ByteBuffer.allocateDirect(inputHeight * inputWidth * 3 * 4);
+-        inputByteBuffer.order(ByteOrder.nativeOrder());
+-
+-        inputFloatArray = new float[inputHeight * inputWidth * 3];
+-
+-        inputMatAbgr = new Mat(inputWidth, inputHeight, CvType.CV_8UC4);
+-        inputMatRgb = new Mat(inputWidth, inputHeight, CvType.CV_8UC3);
+-        inputMatBgr = new Mat(inputWidth, inputHeight, CvType.CV_8UC3);
+-        outputCategories = new Mat(outputWidth, outputHeight, CvType.CV_32FC1);
++        Tensor in = tfLiteInterpreter.getInputTensor(0);
++        Tensor out = tfLiteInterpreter.getOutputTensor(0);
++
++        inputShape = in.shape();   // e.g. [1,256,256,3]
++        outputShape = out.shape(); // e.g. [1,256,256,1]
++        inputType = in.dataType();
++        outputType = out.dataType();
++
++        if (inputShape.length != 4 || inputShape[0] != 1 || inputShape[3] != 3)
++            throw new IllegalArgumentException("Unsupported input shape, expected [1,H,W,3], got " +
++                    java.util.Arrays.toString(inputShape));
++        if (outputShape.length != 4 || outputShape[0] != 1)
++            throw new IllegalArgumentException("Unsupported output shape, expected [1,H,W,C], got " +
++                    java.util.Arrays.toString(outputShape));
++
++        final int inH = inputShape[1], inW = inputShape[2];
++
++        if (inputType == DataType.FLOAT32) {
++            inputByteBuffer = ByteBuffer.allocateDirect(inH * inW * 3 * 4).order(ByteOrder.nativeOrder());
++            inputFloatArray = new float[inH * inW * 3];
++            inputByteArray = null;
++        } else if (inputType == DataType.UINT8) {
++            inputByteBuffer = ByteBuffer.allocateDirect(inH * inW * 3).order(ByteOrder.nativeOrder());
++            inputFloatArray = null;
++            inputByteArray = new byte[inH * inW * 3];
++        } else {
++            throw new IllegalArgumentException("Unsupported input type: " + inputType);
++        }
++
++        final int outH = outputShape[1], outW = outputShape[2], outC = outputShape[3];
++        final int bytesPerEl = (outputType == DataType.FLOAT32) ? 4 : 1;
++        final int outBytes = outH * outW * outC * bytesPerEl;
++        outputByteBuffer = ByteBuffer.allocateDirect(outBytes).order(ByteOrder.nativeOrder());
++
++        inputMatRgba = new Mat(inH, inW, CvType.CV_8UC4);
++        inputMatRgb  = new Mat(inH, inW, CvType.CV_8UC3);
++        inputMatForBlend = new Mat(inH, inW, CvType.CV_8UC3);
+     }
+ 
+-    /**
+-     * @return neural network model input width
+-     */
+-    public int getInputWidth() {
+-        return inputShape[2];
+-    }
+-
+-    /**
+-     * @return neural network model input height
+-     */
+-    public int getInputHeight() {
+-        return inputShape[1];
+-    }
+-
+-    /**
+-     * Free resources used by the segmentor.
+-     */
++    public int getInputWidth()  { return inputShape[2]; }
++    public int getInputHeight() { return inputShape[1]; }
++
+     @Override
+     public void close() {
++        // Release OpenCV Mats first
++        try { if (inputMatRgba != null) inputMatRgba.release(); } catch (Exception ignore) {}
++        try { if (inputMatRgb  != null) inputMatRgb.release();  } catch (Exception ignore) {}
++        try { if (inputMatForBlend != null) inputMatForBlend.release(); } catch (Exception ignore) {}
++
++        // Then close TFLite resources
+         tfLiteInterpreter.close();
+-        for (Delegate delegate: tfLiteDelegateStore.values()) {
+-            delegate.close();
++        for (Delegate d : tfLiteDelegateStore.values()) d.close();
++    }
++
++    public long getLastPreprocessingTime() { synchronized (lock) { return preprocessingTime; } }
++    public long getLastInferenceTime()     { synchronized (lock) { return inferenceTime; } }
++    public long getLastPostprocessingTime(){ synchronized (lock) { return postprocessingTime; } }
++
++    public Bitmap predict(Bitmap image, int sensorOrientation) {
++        synchronized (lock) {
++            Mat rgbForModel = null;   // may alias inputMatRgb; only release if it's a new Mat
++            Mat scaled = null;
++            Mat prob = null;
++            Mat bin = null;
++            Mat maskU8 = null;
++            Mat maskFull = null;
++            Mat small = null;
++            Mat blurred = null;
++            Mat outputRgb = null;
++
++            try {
++                // -------- Preprocess --------
++                long t0 = System.nanoTime();
++                Utils.bitmapToMat(image, inputMatRgba);
++                Imgproc.cvtColor(inputMatRgba, inputMatRgb, Imgproc.COLOR_RGBA2RGB);
++                inputMatRgb.copyTo(inputMatForBlend);
++
++                // QGENIE_SENTINEL: RAY_130_FIX_v3
++                // Safer rotation handling with immediate try-catch
++                try {
++                    switch (sensorOrientation) {
++                        case 0:   rgbForModel = inputMatRgb; break;
++                        case 90:  rgbForModel = new Mat(); Core.rotate(inputMatRgb, rgbForModel, Core.ROTATE_90_COUNTERCLOCKWISE); break;
++                        case 180: rgbForModel = new Mat(); Core.rotate(inputMatRgb, rgbForModel, Core.ROTATE_180); break;
++                        case 270: rgbForModel = new Mat(); Core.rotate(inputMatRgb, rgbForModel, Core.ROTATE_90_CLOCKWISE); break;
++                        default:  rgbForModel = inputMatRgb; break;
++                    }
++                } catch (Exception e) {
++                    if (rgbForModel != null && rgbForModel != inputMatRgb) {
++                        try { rgbForModel.release(); } catch (Exception ignore) {}
++                        rgbForModel = null;
++                    }
++                    throw e;
++                }
++
++                final int inH = inputShape[1], inW = inputShape[2];
++                scaled = new Mat();
++                Imgproc.resize(rgbForModel, scaled, new Size(inW, inH), 0, 0, Imgproc.INTER_LINEAR);
++
++                // Use clear()/flip() for input buffer
++                inputByteBuffer.clear();
++                if (inputType == DataType.FLOAT32) {
++                    scaled.convertTo(scaled, CvType.CV_32FC3, 1f / 255f);
++                    int outC = outputShape[3];
++                    if (outC > 2) {
++                        Core.subtract(scaled, INPUT_MEAN, scaled);
++                        Core.divide(scaled, INPUT_STD, scaled);
++                    }
++                    if (inputFloatArray != null) {
++                        scaled.get(0, 0, inputFloatArray);
++                        inputByteBuffer.asFloatBuffer().put(inputFloatArray);
++                    }
++                } else { // UINT8
++                    if (inputByteArray != null) {
++                        scaled.get(0, 0, inputByteArray);
++                        inputByteBuffer.put(inputByteArray);
++                    }
++                }
++                inputByteBuffer.flip(); // prepare for reading
++
++                long t1 = System.nanoTime();
++                preprocessingTime = t1 - t0;
++
++                // -------- Inference --------
++                outputByteBuffer.clear(); // prepare output buffer
++                Map<Integer, Object> outputs = new HashMap<>();
++                outputs.put(0, outputByteBuffer);
++
++                tfLiteInterpreter.runForMultipleInputsOutputs(
++                        new Object[]{ inputByteBuffer },
++                        outputs
++                );
++
++                long t2 = System.nanoTime();
++                inferenceTime = t2 - t1;
++
++                // -------- Postprocess --------
++                final int outH = outputShape[1], outW = outputShape[2], outC = outputShape[3];
++                outputByteBuffer.rewind();
++
++                if (outputType == DataType.FLOAT32 && outC == 1) {
++                    float[] arr = new float[outH * outW];
++                    outputByteBuffer.asFloatBuffer().get(arr);
++                    prob = new Mat(outH, outW, CvType.CV_32FC1);
++                    prob.put(0, 0, arr);
++                    bin = new Mat();
++                    Imgproc.threshold(prob, bin, 0.5, 255.0, Imgproc.THRESH_BINARY);
++                    maskU8 = new Mat();
++                    bin.convertTo(maskU8, CvType.CV_8UC1);
++                } else if (outputType == DataType.FLOAT32 && outC == 2) {
++                    float[] arr = new float[outH * outW * 2];
++                    outputByteBuffer.asFloatBuffer().get(arr);
++                    byte[] mask = new byte[outH * outW];
++                    for (int i = 0; i < outH * outW; i++) {
++                        float bg = arr[i * 2];
++                        float fg = arr[i * 2 + 1];
++                        mask[i] = (byte) ((fg > bg) ? 255 : 0);
++                    }
++                    maskU8 = new Mat(outH, outW, CvType.CV_8UC1);
++                    maskU8.put(0, 0, mask);
++                } else if (outputType == DataType.UINT8 && outC == 1) {
++                    byte[] arr = new byte[outH * outW];
++                    outputByteBuffer.get(arr);
++                    maskU8 = new Mat(outH, outW, CvType.CV_8UC1);
++                    maskU8.put(0, 0, arr);
++                } else if (outputType == DataType.FLOAT32 && outC > 2) {
++                    float[] arr = new float[outH * outW * outC];
++                    outputByteBuffer.asFloatBuffer().get(arr);
++                    final int PERSON = 11; // example class index
++                    byte[] mask = new byte[outH * outW];
++                    for (int i = 0; i < outH * outW; i++) {
++                        int base = i * outC;
++                        int bestIdx = 0;
++                        float bestVal = arr[base];
++                        for (int c = 1; c < outC; c++) {
++                            float v = arr[base + c];
++                            if (v > bestVal) { bestVal = v; bestIdx = c; }
++                        }
++                        mask[i] = (byte) ((bestIdx == PERSON) ? 255 : 0);
++                    }
++                    maskU8 = new Mat(outH, outW, CvType.CV_8UC1);
++                    maskU8.put(0, 0, mask);
++                } else {
++                    throw new IllegalArgumentException("Unsupported output combination. type=" + outputType + " C=" + outC);
++                }
++
++                // Explicit null/type checks before rotation
++                if (maskU8 == null) {
++                    throw new IllegalStateException("Mask generation failed - maskU8 is null");
++                }
++                if (maskU8.type() != CvType.CV_8UC1) {
++                    Mat tmp = new Mat();
++                    maskU8.convertTo(tmp, CvType.CV_8UC1);
++                    maskU8.release();
++                    maskU8 = tmp;
++                }
++
++                switch (sensorOrientation) {
++                    case 90:  Core.rotate(maskU8, maskU8, Core.ROTATE_90_CLOCKWISE); break;
++                    case 180: Core.rotate(maskU8, maskU8, Core.ROTATE_180); break;
++                    case 270: Core.rotate(maskU8, maskU8, Core.ROTATE_90_COUNTERCLOCKWISE); break;
++                    default:  break;
++                }
++
++                maskFull = new Mat(image.getHeight(), image.getWidth(), CvType.CV_8UC1);
++                Imgproc.resize(maskU8, maskFull, maskFull.size(), 0, 0, Imgproc.INTER_LINEAR);
++                Imgproc.GaussianBlur(maskFull, maskFull, new Size(5, 5), 0);
++
++                small = new Mat();
++                Imgproc.resize(inputMatForBlend, small, new Size(), 0.25, 0.25, Imgproc.INTER_AREA);
++                Imgproc.GaussianBlur(small, small, new Size(0, 0), 9);
++
++                blurred = new Mat();
++                Imgproc.resize(small, blurred, inputMatForBlend.size(), 0, 0, Imgproc.INTER_LINEAR);
++
++                outputRgb = blurred.clone();                 // background blurred
++                inputMatForBlend.copyTo(outputRgb, maskFull); // foreground sharp
++
++                Bitmap outBitmap = Bitmap.createBitmap(outputRgb.width(), outputRgb.height(), Bitmap.Config.ARGB_8888);
++                Utils.matToBitmap(outputRgb, outBitmap);
++
++                long t3 = System.nanoTime();
++                postprocessingTime = t3 - t2;
++
++                return outBitmap;
++            } catch (Exception e) {
++                Log.e(TAG, "Error during prediction: " + e.getMessage(), e);
++                return image; // keep preview alive
++            } finally {
++                // Release temporary Mats (do not release persistent ones)
++                try { if (rgbForModel != null && rgbForModel != inputMatRgb) rgbForModel.release(); } catch (Exception ignore) {}
++                try { if (scaled   != null) scaled.release(); }   catch (Exception ignore) {}
++                try { if (prob     != null) prob.release(); }     catch (Exception ignore) {}
++                try { if (bin      != null) bin.release(); }      catch (Exception ignore) {}
++                try { if (maskU8   != null) maskU8.release(); }   catch (Exception ignore) {}
++                try { if (maskFull != null) maskFull.release(); } catch (Exception ignore) {}
++                try { if (small    != null) small.release(); }    catch (Exception ignore) {}
++                try { if (blurred  != null) blurred.release(); }  catch (Exception ignore) {}
++                try { if (outputRgb!= null) outputRgb.release(); }catch (Exception ignore) {}
++            }
+         }
+     }
+-
+-    /**
+-     * @return last preprocessing time in microseconds.
+-     */
+-    public long getLastPreprocessingTime() {
+-        return preprocessingTime;
+-    }
+-
+-    /**
+-     * @return last inference time in microseconds.
+-     */
+-    public long getLastInferenceTime() {
+-        return inferenceTime;
+-    }
+-
+-    /**
+-     * @return last postprocessing time in microseconds.
+-     */
+-    public long getLastPostprocessingTime() {
+-        return postprocessingTime;
+-    }
+-
+-    /**
+-     * Predicts and overlays
+-     * @param image Input image
+-     * @param sensorOrientation Sensor orientation in degrees. If input image is rotated this
+-     *                          number of degrees clockwise, the image shoudl be upright.
+-     *
+-     * @return RGB bitmap of same size and orientation as input image, but with predictions overlay.
+-     */
+-    public Bitmap predict(Bitmap image, int sensorOrientation) {
+-        // The most common sensor orientation is 90, so we will use it for shape examples.
+-        // Image comes in requiring 90 degrees cw rotation to be correct;
+-        // its size is then 1024 x 2048 (width x height)
+-
+-        long preStartTime = System.nanoTime();
+-
+-        //
+-        // Preprocessing
+-        //
+-
+-        // Copy input image into OpenCV Mat
+-        Utils.bitmapToMat(image, inputMatAbgr);
+-
+-        // OpenCV loads the image as BGR, but the network expects RGB
+-        Imgproc.cvtColor(inputMatAbgr, inputMatRgb, Imgproc.COLOR_BGRA2RGB);
+-        Imgproc.cvtColor(inputMatAbgr, inputMatBgr, Imgproc.COLOR_BGRA2BGR);
+-
+-        // Rotate if necessary
+-        Mat correctRotInputImageRgb = new Mat();
+-        switch (sensorOrientation) {
+-            case 0:
+-                correctRotInputImageRgb = inputMatRgb;
+-                break;
+-            case 90:
+-                Core.rotate(inputMatRgb, correctRotInputImageRgb, Core.ROTATE_90_COUNTERCLOCKWISE);
+-                break;
+-            case 180:
+-                Core.rotate(inputMatRgb, correctRotInputImageRgb, Core.ROTATE_180);
+-                break;
+-            case 270:
+-                Core.rotate(inputMatRgb, correctRotInputImageRgb, Core.ROTATE_90_CLOCKWISE);
+-                break;
+-            default:
+-                break;
+-        }
+-
+-        int inputHeight = inputShape[1];
+-        int inputWidth = inputShape[2];
+-
+-        // Scale image to the network
+-        Mat scaledImage = new Mat(inputHeight, inputWidth, CvType.CV_8UC3);
+-        Imgproc.resize(correctRotInputImageRgb, scaledImage, scaledImage.size(), 0, 0, Imgproc.INTER_LINEAR);
+-        scaledImage.convertTo(scaledImage, CvType.CV_32FC3, 1 / 255f);
+-
+-        //
+-        // TFLite inference
+-        //
+-
+-        // Convert from OpenCV to TFLite expected ByteBuffer
+-        // To minimize IO overhead, we create a direct-allocated buffer in native order.
+-
+-        scaledImage.get(0, 0, inputFloatArray);
+-        FloatBuffer inputFloatBuffer = inputByteBuffer.asFloatBuffer();
+-        inputFloatBuffer.put(inputFloatArray);
+-
+-        long inferenceStartTime = System.nanoTime();
+-        preprocessingTime = inferenceStartTime - preStartTime;
+-
+-        // Run inference
+-        ByteBuffer[] inputs = new ByteBuffer[] {inputByteBuffer};
+-        tfLiteInterpreter.runForMultipleInputsOutputs(inputs, new HashMap<>());
+-
+-        //
+-        // Postprocessing
+-        //
+-
+-        long postStartTime = System.nanoTime();
+-        inferenceTime = postStartTime - inferenceStartTime;
+-
+-        int outputHeight = outputShape[1];
+-        int outputWidth = outputShape[2];
+-
+-        // Convert output to 3D OpenCV image
+-        Mat outputs = new Mat(new int[]{outputHeight, outputWidth, NUM_CLASSES}, CvType.CV_32F);
+-        ByteBuffer outputBuffer = tfLiteInterpreter.getOutputTensor(0).asReadOnlyBuffer();
+-        FloatBuffer floatBuf = outputBuffer.asFloatBuffer();
+-        float[] arr = new float[floatBuf.remaining()];
+-        floatBuf.get(arr);
+-        outputs.put(new int[]{0, 0, 0}, arr);
+-
+-        // Take argmax (top class prediction) and scale up
+-        Core.reduceArgMax(outputs, outputCategories, 2);
+-        outputCategories.convertTo(outputCategories, CvType.CV_8UC1);
+-        outputCategories = outputCategories.reshape(1, new int[]{outputHeight, outputWidth});
+-
+-        // Spread out the indices to fill up [0, 1]
+-        // This will make better use of the rainbow color map below
+-        Core.multiply(outputCategories, new Scalar(255.0f / (float)(NUM_CLASSES - 1)), outputCategories);
+-
+-        // Rotate output to match input
+-        switch (sensorOrientation) {
+-            case 90:
+-                Core.rotate(outputCategories, outputCategories, Core.ROTATE_90_CLOCKWISE);
+-                break;
+-            case 180:
+-                Core.rotate(outputCategories, outputCategories, Core.ROTATE_180);
+-                break;
+-            case 270:
+-                Core.rotate(outputCategories, outputCategories, Core.ROTATE_90_COUNTERCLOCKWISE);
+-                break;
+-            default:
+-                break;
+-        }
+-
+-        // Resize back to input size
+-        Mat resizeImage = new Mat(image.getHeight(), image.getWidth(), CvType.CV_8UC1);
+-        Imgproc.resize(outputCategories, resizeImage, resizeImage.size(), 0, 0, Imgproc.INTER_LINEAR);
+-
+-        // Convert grayscale indices map to an RGB image (with rainbow color map)
+-        Mat mask = new Mat(image.getWidth(), image.getHeight(), CvType.CV_8UC3);
+-        Imgproc.applyColorMap(resizeImage, mask, Imgproc.COLORMAP_RAINBOW);
+-
+-        // Overlay on top of camera preview
+-        Core.addWeighted(inputMatBgr, 0.7, mask, 0.3, 0.0, inputMatBgr);
+-
+-        // Convert from OpenCV Mat to Android Bitmap
+-        Bitmap outputBitmap = Bitmap.createBitmap(inputMatBgr.width(), inputMatBgr.height(), Bitmap.Config.ARGB_8888);
+-        Utils.matToBitmap(inputMatBgr, outputBitmap);
+-        long endTime = System.nanoTime();
+-        postprocessingTime = endTime - postStartTime;
+-        return outputBitmap;
+-    }
+-}
++}
+
