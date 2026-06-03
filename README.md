@@ -150,7 +150,11 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/LiteRT--LM_On--Device_Chat_Application-2026.05.15-grey?style=flat-square&labelColor=brightgreen" alt="LiteRT-LM On-Device Chat Application"/>
       </a>
     </td>
-    <td align="center">—</td>
+    <td>
+      <a href="./CV_VR/Android/bokeh/" title="This sample app performs semantic segmentation on live camera input and generate Bokeh effect output.">
+        <img src="https://img.shields.io/badge/Selfie_Bokeh_Sample_Using_Semantic_Segmentation_App-2026.05.18-grey?style=flat-square&labelColor=blueviolet" alt="Selfie Bokeh Sample Using Semantic Segmentation App"/>
+      </a>
+    </td>
     <td align="center">—</td>
     <td align="center">—</td>
   </tr>
