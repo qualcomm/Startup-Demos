@@ -135,6 +135,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
         <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=orange" alt="LED Matrix Generator"/>
       </a><br>
+      <a href="./Others/IoT-Robotics/Smart_Guide_Cane/" title="UnoGuide is a smart guide cane prototype built on Arduino UNO Q with Edge Impulse vision inference. It provides traffic‑light recognition and obstacle awareness, delivering voice feedback and buzzer alerts.">
+        <img src="https://img.shields.io/badge/Smart_Guide_Cane-2026.05.28-grey?style=flat-square&labelColor=orange" alt="Smart Guide Cane"/>
+      </a><br>
       <a href="./Others/IoT-Robotics/Vibration_Based_Condition_Monitoring/" title="A vibration-based edge-AI demo that detects machine health using vibration data on Arduino UNO-Q">
         <img src="https://img.shields.io/badge/Vibration--Based_Condition_Monitoring-2026.02.11-grey?style=flat-square&labelColor=orange" alt="Vibration-Based Condition Monitoring"/>
       </a>
@@ -229,6 +232,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a>
     </td>
     <td>
+      <a href="./Others/IoT-Robotics/Smart_Guide_Cane/" title="UnoGuide is a smart guide cane prototype built on Arduino UNO Q with Edge Impulse vision inference. It provides traffic‑light recognition and obstacle awareness, delivering voice feedback and buzzer alerts.">
+        <img src="https://img.shields.io/badge/Smart_Guide_Cane-2026.05.28-grey?style=flat-square&labelColor=cyan" alt="Smart Guide Cane"/>
+      </a><br>
       <a href="./Others/IoT-Robotics/Vibration_Based_Condition_Monitoring/" title="A vibration-based edge-AI demo that detects machine health using vibration data on Arduino UNO-Q">
         <img src="https://img.shields.io/badge/Vibration--Based_Condition_Monitoring-2026.02.11-grey?style=flat-square&labelColor=cyan" alt="Vibration-Based Condition Monitoring"/>
       </a>

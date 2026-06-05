@@ -1,0 +1,13 @@
+#===--app.yaml-------------------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===----------------------------------------------------------------------===//
+
+name: UNOGuide
+description: "UnoGuide is a smart guide cane prototype built on Arduino® UNO Q (Linux MPU + STM MCU) with **Edge Impulse** vision inference. It provides traffic‑light recognition and obstacle awareness, delivering voice feedback and buzzer alerts as the primary user interface for visually impaired users."
+ports: []
+bricks: []
+icon: 😀
