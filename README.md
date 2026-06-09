@@ -115,7 +115,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
-        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.14-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
+        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="">
         <img src="https://img.shields.io/badge/tile_based_small_object_detection-2026.04.21-grey?style=flat-square&labelColor=blueviolet" alt="tile_based_small_object_detection"/>
@@ -183,6 +183,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./GenAI/CloudAI-Playground/online_server_endpoint_stream/" title="Online service server endpoint with streaming support (stream=true) using Llama 3.3 70B 32K ctx_len on AIC100 Ultra.">
         <img src="https://img.shields.io/badge/Online_server_endpoint_stream-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Online server endpoint stream"/>
       </a><br>
+      <a href="./GenAI/CloudAI-Playground/OpenClaw_Local_LLM_Agent_with_vLLM/" title="A sample demonstrating how to build a tool-enabled AI agent by integrating OpenClaw with a locally hosted vLLM service.">
+        <img src="https://img.shields.io/badge/OpenClaw_Local_LLM_Agent_with_vLLM-2026.05.11-grey?style=flat-square&labelColor=brightgreen" alt="OpenClaw Local LLM Agent with vLLM"/>
+      </a><br>
       <a href="./GenAI/CloudAI-Playground/traffic_ai_agent/" title="An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra.">
         <img src="https://img.shields.io/badge/Traffic_AI_Agent_–_Dual_Intersection_(On‑Prem,_Analysis)-2026.05.04-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
       </a>
@@ -225,7 +228,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
-        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.05.14-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
+        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
