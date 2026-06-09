@@ -268,7 +268,9 @@ Edge Impulse allows you to build optimized machine learning models tailored for 
 ### Build Steps:
 
 1. Navigate to **Deployment** tab in Edge Impulse Studio
+
 2. Select **Arduino UNO Q** as the deployment target
+
 3. Click **Build** to create the deployable model
 4. The model will automatically download as a `.eim` file
 

@@ -1,0 +1,77 @@
+{
+  "gateway": {
+    "mode": "local"
+  },
+  "env": {
+    "vars": {
+      "VLLM_API_KEY": "vllm-local"
+    }
+  },
+  "models": {
+    "providers": {
+      "vllm": {
+        "baseUrl": "http://127.0.0.1:8000/v1",
+        "apiKey": "vllm-local",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "meta-llama/llama-3.1-8B-instruct",
+            "name": "meta llama 3.1 8b Instruct (32k)",
+            "reasoning": false,
+            "api": "openai-completions",
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 65535,
+            "maxTokens": 16384,
+            "compat": {
+              "supportsTools": true,
+              "requiresStringContent": false,
+              "requiresAssistantAfterToolResult": true
+            }
+          }
+        ],
+        "timeoutSeconds": 666
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": "vllm/meta-llama/llama-3.1-8B-instruct",
+      "skills": [
+        "fs",
+        "shell",
+        "apple-reminders",
+        "write"
+      ]
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "<YOUR_TELEGRAM_BOT_TOKEN>",
+      "dmPolicy": "pairing",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "vllm": {
+        "enabled": true
+      }
+    }
+  }
+}
