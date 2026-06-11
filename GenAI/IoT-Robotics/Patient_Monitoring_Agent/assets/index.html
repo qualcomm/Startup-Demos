@@ -1,0 +1,48 @@
+<!--
+#===--------------------------index.html-------------------------===
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Patient Monitoring Dashboard (Agentic Classification)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="title">
+            <h1>Patient Monitoring Dashboard</h1>
+            <div class="subtitle">Agentic-powered classification • Monitoring <b>4 patients</b> in real-time</div>
+        </div>
+        <div class="right">
+            <div class="chip" id="lastUpdate">Last update: --</div>
+            <div class="chip muted" id="connStatus">Status: Connecting…</div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="grid" id="patientsGrid">
+            <!-- Cards will be created by app.js -->
+        </section>
+        
+        <footer class="footer">
+            <div class="hint">
+                ?? <b>Agentic Classification:</b> AI analyzes vitals and determines alert level (GOOD/LOW/MODERATE/HIGH)
+                <br/>
+                ?? <b>LED Matrix:</b> Shows the worst patient severity in real-time
+            </div>
+        </footer>
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
+
+
