@@ -1,0 +1,23 @@
+#===----------------------------sketch.ino --------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc.
+# SPDX-License-Identifier: MIT License
+#===----------------------------------------------------------------------===//
+
+profiles:
+  default:
+    fqbn: 
+    platforms:
+      - platform: arduino:zephyr
+    libraries:
+      - dependency: Arduino_RPClite (0.3.0)
+      - Arduino_RouterBridge (0.4.2)
+      - dependency: ArxContainer (0.7.0)
+      - dependency: ArxTypeTraits (0.3.2)
+      - dependency: DebugLog (0.8.4)
+      - dependency: MsgPack (0.4.2)
+
+default_profile: default
+
