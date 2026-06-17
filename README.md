@@ -79,6 +79,9 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
     <td>
+      <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
+        <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=brightgreen" alt="Patient_Monitoring_Agent"/>
+      </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Voice Enabled Gate Control System"/>
       </a>
@@ -226,6 +229,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
         <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
+      </a><br>
+      <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
+        <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=blue" alt="Patient_Monitoring_Agent"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
         <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>

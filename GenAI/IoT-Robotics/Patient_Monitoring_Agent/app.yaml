@@ -1,0 +1,6 @@
+name: Patient_Monitoring_Agent
+description: "Agent-driven health monitoring using AI for continuous patient condition analysis"
+ports: []
+bricks:
+- arduino:web_ui: {}
+icon: 😀
