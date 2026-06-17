@@ -191,6 +191,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./GenAI/CloudAI-Playground/traffic_ai_agent/" title="An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra.">
         <img src="https://img.shields.io/badge/Traffic_AI_Agent_–_Dual_Intersection_(On‑Prem,_Analysis)-2026.05.04-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
+      </a><br>
+      <a href="./GenAI/CloudAI-Playground/vLLM_QAIC_Concurrency_Benchmark_on_AIC100/" title="Provides a reference benchmark for evaluating vLLM serving performance on Qualcomm AIC100 (QAIC), focusing on concurrency scaling, throughput, and multi-request LLM inference behavior.">
+        <img src="https://img.shields.io/badge/vLLM_QAIC_Concurrency_Benchmark_on_AIC100-2026.06.04-grey?style=flat-square&labelColor=brightgreen" alt="vLLM QAIC Concurrency Benchmark on AIC100"/>
       </a>
     </td>
     <td align="center">—</td>
