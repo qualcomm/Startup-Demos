@@ -79,6 +79,9 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
     <td>
+      <a href="./GenAI/IoT-Robotics/ai_guard_system/" title="An on-device dual-camera surveillance system with LLM-powered analytics running on IQ9 (QCS9075).">
+        <img src="https://img.shields.io/badge/Edge_AI_Guard_System-2026.06.29-grey?style=flat-square&labelColor=brightgreen" alt="Edge AI Guard System"/>
+      </a><br>
       <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
         <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=brightgreen" alt="Patient_Monitoring_Agent"/>
       </a><br>
@@ -191,6 +194,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./GenAI/CloudAI-Playground/traffic_ai_agent/" title="An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra.">
         <img src="https://img.shields.io/badge/Traffic_AI_Agent_–_Dual_Intersection_(On‑Prem,_Analysis)-2026.05.04-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
+      </a><br>
+      <a href="./GenAI/CloudAI-Playground/vLLM_QAIC_Concurrency_Benchmark_on_AIC100/" title="Provides a reference benchmark for evaluating vLLM serving performance on Qualcomm AIC100 (QAIC), focusing on concurrency scaling, throughput, and multi-request LLM inference behavior.">
+        <img src="https://img.shields.io/badge/vLLM_QAIC_Concurrency_Benchmark_on_AIC100-2026.06.04-grey?style=flat-square&labelColor=brightgreen" alt="vLLM QAIC Concurrency Benchmark on AIC100"/>
       </a>
     </td>
     <td align="center">—</td>

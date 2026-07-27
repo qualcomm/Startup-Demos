@@ -1,0 +1,12 @@
+name: "Edge AI Guard System"
+description: "An on-device dual-camera surveillance system with LLM-powered analytics running on IQ9 (QCS9075)."
+category:
+  - "GenAI"
+  - "IoT-Robotics"
+platforms:
+  - "IQ9 (QCS9075)"
+  - "Qualcomm AI Hub"
+tags:
+  - "Computer Vision"
+  - "LLM"
+
