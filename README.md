@@ -198,7 +198,11 @@ This repository is a collection of demo applications that highlight the capabili
     </td>
     <td align="center">—</td>
     <td align="center">—</td>
-    <td align="center">—</td>
+    <td>
+      <a href="./Others/CloudAI-Playground/Whisper_vLLM/" title="A Guide to Building a Whisper Server and WebUI Client using vLLM on the AIC100.">
+        <img src="https://img.shields.io/badge/Whisper_Serving_on_AIC100_with_vLLM-2026.07.27-grey?style=flat-square&labelColor=orange" alt="Whisper Serving on AIC100 with vLLM"/>
+      </a>
+    </td>
   </tr>
 </table>
 
