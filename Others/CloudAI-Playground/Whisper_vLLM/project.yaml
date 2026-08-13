@@ -1,0 +1,10 @@
+name: "Whisper Serving on AIC100 with vLLM"
+description: "A Guide to Building a Whisper Server and WebUI Client using vLLM on the AIC100."
+category:
+  - "Others"
+  - "CloudAI-Playground"
+platforms:
+  - "AIC100 Ultra"
+tags:
+  - "Audio"
+  - "Whisper"
