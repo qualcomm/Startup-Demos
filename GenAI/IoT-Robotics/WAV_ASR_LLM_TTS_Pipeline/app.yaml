@@ -1,0 +1,22 @@
+# app.yaml: The main configuration file for your Arduino App.
+# This file describes the application's metadata and properties.
+
+# The user-visible name of the application.
+name: wav-asr-llm-tts-pipeline
+
+# A brief description of what the application does.
+description: "File-based WAV -> ASR -> LLM -> TTS -> WAV demo pipeline using Arduino App Lab Bricks (arduino:asr, arduino:llm, arduino:tts) on VentunoQ."
+
+# The icon for the application, can be an emoji or a short string.
+icon: 🎙️
+
+# A list of network ports that the application exposes.
+ports: []
+
+# A list of bricks used by this application.
+bricks:
+- arduino:asr: {}
+- arduino:llm:
+    model: genie:qwen3_4b_instruct_2507
+- arduino:tts:
+    model: melo-tts-en

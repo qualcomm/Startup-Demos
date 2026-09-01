@@ -1,0 +1,20 @@
+name: "WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VentunoQ"
+description: "File-based, on-device voice pipeline (Whisper ASR -> Qwen3-4B-Instruct LLM -> MeloTTS) using Arduino App Lab Bricks (arduino:asr, arduino:llm, arduino:tts) on VentunoQ. No microphone or speaker required — input and output are WAV files."
+category:
+  - "GenAI"
+  - "IoT-Robotics"
+platforms:
+  - "VentunoQ"
+tags:
+  - "ASR"
+  - "LLM"
+  - "TTS"
+  - "Speech"
+  - "Arduino App Lab"
+  - "Bricks"
+  - "NPU"
+  - "Offline"
+license: "MIT"
+estimated_setup_time: "20 minutes"
+hardware_requirements: []
+is_third_party: false
