@@ -1,0 +1,8 @@
+name: "People counter "
+description: This example showcases object detection within a live feed from a USB camera.
+ports: []
+bricks:
+- arduino:video_object_detection:
+    model: <ei-model-xxxxxx-x> /* <Model ID> */
+- arduino:web_ui: {}
+icon: 📽️
