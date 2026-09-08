@@ -1,0 +1,21 @@
+#===--app.yaml----------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===--------------------------------------------------------===//
+
+name: Smart-Door-Access-Controller
+description: This example showcases object detection within a live feed from a smartphone's camera.
+app_lab_version: 0.9.0
+ports:
+- 8080
+bricks:
+- arduino:video_object_detection:
+    model: face-detection
+    devices:
+    - remote_camera_0
+- arduino:dbstorage_sqlstore: {}
+- arduino:web_ui: {}
+icon: 📽️
