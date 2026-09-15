@@ -32,6 +32,27 @@ let allPlatforms = new Set();
 let activeTagFilters = new Set();
 let activePlatformFilters = new Set();
 
+function getFallbackRepoBaseUrl() {
+  const { hostname, origin, pathname } = window.location;
+  const pathSegments = pathname.split('/').filter(Boolean);
+
+  if (hostname.endsWith('.github.io')) {
+    const owner = hostname.replace(/\.github\.io$/, '');
+    const repo = pathSegments[0];
+    if (owner && repo) {
+      return `https://github.com/${owner}/${repo}/tree/main/`;
+    }
+  }
+
+  if (pathSegments[0] === 'pages' && pathSegments.length >= 3) {
+    const owner = pathSegments[1];
+    const repo = pathSegments[2];
+    return `${origin}/${owner}/${repo}/tree/main/`;
+  }
+
+  return '';
+}
+
 // Initialize sticky note style on page load
 function initializeStickyNotes() {
   document.querySelectorAll('.last-updated-sticky').forEach(el => {
@@ -47,8 +68,10 @@ function initializeStickyNotes() {
 // Fetch and process data
 async function loadProjects() {
   try {
-    // Use Vite's built-in BASE_URL which matches the base in vite.config.js
-    const response = await fetch(`${import.meta.env.BASE_URL}catalog.json`);
+    // Vite BASE_URL can be relative (e.g. "./"), so resolve it against the current page first.
+    const baseUrl = new URL(import.meta.env.BASE_URL, window.location.href);
+    const catalogUrl = new URL('catalog.json', baseUrl).toString();
+    const response = await fetch(catalogUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -180,16 +203,10 @@ function render() {
         difficultyBadge.textContent = project.difficulty_level;
       }
 
-      // Determine base URL and org based on hostname
-      const isPublic = window.location.hostname.endsWith('github.io');
-      const repoBaseUrl = isPublic 
-        ? 'https://github.com/qualcomm/Startup-Demos/tree/main/' 
-        : 'https://github.qualcomm.com/Innovationlab/qilab_platform_apps2/tree/main/';
-
-      let repoUrl = '';
-      if (project.repo_path) {
-        repoUrl = repoBaseUrl + encodeURI(project.repo_path);
-      }
+      const repoBaseUrl = getFallbackRepoBaseUrl();
+      const repoUrl = project.repo_url || (project.repo_path && repoBaseUrl
+        ? `${repoBaseUrl}${encodeURI(project.repo_path)}`
+        : '');
 
       let stickyNote = '';
       if (project.last_updated) {
