@@ -5,15 +5,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-readme:
     # Skip if commit is from the bot to prevent loops
     if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0  # Full history for git log dates
           token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
@@ -44,6 +47,18 @@ jobs:
           CHANGED_FILES=$(git diff --name-only README.md | wc -l)
           DATE=$(date +"%Y-%m-%d")
           echo "message=docs(readme): update project tables - ${PROJECT_COUNT} projects (${DATE})" >> $GITHUB_OUTPUT
+
+      - name: Validate GH_PAT is configured
+        if: steps.git-check.outputs.changed == 'true'
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$GH_PAT" ]; then
+            echo "✗ GH_PAT secret is not configured."
+            echo "Add repository secret GH_PAT with Contents: Read and write, then re-run the workflow."
+            exit 1
+          fi
+          echo "✓ GH_PAT secret is configured."
       
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
@@ -62,7 +77,7 @@ jobs:
             echo "✓ Push successful with GITHUB_TOKEN"
           elif [ -n "$GH_PAT" ]; then
             echo "! GITHUB_TOKEN failed (likely protected branch), retrying with GH_PAT..."
-            git remote set-url origin https://x-access-token:${GH_PAT}@github.qualcomm.com/${{ github.repository }}.git
+            git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git
             git push
             echo "✓ Push successful with GH_PAT"
           else
