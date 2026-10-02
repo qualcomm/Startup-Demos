@@ -29,6 +29,55 @@ const getRepoRoot = () => {
 const REPO_ROOT = getRepoRoot();
 console.log(`Repository root: ${REPO_ROOT}`);
 
+function normalizeRemoteUrl(remoteUrl) {
+  if (!remoteUrl) {
+    return null;
+  }
+
+  const trimmedRemoteUrl = remoteUrl.trim();
+
+  if (trimmedRemoteUrl.startsWith('git@')) {
+    const match = trimmedRemoteUrl.match(/^git@([^:]+):(.+?)(?:\.git)?$/);
+    if (!match) {
+      return null;
+    }
+    return `https://${match[1]}/${match[2]}`;
+  }
+
+  if (trimmedRemoteUrl.startsWith('http://') || trimmedRemoteUrl.startsWith('https://')) {
+    return trimmedRemoteUrl.replace(/\.git$/, '');
+  }
+
+  return null;
+}
+
+function getRepositoryWebBaseUrl() {
+  if (process.env.GITHUB_SERVER_URL && process.env.GITHUB_REPOSITORY) {
+    return `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/tree/main/`;
+  }
+
+  try {
+    const result = spawnSync('git', ['config', '--get', 'remote.origin.url'], {
+      cwd: REPO_ROOT,
+      encoding: 'utf8'
+    });
+
+    if (!result.error && result.status === 0) {
+      const remoteUrl = normalizeRemoteUrl(result.stdout);
+      if (remoteUrl) {
+        return `${remoteUrl}/tree/main/`;
+      }
+    }
+  } catch (error) {
+    console.warn('Error detecting remote origin URL:', error.message);
+  }
+
+  return null;
+}
+
+const REPOSITORY_WEB_BASE_URL = getRepositoryWebBaseUrl();
+console.log(`Repository web base URL: ${REPOSITORY_WEB_BASE_URL || 'unavailable'}`);
+
 /**
  * Detect programming languages in a directory by scanning file extensions
  */
@@ -250,6 +299,9 @@ const main = async () => {
       // Add a relative path to the project's directory for linking
       const relativePath = path.relative(REPO_ROOT, path.dirname(file));
       doc.repo_path = relativePath.replace(/\\/g, '/');
+      if (REPOSITORY_WEB_BASE_URL) {
+        doc.repo_url = `${REPOSITORY_WEB_BASE_URL}${encodeURI(doc.repo_path)}`;
+      }
 
       // Detect languages from source files
       const projectAbsPath = path.dirname(file);

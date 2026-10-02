@@ -114,6 +114,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
         <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blueviolet" alt="Object_detection_via_Tflite_model"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/people_detection_arduino_uno_q/" title="A real-time people counting application using Arduino UNO-Q with Edge Impulse FOMO model for detecting and counting people in a designated area.">
+        <img src="https://img.shields.io/badge/People_Counter_using_Arduino_UNO--Q-2026.09.01-grey?style=flat-square&labelColor=blueviolet" alt="People Counter using Arduino UNO-Q"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
         <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
       </a><br>
@@ -235,6 +238,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
         <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=blue" alt="Patient_Monitoring_Agent"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/people_detection_arduino_uno_q/" title="A real-time people counting application using Arduino UNO-Q with Edge Impulse FOMO model for detecting and counting people in a designated area.">
+        <img src="https://img.shields.io/badge/People_Counter_using_Arduino_UNO--Q-2026.09.01-grey?style=flat-square&labelColor=blue" alt="People Counter using Arduino UNO-Q"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
         <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
