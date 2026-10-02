@@ -38,7 +38,7 @@ This sample demonstrates a fully on-device, offline speech-in / speech-out pipel
 | Brick | Model |
 |---|---|
 | `arduino:asr` | `whisper-small-quantized` |
-| `arduino:llm` | `genie:qwen3_4b_instruct_2507` |
+| `arduino:llm` | `llamacpp:gemma-4-E2B_q4_0-it` |
 | `arduino:tts` | `melo-tts-en` |
 
 There is no command-line or API path for installing a model — install them through the App Lab GUI. If the AI Models list appears empty, restart Arduino App Lab; the models will then show as installed. `app.yaml` declares the models this app expects; App Lab reports a missing-model error at `app start` if any of them are not yet installed.
@@ -48,7 +48,7 @@ There is no command-line or API path for installing a model — install them thr
 ```mermaid
 flowchart LR
     A["assets/input.wav"] --> B["arduino:asr Brick<br/>whisper-small-quantized"]
-    B -->|transcript| C["arduino:llm Brick<br/>genie:qwen3_4b_instruct_2507"]
+    B -->|transcript| C["arduino:llm Brick<br/>llamacpp:gemma-4-E2B_q4_0-it"]
     C -->|reply| D["arduino:tts Brick<br/>melo-tts-en"]
     D -->|WAV bytes| E["output/response.wav"]
 ```
@@ -109,7 +109,7 @@ This sample uses three ready-made models from the Arduino App Lab Bricks catalog
 1. Launch Arduino App Lab (version 0.10.0 — see [4.2 Setting Up Arduino App Lab](#42-setting-up-arduino-app-lab)).
 2. Open the Brick for each model listed in [Requirements](#2-requirements) (`arduino:asr`, `arduino:llm`, `arduino:tts`).
 3. Sign in with your Edge Impulse account when prompted.
-4. On the Brick's AI Models page, locate the required model (`whisper-small-quantized`, `genie:qwen3_4b_instruct_2507`, `melo-tts-en`).
+4. On the Brick's AI Models page, locate the required model (`whisper-small-quantized`, `llamacpp:gemma-4-E2B_q4_0-it`, `melo-tts-en`).
 5. Download/install the model through App Lab.
 6. Confirm the model's status shows as installed before continuing.
 7. Repeat for all three Bricks, then proceed to [Run](#5-run).
@@ -119,9 +119,9 @@ This sample uses three ready-made models from the Arduino App Lab Bricks catalog
 
 *`arduino:asr` Brick's AI Models page in Arduino App Lab 0.10.0, showing `Whisper Small (quantized)` marked as Installed.*
 
-![arduino:llm Brick AI Models page showing Qwen 3-4B Instruct installed](images/arduino_bricks_models.png)
+![arduino:llm Brick AI Models page showing Gemma 4 E2B installed](images/arduino_bricks_models_llm_gemma4.png)
 
-*`arduino:llm` Brick's AI Models page in Arduino App Lab 0.10.0, showing `Qwen 3-4B Instruct` marked as Installed.*
+*`arduino:llm` Brick's AI Models page in Arduino App Lab 0.10.0, showing `Gemma 4 E2B` marked as Installed.*
 
 ![arduino:tts Brick AI Models page showing Melo TTS (English) installed](images/arduino_bricks_models_installed_tts.png)
 
@@ -165,6 +165,6 @@ arduino-app-cli app start /home/arduino/ArduinoApps/wav-asr-llm-tts-pipeline -v
 |---|---|---|
 | **Input Speech** | `assets/input.wav` | "Hello, this is a test of the Arduino Speech Recognition Brick." |
 | **ASR Transcript** | `output/transcript.txt` (`arduino:asr`, `whisper-small-quantized`) | "Hello, this is a test of the Arduino Speech Recognition Brick." |
-| **LLM Prompt** | sent to `arduino:llm` (`genie:qwen3_4b_instruct_2507`) | "Reply in one short sentence to this transcribed voice message: Hello, this is a test of the Arduino Speech Recognition Brick." |
-| **LLM Response** | `output/llm_response.txt` | "Hello, this is a successful test of the Arduino Speech Recognition Brick." |
+| **LLM Prompt** | sent to `arduino:llm` (`llamacpp:gemma-4-E2B_q4_0-it`) | "Reply in one short sentence to this transcribed voice message: Hello, this is a test of the Arduino Speech Recognition Brick." |
+| **LLM Response** | `output/llm_response.txt` | "That sounds like a test for the Arduino Speech Recognition Brick." |
 | **Output WAV** | `output/response.wav` (`arduino:tts`, `melo-tts-en`) | Synthesized speech of the LLM Response above — RIFF/WAVE, PCM 16-bit, mono, 44100 Hz |

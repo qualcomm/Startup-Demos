@@ -55,7 +55,7 @@ with open(TRANSCRIPT_PATH, "w") as f:
     f.write(transcript)
 
 print("PIPELINE_STAGE: LLM_START")
-llm = LargeLanguageModel(model="genie:qwen3_4b_instruct_2507")
+llm = LargeLanguageModel(model="llamacpp:gemma-4-E2B_q4_0-it")
 prompt = f"Reply in one short sentence to this transcribed voice message: {transcript}"
 t2 = time.time()
 llm_response = llm.chat(prompt)

@@ -17,6 +17,6 @@ ports: []
 bricks:
 - arduino:asr: {}
 - arduino:llm:
-    model: genie:qwen3_4b_instruct_2507
+    model: llamacpp:gemma-4-E2B_q4_0-it
 - arduino:tts:
     model: melo-tts-en
