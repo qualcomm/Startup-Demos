@@ -9,12 +9,4 @@ tags:
   - "ASR"
   - "LLM"
   - "TTS"
-  - "Speech"
-  - "Arduino App Lab"
-  - "Bricks"
-  - "NPU"
-  - "Offline"
-license: "MIT"
-estimated_setup_time: "20 minutes"
-hardware_requirements: []
-is_third_party: false
+  - "VentunoQ"
