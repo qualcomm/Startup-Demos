@@ -160,53 +160,11 @@ arduino-app-cli app start /home/arduino/ArduinoApps/vlm-story-narrator -v
 
 ## 6. Demo Result
 
-Device-Validated end-to-end on a VentunoQ device (SoC `qcs8275`), using the committed `assets/demo_image.png` as input via `arduino-app-cli app start`.
-
-> **TODO (screenshot needed):** `images/demo_result.png` — a screenshot depicting the Demo Result, e.g. Arduino App Lab's `app logs` output (or terminal output) showing the `PIPELINE_STAGE`/`PIPELINE_COMPLETE` markers captured in [6.1](#61-pipeline-stage-evidence) below. Please provide this screenshot; once added, save it as `images/demo_result.png` and replace this placeholder with `![Arduino App Lab logs showing the PIPELINE_COMPLETE demo result](images/demo_result.png)`.
-
-### 6.1 Pipeline Stage Evidence
-
-Captured from `arduino-app-cli app logs`:
-
-```
-PIPELINE_STAGE: VLM_START
-PIPELINE_STAGE: VLM_DONE story='...' elapsed=23.21s
-PIPELINE_STAGE: TTS_START
-PIPELINE_STAGE: TTS_DONE output_bytes=2132012 elapsed=10.16s
-PIPELINE_COMPLETE
-```
-
-| Stage | Result | Elapsed |
+| Stage | Source | Content |
 |---|---|---|
-| Image → VLM (`genie:qwen3_vl_4b_instruct`) | Story text generated (see [6.2](#62-generated-story-text-outputstorytxt)) | 23.21s |
-| Story Text → TTS (`melo-tts-en`) | WAV synthesized, 2,132,012 bytes | 10.16s |
-| End-to-end pipeline | `PIPELINE_COMPLETE` | 23.21s + 10.16s (VLM + TTS combined) |
-
-### 6.2 Generated Story Text (`output/story.txt`)
-
-> In a glowing forest where stars danced above, a curious robot named Blinky held out a shimmering star, its light warm as a friend's. A fox with amber eyes and a fluffy tail sat beside, its paws tucked in quiet wonder. Together, they whispered secrets to the sky, where magic whispered through trees and mushrooms, under a velvet night filled with dreams and gentle glimmers of wonder.
-
-This story correctly grounds itself in the actual content of `assets/demo_image.png` (a robot handing a glowing star to a fox in a bioluminescent forest), confirming the VLM response is genuinely conditioned on the input image rather than a generic, image-independent completion.
-
-### 6.3 Narration WAV (`output/narration.wav`)
-
-The generated narration WAV is committed to this repository as a demo asset at [`assets/demo_narration.wav`](assets/demo_narration.wav) — see [7. Audio Demo](#7-audio-demo) below for the downloadable file, its full technical metadata, and the corresponding Story Text.
-
-### 6.4 Backend/Accelerator Engagement Evidence
-
-Correct-looking pipeline output alone does not confirm accelerator engagement, so both Bricks' running containers were inspected directly to confirm Hexagon Tensor Processor (HTP/NPU) execution rather than a silent CPU fallback:
-
-- **`arduino:vlm` (`genie-models-runner` container)** — at container start, the entrypoint grants the container access to the Hexagon DSP hardware devices (`/dev/fastrpc-cdsp`, `/dev/dma_heap/system`) and deploys `hexagon-dsp-binaries.yaml`. The active runtime config `htp_backend_ext_config.json` for `qwen3_vl_4b_instruct` targets `dsp_arch: v75` on `soc_model: 82` (QCS8275) with `perf_profile: burst`.
-- **`arduino:tts` (`audio-analytics-runner` container)** — runtime logs show `qnn_util_create_qnn_instance: Successfully created qnn instance` (QNN Version 2.45.0) operating over Hexagon SDK 5.5.5's `fastrpc`/`rpcmem` DSP memory path, plus a compiled model cache written to `melo-tts-en_v2.45.0.qnn` — confirming the QNN/HTP backend actually compiled and executed the model rather than falling back to CPU.
-
-### 6.5 Validation Summary
-
-| Check | Status |
-|---|---|
-| Stage 1: Image → VLM → Story Text | ✅ Device-Validated |
-| Stage 2: Story Text → TTS → WAV | ✅ Device-Validated |
-| Stage 3: End-to-end pipeline (`PIPELINE_COMPLETE`) | ✅ Device-Validated |
-| Backend/accelerator engagement (HTP/NPU, not CPU fallback) | ✅ Confirmed via container runtime inspection |
+| **Input Image** | `assets/demo_image.png` | A robot handing a glowing star to a fox in a bioluminescent forest |
+| **Generated Story** | `output/story.txt` (`arduino:vlm`, `genie:qwen3_vl_4b_instruct`) | "In a glowing forest where stars danced above, a curious robot named Blinky held out a shimmering star, its light warm as a friend's. A fox with amber eyes and a fluffy tail sat beside, its paws tucked in quiet wonder. Together, they whispered secrets to the sky, where magic whispered through trees and mushrooms, under a velvet night filled with dreams and gentle glimmers of wonder." |
+| **Narrated Audio** | `output/narration.wav` (`arduino:tts`, `melo-tts-en`) | Synthesized speech of the story above — see [7. Audio Demo](#7-audio-demo) for the downloadable file and metadata |
 
 ## 7. Audio Demo
 
