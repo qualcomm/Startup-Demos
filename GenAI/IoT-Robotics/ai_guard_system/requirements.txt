@@ -1,0 +1,6 @@
+ai_edge_litert==2.1.4
+litert_lm==0.13.0
+nicegui==3.12.1
+numpy==2.4.6
+opencv_python==4.13.0.92
+starlette==1.2.1
