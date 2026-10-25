@@ -1,0 +1,6 @@
+reverse_sync_credentials.yaml
+.reverse-sync-work/
+reverse_sync.log
+__pycache__/
+.pytest_cache/
+*.pyc

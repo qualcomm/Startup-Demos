@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Python bytecode
+__pycache__/
+*.py[cod]

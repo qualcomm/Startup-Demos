@@ -1,0 +1,42 @@
+#===--reverse_sync_config.yaml---------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+extends: "../common/common_config.yaml"
+
+authentication:
+  credentials_file: "reverse_sync_credentials.yaml"
+
+repositories:
+  source:
+    clone_directory: "source"
+
+git_identity:
+  name: "GitHub Reverse Sync"
+  email: "github-reverse-sync@users.noreply.github.com"
+
+execution:
+  working_directory: ".reverse-sync-work"
+  operation_timeout_seconds: 7200
+  fetch_full_history: true
+  resync_reset_commit_count: 20
+
+merge:
+  message_template: "Merge destination {incoming} into source {current}"
+
+conflict_handling:
+  strategy: "abort"
+  restore_source_on_failure: true
+  allow_automatic_resolution: false
+
+logging:
+  level: "DEBUG"
+  file: "reverse_sync.log"
+
+synchronization:
+  commit_marker: "[reverse-sync]"
+  prevent_sync_loops: true

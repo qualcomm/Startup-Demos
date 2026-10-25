@@ -1,11 +1,11 @@
 ﻿#!/usr/bin/env python3
-#===--update_readme_tables.py---------------------------------------------===//
+#===--update_readme_tables.py----------------------------------------------===//
 # Part of the Startup-Demos Project, under the MIT License
 # See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
 # for license information.
 # Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 # SPDX-License-Identifier: MIT License
-#===----------------------------------------------------------------------===//
+#===-----------------------------------------------------------------------===//
 
 """
 Auto-generate README tables from project.yaml files.
@@ -441,7 +441,7 @@ def main():
     
     # Find repo root
     script_dir = Path(__file__).parent
-    repo_root = script_dir.parent
+    repo_root = script_dir.parents[1]
     
     print(f"Repository root: {repo_root}")
     

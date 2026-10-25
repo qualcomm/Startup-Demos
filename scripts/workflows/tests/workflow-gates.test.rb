@@ -1,0 +1,74 @@
+#===--workflow-gates.test.rb-----------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+require 'yaml'
+require 'open3'
+require 'tempfile'
+
+Dir.chdir(File.expand_path('../../..', __dir__)) do
+  source_url = 'https://github.com/example/source'
+  defaults = {
+    'SOURCE_URL' => source_url + '.git', 'SOURCE_BRANCH' => 'main',
+    'MERGED_BRANCH' => 'main', 'EVENT_NAME' => 'workflow_dispatch',
+    'REF_NAME' => 'main', 'PR_BASE_REF' => 'main',
+    'MERGE_GROUP_BASE_REF' => 'refs/heads/main',
+    'GITHUB_SERVER_URL' => 'https://github.com',
+    'GITHUB_REPOSITORY' => 'example/source', 'REPOSITORY' => 'example/source',
+    'RUNNER_STATUS_TOKEN' => '', 'GITHUB_TOKEN' => 'test', 'PAGES_RUNNER' => '',
+    'MOCK_ONLINE' => '', 'MOCK_GIT' => '0'
+  }
+  checks = 0
+  check = lambda do |script, overrides, expected, success = true|
+    Tempfile.create('workflow-output') do |output|
+      environment = defaults.merge(overrides).merge('GITHUB_OUTPUT' => output.path)
+      mocks = <<~BASH
+        gh() { [[ -n "$MOCK_ONLINE" ]] || return 1; printf '%s' "$MOCK_ONLINE"; }
+        timeout() { return "$MOCK_GIT"; }
+      BASH
+      stdout, stderr, status = Open3.capture3(
+        environment, 'bash', '-e', '-o', 'pipefail', '-c', mocks + script
+      )
+      result = File.read(output.path).lines.map(&:strip).last
+      unless status.success? == success && (!success || result == expected)
+        raise "Unexpected result #{overrides}: #{result}\n#{stdout}\n#{stderr}"
+      end
+      checks += 1
+    end
+  end
+
+  %w[forward-sync reverse-sync].each do |name|
+    workflow = YAML.load_file(".github/workflows/#{name}.yml")
+    gate = workflow.fetch('jobs').fetch('source')
+    raise 'Source gate must not need self-hosted runner' unless gate['runs-on'] == 'ubuntu-latest'
+    script = gate.fetch('steps').first.fetch('run')
+    check.call(script, {}, 'sync=true')
+    check.call(script, {'SOURCE_URL' => source_url.upcase + '/'}, 'sync=true')
+    check.call(script, {'GITHUB_REPOSITORY' => 'example/destination'}, 'sync=false')
+    check.call(script, {'SOURCE_URL' => ''}, 'sync=false')
+    check.call(script, {'MERGED_BRANCH' => 'other', 'REF_NAME' => 'other'}, 'sync=false')
+    if name == 'reverse-sync'
+      check.call(script, {'EVENT_NAME' => 'pull_request_target', 'REF_NAME' => '123/merge'}, 'sync=true')
+      check.call(script, {'EVENT_NAME' => 'merge_group', 'REF_NAME' => 'gh-readonly-queue/main/test'}, 'sync=true')
+    end
+  end
+
+  script = YAML.load_file('.github/workflows/deploy.yml').fetch('jobs').fetch('select-runner').fetch('steps').first.fetch('run')
+  check.call(script, {}, 'runner=ubuntu-latest')
+  check.call(script, {'SOURCE_URL' => '', 'RUNNER_STATUS_TOKEN' => '', 'GITHUB_TOKEN' => '', 'MOCK_GIT' => '1'}, 'runner=ubuntu-latest')
+  check.call(script, {'MOCK_GIT' => '1'}, 'runner=self-hosted')
+  check.call(script, {'REPOSITORY' => 'example/destination'}, 'runner=ubuntu-latest')
+  check.call(script, {'REPOSITORY' => 'example/destination', 'MOCK_GIT' => '1'}, nil, false)
+  check.call(script, {'RUNNER_STATUS_TOKEN' => 'test', 'MOCK_ONLINE' => '1', 'MOCK_GIT' => '1'}, 'runner=self-hosted')
+  check.call(script, {'RUNNER_STATUS_TOKEN' => 'test', 'MOCK_ONLINE' => '0'}, 'runner=ubuntu-latest')
+  check.call(script, {'RUNNER_STATUS_TOKEN' => 'test', 'MOCK_ONLINE' => '0', 'MOCK_GIT' => '1'}, nil, false)
+  check.call(script, {'RUNNER_STATUS_TOKEN' => 'test', 'MOCK_ONLINE' => 'error', 'MOCK_GIT' => '1'}, 'runner=self-hosted')
+  check.call(script, {'PAGES_RUNNER' => 'self-hosted'}, 'runner=self-hosted')
+  check.call(script, {'PAGES_RUNNER' => 'ubuntu-latest', 'MOCK_GIT' => '1'}, 'runner=ubuntu-latest')
+  check.call(script, {'PAGES_RUNNER' => 'invalid'}, nil, false)
+  puts "PASS: #{checks} source/destination workflow cases"
+end

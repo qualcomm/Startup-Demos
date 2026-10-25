@@ -1,28 +1,44 @@
-﻿name: Update README Tables
+﻿#===--update-readme.yml----------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+name: Update README Tables
 
 on:
-  push:
-    branches: [main]
+  workflow_call:
+    outputs:
+      source_sha:
+        description: Source commit including generated README changes
+        value: ${{ jobs.update-readme.outputs.source_sha }}
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   update-readme:
-    # Skip if commit is from the bot to prevent loops
-    if: github.actor != 'github-actions[bot]'
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
     runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: readme-worktree
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.ref_name }}
+          path: readme-worktree
           fetch-depth: 0  # Full history for git log dates
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          persist-credentials: false
       
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       
@@ -31,8 +47,7 @@ jobs:
           pip install pyyaml
       
       - name: Run table update script
-        run: |
-          python scripts/update_readme_tables.py
+        run: python3 scripts/update-readme/update_readme_tables.py
       
       - name: Check for changes
         id: git-check
@@ -44,43 +59,21 @@ jobs:
         id: commit-msg
         run: |
           PROJECT_COUNT=$(find . -name "project.yaml" -path "*/[A-Z]*/*/*/project.yaml" | wc -l)
-          CHANGED_FILES=$(git diff --name-only README.md | wc -l)
           DATE=$(date +"%Y-%m-%d")
           echo "message=docs(readme): update project tables - ${PROJECT_COUNT} projects (${DATE})" >> $GITHUB_OUTPUT
-
-      - name: Validate GH_PAT is configured
-        if: steps.git-check.outputs.changed == 'true'
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          if [ -z "$GH_PAT" ]; then
-            echo "✗ GH_PAT secret is not configured."
-            echo "Add repository secret GH_PAT with Contents: Read and write, then re-run the workflow."
-            exit 1
-          fi
-          echo "✓ GH_PAT secret is configured."
       
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SYNC_SOURCE_TOKEN: ${{ secrets.SYNC_SOURCE_TOKEN }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          PYTHONPATH: scripts
+          COMMIT_MESSAGE: ${{ steps.commit-msg.outputs.message }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "${{ steps.commit-msg.outputs.message }}"
-          
-          # Try GITHUB_TOKEN first, fallback to GH_PAT if push fails (protected branch)
-          echo "Attempting push with GITHUB_TOKEN..."
-          if git push 2>&1; then
-            echo "✓ Push successful with GITHUB_TOKEN"
-          elif [ -n "$GH_PAT" ]; then
-            echo "! GITHUB_TOKEN failed (likely protected branch), retrying with GH_PAT..."
-            git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git
-            git push
-            echo "✓ Push successful with GH_PAT"
-          else
-            echo "✗ Push failed: Branch may be protected and GH_PAT secret is not configured"
-            exit 1
-          fi
+          python3 scripts/update-readme/update_readme.py \
+            --config scripts/update-readme/update_readme_config.yaml \
+            --branch "$GITHUB_REF_NAME" --message "$COMMIT_MESSAGE"
+
+      - name: Record updated source commit
+        id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"

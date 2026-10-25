@@ -1,0 +1,20 @@
+#===--forward_sync_config.yaml---------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+extends: "../common/common_config.yaml"
+
+git_identity:
+  name: "GitHub Forward Sync"
+  email: "github-forward-sync@users.noreply.github.com"
+
+execution:
+  operation_timeout_seconds: 120
+  dry_run_default: false
+
+merge:
+  message_template: "[forward-sync] Merge source changes into destination"
