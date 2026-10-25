@@ -1,0 +1,51 @@
+#===--common_config.yaml---------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+# Shared defaults for every action script. Per-script configs start with
+# `extends: ../common/common_config.yaml` and override any key (mappings merge, other values replace).
+# Relative paths (credentials_file, working_directory, logging.file) resolve against the per-script config's directory.
+
+authentication:
+  credentials_file: "credentials.yaml"
+  allow_credentials_file: false
+  strict_credentials_file_permissions: false
+  allow_gh_cli_fallback: false
+  tokens:
+    source:
+      env_var: "SYNC_SOURCE_TOKEN"
+      credentials_key: "source_token"
+    destination:
+      env_var: "SYNC_DEST_TOKEN"
+      credentials_key: "destination_token"
+      fallback: "source"
+
+# Repository URLs/branches are never committed; they come from these environment variables.
+repositories:
+  source:
+    url_env: "SYNC_SOURCE_URL"
+    branch_env: "SYNC_SOURCE_BRANCH"
+  destination:
+    url_env: "SYNC_DEST_URL"
+    branch_env: "SYNC_DEST_BRANCH"
+
+security:
+  allowed_url_schemes: ["https"]
+
+execution:
+  working_directory: ".work"
+  operation_timeout_seconds: 600
+  dry_run_default: true
+  keep_working_directory: false
+  push_retry_count: 2
+  push_retry_delay_seconds: 5
+  allow_force_push: false
+  empty_sync_is_success: true
+
+logging:
+  level: "INFO"
+  file: null

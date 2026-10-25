@@ -1,0 +1,98 @@
+#===--forward-sync.yml-----------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+name: Forward Sync (source -> destination)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: forward-sync
+  queue: max
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    outputs:
+      sync: ${{ steps.source.outputs.sync }}
+    steps:
+      - name: Check source branch
+        id: source
+        env:
+          SOURCE_URL: ${{ secrets.SYNC_SOURCE_URL }}
+          SOURCE_BRANCH: ${{ secrets.SYNC_SOURCE_BRANCH || github.event.repository.default_branch }}
+          MERGED_BRANCH: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          source_url=${SOURCE_URL%/}
+          source_url=${source_url%.git}
+          repository_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          echo "sync=false" >> "$GITHUB_OUTPUT"
+          if [[ "${source_url,,}" == "${repository_url,,}" && "$MERGED_BRANCH" == "$SOURCE_BRANCH" ]]; then
+            echo "sync=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Skipping source-only automation outside the configured source repository and branch."
+          fi
+
+  update-readme:
+    needs: source
+    if: needs.source.outputs.sync == 'true'
+    uses: ./.github/workflows/update-readme.yml
+    secrets: inherit
+
+  forward-sync:
+    needs: [source, update-readme]
+    if: always() && needs.source.outputs.sync == 'true'
+    runs-on: self-hosted
+    permissions:
+      contents: read
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Checkout sync tooling
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: .forward-sync-tools
+          sparse-checkout: |
+            scripts/forward
+            scripts/common
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.update-readme.outputs.source_sha || github.sha }}
+          path: .forward-sync-source
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: python3 -m pip install -r .forward-sync-tools/scripts/common/requirements.txt
+
+      - name: Sync destination
+        shell: bash
+        working-directory: .forward-sync-source
+        env:
+          SYNC_DEST_TOKEN: ${{ secrets.SYNC_DEST_TOKEN }}
+          SYNC_DEST_URL: ${{ secrets.SYNC_DEST_URL }}
+          SYNC_DEST_BRANCH: ${{ secrets.SYNC_DEST_BRANCH }}
+          PYTHONPATH: ../.forward-sync-tools/scripts
+        run: |
+          python3 ../.forward-sync-tools/scripts/forward/forward_sync.py \
+            --config ../.forward-sync-tools/scripts/forward/forward_sync_config.yaml \
+            --no-dry-run

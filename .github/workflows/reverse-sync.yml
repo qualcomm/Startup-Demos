@@ -1,0 +1,211 @@
+#===--reverse-sync.yml-----------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+name: Reverse Sync (destination -> source)
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  merge_group:
+    types: [checks_requested]
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run in dry-run mode (no push)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+concurrency:
+  group: reverse-sync
+  # Queue every run so merge-queue runs are never replaced by newer pending runs.
+  queue: max
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    outputs:
+      sync: ${{ steps.source.outputs.sync }}
+    steps:
+      - name: Check source branch
+        id: source
+        env:
+          SOURCE_URL: ${{ secrets.SYNC_SOURCE_URL }}
+          SOURCE_BRANCH: ${{ secrets.SYNC_SOURCE_BRANCH || github.event.repository.default_branch }}
+          EVENT_NAME: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          MERGE_GROUP_BASE_REF: ${{ github.event.merge_group.base_ref }}
+        shell: bash
+        run: |
+          case "$EVENT_NAME" in
+            pull_request_target) EXECUTING_BRANCH="$PR_BASE_REF" ;;
+            merge_group) EXECUTING_BRANCH="${MERGE_GROUP_BASE_REF#refs/heads/}" ;;
+            *) EXECUTING_BRANCH="$REF_NAME" ;;
+          esac
+
+          source_url=${SOURCE_URL%/}
+          source_url=${source_url%.git}
+          repository_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          echo "sync=false" >> "$GITHUB_OUTPUT"
+          if [[ "${source_url,,}" == "${repository_url,,}" && "$EXECUTING_BRANCH" == "$SOURCE_BRANCH" ]]; then
+            echo "sync=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Skipping source-only automation outside the configured source repository and branch."
+          fi
+
+  reverse-sync:
+    needs: source
+    if: needs.source.outputs.sync == 'true'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Scripts must match the running workflow's env contract (merge groups run the queued workflow).
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 1
+          sparse-checkout: |
+            scripts/reverse-sync
+            scripts/common
+          sparse-checkout-cone-mode: false
+
+      - name: Mark reverse sync pending on merge group and open PRs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const targets = new Map();
+            if (context.eventName === "merge_group") {
+              targets.set(context.payload.merge_group.head_sha, "merge group");
+            }
+            const prs = await github.paginate(github.rest.pulls.list, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              per_page: 100,
+            });
+            for (const pr of prs) targets.set(pr.head.sha, `PR #${pr.number}`);
+            const errors = [];
+
+            for (const [sha, label] of targets) {
+              try {
+                await github.rest.repos.createCommitStatus({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  sha,
+                  state: "pending",
+                  context: "reverse-sync/aggregate",
+                  description: "Reverse sync is running",
+                  target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                });
+              } catch (error) {
+                errors.push(`${label}: ${error.message}`);
+              }
+            }
+
+            if (errors.length) core.setFailed(`Could not mark all targets pending: ${errors.join("; ")}`);
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python3 -m pip install -r scripts/reverse-sync/requirements.txt
+
+      - name: Run reverse sync
+        id: sync
+        continue-on-error: true
+        env:
+          SYNC_SOURCE_TOKEN: ${{ secrets.SYNC_SOURCE_TOKEN }}
+          SYNC_DEST_TOKEN: ${{ secrets.SYNC_DEST_TOKEN }}
+          SYNC_SOURCE_URL: ${{ secrets.SYNC_SOURCE_URL }}
+          SYNC_SOURCE_BRANCH: ${{ secrets.SYNC_SOURCE_BRANCH }}
+          SYNC_DEST_URL: ${{ secrets.SYNC_DEST_URL }}
+          SYNC_DEST_BRANCH: ${{ secrets.SYNC_DEST_BRANCH }}
+          PYTHONPATH: scripts
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python3 scripts/reverse-sync/reverse_sync.py \
+              --config scripts/reverse-sync/reverse_sync_config.yaml \
+              --dry-run
+          else
+            python3 scripts/reverse-sync/reverse_sync.py \
+              --config scripts/reverse-sync/reverse_sync_config.yaml \
+              --no-dry-run
+          fi
+
+      - name: Report reverse sync result to merge group and open PRs
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          SYNC_OUTCOME: ${{ steps.sync.outcome || 'failure' }}
+          DRY_RUN: ${{ inputs.dry_run || false }}
+        with:
+          script: |
+            const dryRun = process.env.DRY_RUN === "true";
+            const succeeded = process.env.SYNC_OUTCOME === "success" && !dryRun;
+            const state = succeeded ? "success" : "failure";
+            const description = dryRun
+              ? "Manual dry run completed, but it does not count as a passing reverse-sync result."
+              : succeeded
+                ? "Reverse sync completed successfully."
+                : "Reverse sync failed. See the workflow run for details.";
+            const targets = new Map();
+            const errors = [];
+            if (context.eventName === "merge_group") {
+              targets.set(context.payload.merge_group.head_sha, "merge group");
+            }
+
+            try {
+              const prs = await github.paginate(github.rest.pulls.list, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: "open",
+                per_page: 100,
+              });
+              for (const pr of prs) targets.set(pr.head.sha, `PR #${pr.number}`);
+            } catch (error) {
+              errors.push(`Could not list open pull requests: ${error.message}`);
+            }
+
+            for (const [sha, label] of targets) {
+              try {
+                await github.rest.repos.createCommitStatus({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  sha,
+                  state,
+                  context: "reverse-sync/aggregate",
+                  description,
+                  target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                });
+              } catch (error) {
+                errors.push(`${label}: ${error.message}`);
+              }
+            }
+
+            if (errors.length) core.setFailed(`Could not report reverse-sync result to all targets: ${errors.join("; ")}`);
+
+      - name: Fail workflow when reverse sync failed
+        if: always() && steps.sync.outcome != 'success'
+        run: exit 1
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reverse-sync-log
+          path: scripts/reverse-sync/reverse_sync.log
+          retention-days: 7

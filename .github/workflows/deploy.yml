@@ -1,70 +1,110 @@
+#===--deploy.yml-----------------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+  # Runs after Forward Sync in every hosting repo, whatever its outcome; the sync's source gate does not apply here.
+  workflow_run:
+    workflows: ["Forward Sync (source -> destination)"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
-    runs-on: self-hosted
+  select-runner:
+    runs-on: ubuntu-latest
+    outputs:
+      runner: ${{ steps.probe.outputs.runner }}
+    steps:
+      - name: Select self-hosted or ubuntu-latest
+        id: probe
+        env:
+          # Listing runners needs Administration: read, which GITHUB_TOKEN lacks.
+          RUNNER_STATUS_TOKEN: ${{ secrets.RUNNER_STATUS_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          SOURCE_URL: ${{ secrets.SYNC_SOURCE_URL }}
+          PAGES_RUNNER: ${{ vars.PAGES_RUNNER }}
+        shell: bash
+        run: |
+          if [[ -n "$PAGES_RUNNER" ]]; then
+            if [[ "$PAGES_RUNNER" != "self-hosted" && "$PAGES_RUNNER" != "ubuntu-latest" ]]; then
+              echo "::error::PAGES_RUNNER must be self-hosted or ubuntu-latest."
+              exit 1
+            fi
+            echo "runner=$PAGES_RUNNER" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [[ -z "$SOURCE_URL" ]]; then
+            echo "Selected runner: ubuntu-latest (no source configuration required)"
+            echo "runner=ubuntu-latest" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          runner=""
+          online=""
+          if [[ -n "$RUNNER_STATUS_TOKEN" ]] && online=$(GH_TOKEN="$RUNNER_STATUS_TOKEN" gh api "repos/$REPOSITORY/actions/runners" \
+              --jq '[.runners[] | select(.status == "online" and (.labels | map(.name) | index("self-hosted")))] | length' \
+              2>/dev/null) && [[ "$online" =~ ^[0-9]+$ ]]; then
+            echo "Online self-hosted runners: $online"
+            if (( online > 0 )); then
+              runner=self-hosted
+            fi
+          else
+            online=""
+            echo "Runner list unavailable."
+          fi
+          if [[ -z "$runner" ]]; then
+            auth=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)
+            if ! timeout 30 git -c http.extraHeader="AUTHORIZATION: basic $auth" ls-remote --exit-code \
+                "https://github.com/$REPOSITORY" HEAD >/dev/null 2>&1; then
+              source_url=${SOURCE_URL%/}
+              source_url=${source_url%.git}
+              repository_url="$GITHUB_SERVER_URL/$REPOSITORY"
+              if [[ -z "$online" && "${source_url,,}" == "${repository_url,,}" ]]; then
+                runner=self-hosted
+              else
+                echo "::error::Hosted checkout is inaccessible and no usable self-hosted runner was found. Grant a runner access and set PAGES_RUNNER=self-hosted, or enable hosted repository access."
+                exit 1
+              fi
+            fi
+          fi
+          runner=${runner:-ubuntu-latest}
+          echo "Selected runner: $runner"
+          echo "runner=$runner" >> "$GITHUB_OUTPUT"
 
+  deploy:
+    needs: select-runner
+    runs-on: ${{ needs.select-runner.outputs.runner }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     permissions:
-      contents: write
+      contents: read
       pages: write
       id-token: write
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          fetch-depth: 0  # Fetch full git history for developer attribution
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          path: pages-worktree
+          fetch-depth: 0  # Full history for developer attribution
+          persist-credentials: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Build and deploy
+        id: deploy
+        uses: ./pages-worktree/.github/actions/deploy-pages
         with:
-          node-version: '24'
-
-      - name: Cache npm dependencies
-        uses: actions/cache@v4
-        with:
-          path: website/node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('website/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      - name: Install dependencies
-        run: cd website && npm install
-
-      - name: Build website
-        run: cd website && npm run build
-
-      - name: Deploy to GitHub Pages
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-          SERVER: ${{ github.server_url }}
-        run: |
-          cd website/dist
-          git init
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
-          git add -A
-          git commit -m "Deploy to GitHub Pages"
-          SERVER_HOST=${SERVER#https://}
-          
-          # Try GITHUB_TOKEN first, fallback to GH_PAT if push fails (protected branch)
-          echo "Attempting deployment with GITHUB_TOKEN..."
-          if git push -f https://x-access-token:${GITHUB_TOKEN}@${SERVER_HOST}/${REPO}.git HEAD:gh-pages 2>&1; then
-            echo "✓ Deployment successful with GITHUB_TOKEN"
-          elif [ -n "$GH_PAT" ]; then
-            echo "! GITHUB_TOKEN failed (likely protected branch), retrying with GH_PAT..."
-            git push -f https://x-access-token:${GH_PAT}@${SERVER_HOST}/${REPO}.git HEAD:gh-pages
-            echo "✓ Deployment successful with GH_PAT"
-          else
-            echo "✗ Deployment failed: Branch may be protected and GH_PAT secret is not configured"
-            exit 1
-          fi
-
+          artifact-name: github-pages

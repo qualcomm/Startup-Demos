@@ -1,0 +1,56 @@
+#===--action.yml-----------------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===-----------------------------------------------------------------------===//
+
+name: Build and deploy GitHub Pages
+description: Build the website from the pages-worktree checkout and deploy it to GitHub Pages.
+
+inputs:
+  artifact-name:
+    description: Pages artifact name; must be unique per job within a run.
+    required: true
+
+outputs:
+  page_url:
+    description: Deployed site URL
+    value: ${{ steps.deployment.outputs.page_url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: '24'
+
+    - name: Cache npm dependencies
+      uses: actions/cache@v5
+      with:
+        path: pages-worktree/website/node_modules
+        key: ${{ runner.os }}-npm-${{ hashFiles('pages-worktree/website/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
+    - name: Build website
+      shell: bash
+      working-directory: pages-worktree
+      run: bash scripts/deploy-pages/build.sh
+
+    - name: Configure GitHub Pages
+      uses: actions/configure-pages@v6
+
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v5
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: pages-worktree/website/dist
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
+      with:
+        artifact_name: ${{ inputs.artifact-name }}
