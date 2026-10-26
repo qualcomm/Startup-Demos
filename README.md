@@ -129,6 +129,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
         <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
       </a><br>
+      <a href="./CV_VR/IoT-Robotics/smart_door_access_controller/" title="A project for face-recognition based access control using Arduino UNO-Q with an on-device MobileFaceNet model.">
+        <img src="https://img.shields.io/badge/Smart_Door_Access_Controller-2026.09.18-grey?style=flat-square&labelColor=blueviolet" alt="Smart Door Access Controller"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="">
         <img src="https://img.shields.io/badge/tile_based_small_object_detection-2026.04.21-grey?style=flat-square&labelColor=blueviolet" alt="tile_based_small_object_detection"/>
       </a><br>
@@ -250,6 +253,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
         <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/smart_door_access_controller/" title="A project for face-recognition based access control using Arduino UNO-Q with an on-device MobileFaceNet model.">
+        <img src="https://img.shields.io/badge/Smart_Door_Access_Controller-2026.09.18-grey?style=flat-square&labelColor=blue" alt="Smart Door Access Controller"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
