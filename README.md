@@ -84,6 +84,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Voice Enabled Gate Control System"/>
+      </a><br>
+      <a href="./GenAI/IoT-Robotics/WAV_ASR_LLM_TTS_Pipeline/" title="File-based, on-device voice pipeline (Whisper ASR -> Gemma 4 E2B LLM -> MeloTTS) using Arduino App Lab Bricks (arduino:asr, arduino:llm, arduino:tts) on VentunoQ. No microphone or speaker required — input and output are WAV files.">
+        <img src="https://img.shields.io/badge/WAV_-->_ASR_-->_LLM_-->_TTS_-->_WAV_Voice_Pipeline_on_VentunoQ-2026.10.05-grey?style=flat-square&labelColor=brightgreen" alt="WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VentunoQ"/>
       </a>
     </td>
     <td>
