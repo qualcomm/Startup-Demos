@@ -79,6 +79,9 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
     <td>
+      <a href="./GenAI/IoT-Robotics/VLM_Story_Narrator/" title="On-device pipeline (Vision Language Model image understanding -> generated short story -> MeloTTS narration) using Arduino App Lab Bricks (arduino:vlm, arduino:tts) on VentunoQ. An image goes in, a narrated story is generated and synthesized to speech.">
+        <img src="https://img.shields.io/badge/Image_-->_VLM_Story_-->_TTS_Narrator_on_VentunoQ-2026.10.06-grey?style=flat-square&labelColor=brightgreen" alt="Image -> VLM Story -> TTS Narrator on VentunoQ"/>
+      </a><br>
       <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
         <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=brightgreen" alt="Patient_Monitoring_Agent"/>
       </a><br>
