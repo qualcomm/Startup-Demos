@@ -1,0 +1,10 @@
+name: "Image -> VLM Story -> TTS Narrator on VentunoQ"
+description: "On-device pipeline (Vision Language Model image understanding -> generated short story -> MeloTTS narration) using Arduino App Lab Bricks (arduino:vlm, arduino:tts) on VentunoQ. An image goes in, a narrated story is generated and synthesized to speech."
+category:
+  - "GenAI"
+  - "IoT-Robotics"
+platforms:
+  - "VentunoQ"
+tags:
+  - "VLM"
+  - "TTS"
