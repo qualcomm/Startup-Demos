@@ -85,6 +85,9 @@ This repository is a collection of demo applications that highlight the capabili
       <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
         <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=brightgreen" alt="Patient_Monitoring_Agent"/>
       </a><br>
+      <a href="./GenAI/IoT-Robotics/video_event_detector/" title="Vision Language Model powered video analysis tool that detects prompt-defined events across video frames using on-device InternVL3-1B inference">
+        <img src="https://img.shields.io/badge/Video_Event_Detector-2026.10.11-grey?style=flat-square&labelColor=brightgreen" alt="Video Event Detector"/>
+      </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
         <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Voice Enabled Gate Control System"/>
       </a><br>
