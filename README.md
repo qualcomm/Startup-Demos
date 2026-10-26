@@ -186,6 +186,9 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td align="left"><strong>CloudAI-Playground</strong></td>
     <td>
+      <a href="./GenAI/CloudAI-Playground/Agentic_Incident_Image_Analyzer/" title="An agentic system for analyzing incident images using multi-modal vision language models on the AIC100 Ultra.">
+        <img src="https://img.shields.io/badge/Agentic_Incident_Image_Analyzer-2026.09.11-grey?style=flat-square&labelColor=brightgreen" alt="Agentic Incident Image Analyzer"/>
+      </a><br>
       <a href="./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/" title="RAG-based chatbot using Cloud AI Playground with ChromaDB for document querying.">
         <img src="https://img.shields.io/badge/ChatBot_LLM_RAG_(Cloud)-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="ChatBot LLM RAG (Cloud)"/>
       </a><br>
