@@ -1,0 +1,20 @@
+name: "Video Event Detector"
+description: "Vision Language Model powered video analysis tool that detects prompt-defined events across video frames using on-device InternVL3-1B inference"
+category:
+  - "GenAI"
+  - "IoT-Robotics"
+  - "Edge-AI"
+platforms:
+  - "QCS9075"
+  - "QCS8275"
+tags:
+  - "GenAI"
+  - "VLM"
+  - "Video Analytics"
+  - "Surveillance"
+  - "Object Detection"
+  - "InternVL"
+license: "MIT"
+estimated_setup_time: "15 minutes"
+hardware_requirements:
+  - "QCS9075 or QCS8275"
