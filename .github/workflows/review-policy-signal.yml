@@ -1,0 +1,21 @@
+#===--review-policy-signal.yml---------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===----------------------------------------------------------------------===//
+
+name: Peer-Review Check Signal
+
+on:
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+permissions: {}
+
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Review event received; the trusted Peer-Review Check workflow will re-evaluate open PRs."

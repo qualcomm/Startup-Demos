@@ -1,0 +1,91 @@
+#===--review-policy.yml----------------------------------------------------===//
+# Part of the Startup-Demos Project, under the MIT License
+# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
+# for license information.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: MIT License
+#===----------------------------------------------------------------------===//
+
+name: Peer-Review Check
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
+  merge_group:
+    types: [checks_requested]
+  workflow_run:
+    workflows: [Peer-Review Check Signal]
+    types: [completed]
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: review-policy
+  queue: max
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.source.outputs.enabled }}
+    steps:
+      - id: source
+        env:
+          SOURCE_URL: ${{ secrets.SYNC_SOURCE_URL }}
+        shell: bash
+        run: |
+          source_url=${SOURCE_URL%/}
+          source_url=${source_url%.git}
+          repository_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          if [[ "${source_url,,}" == "${repository_url,,}" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  evaluate:
+    needs: source
+    if: needs.source.outputs.enabled == 'true'
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      statuses: write
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          MEMBERSHIP_TOKEN: ${{ secrets.SYNC_SOURCE_TOKEN }}
+          SOURCE_BRANCH: ${{ secrets.SYNC_SOURCE_BRANCH || github.event.repository.default_branch }}
+          CONTRIBUTORS_TEAM: contributors-startup-demos
+        with:
+          script: |
+            const branch = await github.rest.repos.getBranch({
+              ...context.repo, branch: context.payload.repository.default_branch,
+            });
+            const load = async (path, dependencies = {}) => {
+              const response = await github.rest.repos.getContent({
+                ...context.repo, path, ref: branch.data.commit.sha,
+              });
+              const source = Buffer.from(response.data.content, 'base64').toString('utf8');
+              const loaded = { exports: {} };
+              const trustedRequire = name => {
+                if (!(name in dependencies)) throw new Error(`Unexpected dependency: ${name}`);
+                return dependencies[name];
+              };
+              new Function('module', 'require', source)(loaded, trustedRequire);
+              return loaded.exports;
+            };
+            const checklist = await load('scripts/review-policy/checklist.cjs');
+            const policy = await load('scripts/review-policy/policy.cjs', { './checklist.cjs': checklist });
+            const instructions = await load('scripts/review-policy/instructions.cjs', { './checklist.cjs': checklist });
+            const run = await load('scripts/review-policy/run.cjs', {
+              './policy.cjs': policy, './instructions.cjs': instructions,
+            });
+            if (!process.env.MEMBERSHIP_TOKEN) {
+              throw new Error('SYNC_SOURCE_TOKEN is required to read contributor membership');
+            }
+            const membership = new github.constructor({ auth: process.env.MEMBERSHIP_TOKEN });
+            await run({ github, membership, context, core });
