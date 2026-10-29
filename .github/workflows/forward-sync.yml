@@ -48,7 +48,8 @@ jobs:
     needs: source
     if: needs.source.outputs.sync == 'true'
     uses: ./.github/workflows/update-readme.yml
-    secrets: inherit
+    secrets:
+      SYNC_SOURCE_TOKEN: ${{ secrets.SYNC_SOURCE_TOKEN }}
 
   forward-sync:
     needs: [source, update-readme]
