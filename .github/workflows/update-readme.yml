@@ -10,6 +10,9 @@ name: Update README Tables
 
 on:
   workflow_call:
+    secrets:
+      SYNC_SOURCE_TOKEN:
+        required: true
     outputs:
       source_sha:
         description: Source commit including generated README changes

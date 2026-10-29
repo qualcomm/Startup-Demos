@@ -134,9 +134,10 @@ jobs:
           SYNC_SOURCE_BRANCH: ${{ secrets.SYNC_SOURCE_BRANCH }}
           SYNC_DEST_URL: ${{ secrets.SYNC_DEST_URL }}
           SYNC_DEST_BRANCH: ${{ secrets.SYNC_DEST_BRANCH }}
+          DRY_RUN: ${{ inputs.dry_run || false }}
           PYTHONPATH: scripts
         run: |
-          if [ "${{ inputs.dry_run }}" = "true" ]; then
+          if [ "$DRY_RUN" = "true" ]; then
             python3 scripts/reverse-sync/reverse_sync.py \
               --config scripts/reverse-sync/reverse_sync_config.yaml \
               --dry-run
