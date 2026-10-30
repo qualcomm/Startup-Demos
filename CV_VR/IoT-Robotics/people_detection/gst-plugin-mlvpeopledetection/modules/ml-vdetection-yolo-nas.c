@@ -89,6 +89,14 @@ struct _GstMLSubModule {
   gdouble    qscales[GST_ML_MAX_TENSORS];
 };
 
+static gdouble
+gst_ml_module_extract_value (const GstMLSubModule * submodule, GstMLType type,
+    gpointer data, guint index, guint tensor)
+{
+  return gst_ml_tensor_extract_value (type, data, index,
+      submodule->qoffsets[tensor], submodule->qscales[tensor]);
+}
+
 gpointer
 gst_ml_module_open (void)
 {
@@ -281,23 +289,22 @@ gst_ml_module_parse_tripleblock_frame (GstMLSubModule * submodule,
   for (idx = 0; idx < n_paxels; idx++) {
     GstMLBoxEntry entry = { 0, };
 
-    confidence = gst_ml_tensor_extract_value (mltype, scores, idx,
-        submodule->qoffsets[1], submodule->qscales[1]);
-    class_idx = gst_ml_tensor_extract_value (mltype, classes, idx,
-        submodule->qoffsets[2], submodule->qscales[2]);
+    confidence = gst_ml_module_extract_value (submodule, mltype, scores,
+        idx, 1);
+    class_idx = gst_ml_module_extract_value (submodule, mltype, classes, idx, 2);
 
     // Discard results below the minimum score threshold.
     if (confidence < submodule->threshold)
       continue;
 
-    entry.left = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4),
-        submodule->qoffsets[0], submodule->qscales[0]);
-    entry.top = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4 + 1),
-        submodule->qoffsets[0], submodule->qscales[0]);
-    entry.right  = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4 + 2),
-        submodule->qoffsets[0], submodule->qscales[0]);
-    entry.bottom  = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4 + 3),
-        submodule->qoffsets[0], submodule->qscales[0]);
+    entry.left = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4), 0);
+    entry.top = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4 + 1), 0);
+    entry.right  = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4 + 2), 0);
+    entry.bottom  = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4 + 3), 0);
 
     GST_LOG ("Class: %u Confidence: %.2f Box[%.2f, %.2f, %.2f, %.2f]",
         class_idx, confidence, entry.top, entry.left, entry.bottom, entry.right);
@@ -389,8 +396,7 @@ gst_ml_module_parse_dualblock_frame (GstMLSubModule * submodule,
     for (num = (id + 1); num < (id + n_classes); num++)
       id = (gst_ml_tensor_compare_values (mltype, scores, num, id) > 0) ? num : id;
 
-    confidence = gst_ml_tensor_extract_value (mltype, scores, id,
-        submodule->qoffsets[0], submodule->qscales[0]);
+    confidence = gst_ml_module_extract_value (submodule, mltype, scores, id, 0);
 
     // Get the class index from the position ID.
     class_idx = id % n_classes;
@@ -402,14 +408,14 @@ gst_ml_module_parse_dualblock_frame (GstMLSubModule * submodule,
     if (class_idx != 0)
       continue;
 
-    entry.left = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4),
-        submodule->qoffsets[1], submodule->qscales[1]);
-    entry.top = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4 + 1),
-        submodule->qoffsets[1], submodule->qscales[1]);
-    entry.right = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4 + 2),
-        submodule->qoffsets[1], submodule->qscales[1]);
-    entry.bottom = gst_ml_tensor_extract_value (mltype, bboxes, (idx * 4 + 3),
-        submodule->qoffsets[1], submodule->qscales[1]);
+    entry.left = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4), 1);
+    entry.top = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4 + 1), 1);
+    entry.right = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4 + 2), 1);
+    entry.bottom = gst_ml_module_extract_value (submodule, mltype, bboxes,
+        (idx * 4 + 3), 1);
 
     GST_LOG ("Class: %u Confidence: %.2f Box[%.2f, %.2f, %.2f, %.2f]",
         class_idx, confidence, entry.top, entry.left, entry.bottom, entry.right);
