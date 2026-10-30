@@ -127,7 +127,7 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/People_Counter_using_Arduino_UNO--Q-2026.09.01-grey?style=flat-square&labelColor=blueviolet" alt="People Counter using Arduino UNO-Q"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
-        <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
+        <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.10.30-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
         <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
