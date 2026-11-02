@@ -18,4 +18,12 @@ jobs:
   signal:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Review event received; the trusted Peer-Review Check workflow will re-evaluate open PRs."
+      - name: Save associated pull request number
+        env:
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+        run: printf '%s\n' "$PULL_REQUEST_NUMBER" > "$RUNNER_TEMP/pull_request_number"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: review-signal-${{ github.run_id }}
+          path: ${{ runner.temp }}/pull_request_number
+          retention-days: 1
