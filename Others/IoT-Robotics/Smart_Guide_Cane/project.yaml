@@ -1,16 +1,30 @@
-name: "Smart Guide Cane"
-description: "UnoGuide is a smart guide cane prototype built on Arduino UNO Q with Edge Impulse vision inference. It provides traffic‑light recognition and obstacle awareness, delivering voice feedback and buzzer alerts."
-category:
-  - "Others"
-  - "IoT-Robotics"
+long_name: Smart Guide Cane
+shortname: smart-guide-cane
+description: >-
+  An Arduino UNO Q guide cane uses vision for traffic-light recognition and obstacle awareness, with
+  voice feedback and buzzer alerts.
+technology:
+  - Other applications
 platforms:
-  - "Arduino UNO-Q"
-tags:
-  - "IoT"
-  - "Object Recognition"
-  - "Ultrasonic Sensor"
-  - "Edge Impulse"
-  - "Real-time"
-  - "Obstacle Awareness"
-license: "MIT"
-status: "stable"
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Edge Impulse
+  - Linux
+ai_models:
+  - YOLO
+topics_tools:
+  - IoT
+  - Object Recognition
+  - Ultrasonic Sensor
+  - Real-time
+  - Obstacle Awareness
+peripherals_sensors:
+  - Camera
+  - Ultrasonic sensor
+  - Speaker
+  - Buzzer
+  - RGB LED
+picture: images/unoGuide_demo_ultrasonic.gif

@@ -1,12 +1,27 @@
-name: "WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VentunoQ"
-description: "File-based, on-device voice pipeline (Whisper ASR -> Gemma 4 E2B LLM -> MeloTTS) using Arduino App Lab Bricks (arduino:asr, arduino:llm, arduino:tts) on VentunoQ. No microphone or speaker required — input and output are WAV files."
-category:
-  - "GenAI"
-  - "IoT-Robotics"
+long_name: WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VENTUNO Q
+shortname: wav-asr-llm-tts-pipe
+description: >-
+  An offline VENTUNO Q pipeline chains Whisper ASR, Gemma 4 E2B, and MeloTTS to convert an input WAV
+  file to output WAV.
+technology:
+  - Generative AI
 platforms:
-  - "VentunoQ"
-tags:
-  - "ASR"
-  - "LLM"
-  - "TTS"
-  - "VentunoQ"
+  - IoT-Robotics
+  - VENTUNO Q
+hardware:
+  - IQ-8275
+software_tools:
+  - Edge Impulse
+  - Linux
+  - Ubuntu
+ai_models:
+  - Whisper Small
+  - MeloTTS
+topics_tools:
+  - ASR
+  - LLM
+  - TTS
+  - VENTUNO Q
+  - Arduino App Lab
+peripherals_sensors: []
+picture: images/Application Output_app_lab.png

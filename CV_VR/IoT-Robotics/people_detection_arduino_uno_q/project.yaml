@@ -1,15 +1,29 @@
-name: "People Counter using Arduino UNO-Q"
-description: "A real-time people counting application using Arduino UNO-Q with Edge Impulse FOMO model for detecting and counting people in a designated area."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: People Counter using Arduino UNO-Q
+shortname: people-detection-ard
+description: >-
+  A real-time people counting application using Arduino UNO-Q with Edge Impulse FOMO model for
+  detecting and counting people in a designated area.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "Arduino UNO-Q"
-  - "Edge Impulse"
-tags:
-  - "People Detection"
-  - "People Counter"
-  - "Computer Vision"
-  - "FOMO"
-  - "Real-time"
-  - "IoT"
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Edge Impulse
+  - Linux
+ai_models:
+  - FOMO
+topics_tools:
+  - People Detection
+  - People Counter
+  - Computer Vision
+  - FOMO
+  - Real-time
+  - IoT
+  - Arduino App Lab
+peripherals_sensors:
+  - USB webcam
+  - LED matrix
+picture: Images/people_counter_output_2.gif

@@ -1,12 +1,24 @@
-name: "Transcribe AI ChatBot"
-description: "An AI chatbot that can transcribe audio."
-category:
-  - "GenAI"
-  - "AI_PC"
+long_name: Transcribe AI ChatBot
+shortname: transcribe-aichat-bo
+description: An AI chatbot that can transcribe audio.
+technology:
+  - Generative AI
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "GenAI"
-  - "Chatbot"
-  - "Transcription"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Windows
+ai_models:
+  - Llama
+  - Whisper Base
+topics_tools:
+  - GenAI
+  - Chatbot
+  - Transcription
+  - ONNX
+  - Streamlit
+peripherals_sensors:
+  - Microphone
+picture: images/transcribe_chatbot_ai_output.gif

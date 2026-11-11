@@ -1,13 +1,23 @@
-name: "Face Recognition Attendance"
-description: "A system to take attendance using face recognition technology."
-category:
-  - "AI_PC"
-  - "3rdParty"
+long_name: Face Recognition Attendance
+shortname: face-recognition-att
+description: A system to take attendance using face recognition technology.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Face Recognition"
-  - "Attendance"
-  - "Python"
-is_third_party: true
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Windows
+ai_models:
+  - FaceNet
+topics_tools:
+  - Face Recognition
+  - Attendance
+  - Python
+  - PyTorch
+  - Streamlit
+peripherals_sensors:
+  - Webcam
+picture: images/imageAttendence.png

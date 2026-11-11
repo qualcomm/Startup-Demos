@@ -1,12 +1,21 @@
-name: "Object Detection (ONNX)"
-description: "An object detection application using an ONNX model."
-category:
-  - "CV_VR"
-  - "AI_PC"
+long_name: Object Detection (ONNX)
+shortname: object-detection
+description: An object detection application using an ONNX model.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Object Detection"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - YOLOv8
+topics_tools:
+  - Object Detection
+  - ONNX
+  - Python
+peripherals_sensors: []
+picture: images/output.png

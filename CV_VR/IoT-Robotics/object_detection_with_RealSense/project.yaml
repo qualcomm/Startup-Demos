@@ -1,12 +1,24 @@
-name: "Object Detection with RealSense"
-description: "A quick guide to running RealSense D435i object detection on RB3 Gen2 using Python and GStreamer."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Object Detection with RealSense
+shortname: object-detection-wit
+description: A quick guide to running RealSense D435i object detection on RB3 Gen2 using Python and GStreamer.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "RB3 Gen2"
-tags:
-  - "RealSense"
-  - "Object Detection"
-  - "Computer Vision"
-  - "Real-time"
+  - IoT-Robotics
+  - RB3 Gen2
+hardware:
+  - QCS6490
+software_tools:
+  - Linux
+  - Ubuntu
+ai_models:
+  - YOLOv8
+topics_tools:
+  - RealSense
+  - Object Detection
+  - Computer Vision
+  - Real-time
+  - GStreamer
+peripherals_sensors:
+  - Intel RealSense D435i
+picture: images/demo.png

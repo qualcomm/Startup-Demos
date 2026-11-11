@@ -10,6 +10,9 @@ import path from 'path';
 import yaml from 'js-yaml';
 import glob from 'fast-glob';
 import { spawnSync } from 'child_process';
+import { classifySource } from '../src/classification.js';
+import { repositoryInfo } from './repository.js';
+import { publishPicture } from './project-picture.js';
 
 // Detect repository root
 const getRepoRoot = () => {
@@ -29,53 +32,7 @@ const getRepoRoot = () => {
 const REPO_ROOT = getRepoRoot();
 console.log(`Repository root: ${REPO_ROOT}`);
 
-function normalizeRemoteUrl(remoteUrl) {
-  if (!remoteUrl) {
-    return null;
-  }
-
-  const trimmedRemoteUrl = remoteUrl.trim();
-
-  if (trimmedRemoteUrl.startsWith('git@')) {
-    const match = trimmedRemoteUrl.match(/^git@([^:]+):(.+?)(?:\.git)?$/);
-    if (!match) {
-      return null;
-    }
-    return `https://${match[1]}/${match[2]}`;
-  }
-
-  if (trimmedRemoteUrl.startsWith('http://') || trimmedRemoteUrl.startsWith('https://')) {
-    return trimmedRemoteUrl.replace(/\.git$/, '');
-  }
-
-  return null;
-}
-
-function getRepositoryWebBaseUrl() {
-  if (process.env.GITHUB_SERVER_URL && process.env.GITHUB_REPOSITORY) {
-    return `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/tree/main/`;
-  }
-
-  try {
-    const result = spawnSync('git', ['config', '--get', 'remote.origin.url'], {
-      cwd: REPO_ROOT,
-      encoding: 'utf8'
-    });
-
-    if (!result.error && result.status === 0) {
-      const remoteUrl = normalizeRemoteUrl(result.stdout);
-      if (remoteUrl) {
-        return `${remoteUrl}/tree/main/`;
-      }
-    }
-  } catch (error) {
-    console.warn('Error detecting remote origin URL:', error.message);
-  }
-
-  return null;
-}
-
-const REPOSITORY_WEB_BASE_URL = getRepositoryWebBaseUrl();
+const REPOSITORY_WEB_BASE_URL = repositoryInfo(process.env, REPO_ROOT).sourceBase;
 console.log(`Repository web base URL: ${REPOSITORY_WEB_BASE_URL || 'unavailable'}`);
 
 /**
@@ -253,6 +210,19 @@ function getDevelopers(projectDir) {
 /**
  * Get the last commit date for a specific project directory
  */
+function getSourceAffiliations(projectDir) {
+  const result = spawnSync('git', ['log', '--no-merges', '--format=%ae', '--', projectDir, `:(exclude)${projectDir}/project.yaml`], {
+    cwd: REPO_ROOT,
+    encoding: 'utf8',
+    maxBuffer: 10 * 1024 * 1024,
+  });
+  if (result.error || result.status !== 0) {
+    console.warn('Source affiliation unavailable for', projectDir);
+    return ['Not Specified'];
+  }
+  return classifySource(result.stdout.split('\n'));
+}
+
 function getLastCommitDate(projectDir) {
   try {
     // Use spawnSync with array args to prevent command injection
@@ -284,17 +254,21 @@ const main = async () => {
   });
 
   const projects = [];
+  const publicDir = path.join(process.cwd(), 'public');
 
   for (const file of files) {
     try {
       const content = fs.readFileSync(file, 'utf8');
       const doc = yaml.load(content);
 
-      // Basic validation
-      if (!doc.name || !doc.description || !doc.category || !Array.isArray(doc.category)) {
-        console.warn('Skipping invalid project file:', file + '. Missing or invalid required fields (name, description, category as array).');
+      // Basic validation for the project metadata contract.
+      const requiredArrays = ['technology', 'platforms', 'hardware', 'software_tools', 'ai_models', 'topics_tools', 'peripherals_sensors'];
+      const invalidArray = requiredArrays.find(key => !Array.isArray(doc[key]));
+      if (!doc.long_name || !doc.shortname || !doc.description || doc.description.length > 200 || invalidArray) {
+        console.warn(`Skipping invalid project file: ${file}. Check long_name, shortname, description (max 200 chars), and ${invalidArray || 'required fields'}.`);
         continue;
       }
+      if (!doc.picture) console.warn(`Project picture is missing: ${file}`);
 
       // Add a relative path to the project's directory for linking
       const relativePath = path.relative(REPO_ROOT, path.dirname(file));
@@ -302,16 +276,23 @@ const main = async () => {
       if (REPOSITORY_WEB_BASE_URL) {
         doc.repo_url = `${REPOSITORY_WEB_BASE_URL}${encodeURI(doc.repo_path)}`;
       }
+      delete doc.picture_url;
+      try {
+        doc.picture_url = publishPicture(path.dirname(file), doc.picture, doc.repo_path, publicDir);
+      } catch (error) {
+        console.warn(`Project picture unavailable for ${doc.repo_path}: ${error.message}`);
+      }
 
       // Detect languages from source files
       const projectAbsPath = path.dirname(file);
-      console.log(`Scanning ${doc.name} at ${projectAbsPath}...`);
+      console.log(`Scanning ${doc.long_name} at ${projectAbsPath}...`);
       doc.languages = detectLanguages(projectAbsPath);
       console.log(`  Languages: ${doc.languages.length > 0 ? doc.languages.join(', ') : 'none'}`);
 
       // Get developers from git history
       const projectRelPath = path.relative(REPO_ROOT, projectAbsPath);
       doc.developers = getDevelopers(projectRelPath);
+      doc.source_affiliations = getSourceAffiliations(projectRelPath);
       console.log(`  Developers: ${doc.developers.length > 0 ? doc.developers.join(', ') : 'none'}`);
 
       // Get last commit date
@@ -325,7 +306,6 @@ const main = async () => {
   }
 
   // Ensure public directory exists
-  const publicDir = path.join(process.cwd(), 'public');
   if (!fs.existsSync(publicDir)) {
     fs.mkdirSync(publicDir, { recursive: true });
   }

@@ -1,11 +1,27 @@
-name: "tile_based_small_object_detection"
-description: ""
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Tile Based Small Object Detection
+shortname: tile-based-small-obj
+description: A tile-based image-processing pipeline improves small-object detection on the IQ9 platform.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "IQ9"
-tags:
-  - "Computer Vision"
-  - "Object Detection"
-  - "YOLO"
+  - IoT-Robotics
+  - IQ-9075 Evaluation Kit
+hardware:
+  - IQ-9075
+software_tools:
+  - Qualcomm AI Hub
+  - Linux
+  - Ubuntu
+ai_models:
+  - YOLOv8
+  - YOLOX
+topics_tools:
+  - Computer Vision
+  - Object Detection
+  - YOLO
+  - GStreamer
+peripherals_sensors: []
+picture: Images/inference_result.png
+related_projects:
+  - CV_VR/IoT-Robotics/ObjectDetection_on_IoT
+  - CV_VR/IoT-Robotics/Object_detection_via_Tflite_model

@@ -1,10 +1,22 @@
-name: "Agentic Incident Image Analyzer"
-description: "An agentic system for analyzing incident images using multi-modal vision language models on the AIC100 Ultra."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: Agentic Incident Image Analyzer
+shortname: agentic-incident-ima
+description: >-
+  An agentic system for analyzing incident images using multi-modal vision language models on the
+  AIC100 Ultra.
+technology:
+  - Generative AI
 platforms:
-  - "AIC100 Ultra"
-tags:
-  - "VLM"
-
+  - CloudAI-Playground
+  - AIC100 Ultra
+hardware:
+  - AIC100 Ultra
+software_tools:
+  - Linux
+ai_models:
+  - InternVL2
+topics_tools:
+  - VLM
+  - vLLM
+  - Streamlit
+peripherals_sensors: []
+picture: images/Incident_Analyzer_Demo.gif

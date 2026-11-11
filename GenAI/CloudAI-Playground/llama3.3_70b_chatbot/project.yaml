@@ -1,12 +1,21 @@
-name: "Llama3.3 70B Chatbot"
-description: "High-performance chatbot using Llama 3.3 70B model on AIC100 Ultra accelerator."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: Llama3.3 70B Chatbot
+shortname: llama3-3-70b-chatbot
+description: High-performance chatbot using Llama 3.3 70B model on AIC100 Ultra accelerator.
+technology:
+  - Generative AI
 platforms:
-  - "AIC100 Ultra"
-tags:
-  - "LLM"
-  - "Chatbot"
-  - "Llama3.3"
-  - "QEfficient"
+  - CloudAI-Playground
+  - AIC100 Ultra
+hardware:
+  - AIC100 Ultra
+software_tools:
+  - Linux
+ai_models:
+  - Llama 3.3 70B
+topics_tools:
+  - LLM
+  - Chatbot
+  - Llama3.3
+  - QEfficient
+peripherals_sensors: []
+picture: images/demo_result.jpg

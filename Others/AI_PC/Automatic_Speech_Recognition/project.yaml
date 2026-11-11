@@ -1,13 +1,25 @@
-name: "Automatic Speech Recognition: Transcription and Translation (ONNX)"
-description: "An automatic speech recognition application with both transcription and translation features using an ONNX model."
-category:
-  - "Others"
-  - "AI_PC"
+long_name: "Automatic Speech Recognition: Transcription and Translation (ONNX)"
+shortname: automatic-speech-rec
+description: >-
+  An automatic speech recognition application with both transcription and translation features using
+  an ONNX model.
+technology:
+  - Other applications
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Audio"
-  - "Automatic Speech Recognition"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - Whisper Base
+topics_tools:
+  - Audio
+  - Automatic Speech Recognition
+  - ONNX
+  - Python
+peripherals_sensors:
+  - Microphone
+picture: docs/demo.gif

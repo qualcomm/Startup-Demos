@@ -1,12 +1,21 @@
-name: "Segmentation (ONNX)"
-description: "A segmentation application using an ONNX model."
-category:
-  - "CV_VR"
-  - "AI_PC"
+long_name: Segmentation (ONNX)
+shortname: segmentation
+description: A segmentation application using an ONNX model.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Segmentation"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - FastSAM
+topics_tools:
+  - Segmentation
+  - ONNX
+  - Python
+peripherals_sensors: []
+picture: images/demo_1.png

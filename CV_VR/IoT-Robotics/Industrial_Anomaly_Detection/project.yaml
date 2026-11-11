@@ -1,14 +1,27 @@
-name: "Industrial_Anomaly_Detection"
-description: "This application enables real-time Anomaly recognition from a live video feed captured by a USB webcam and control the LED matrix for detects Anomalies and other status."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Industrial Anomaly Detection
+shortname: industrial-anomaly-d
+description: >-
+  This application enables real-time Anomaly recognition from a live video feed captured by a USB
+  webcam and control the LED matrix for detects Anomalies and other status.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "Arduino UNO-Q"
-  - "Edge Impulse"
-tags:
-  - "Computer Vision"
-  - "IoT"
-  - "YOLO"
-  - "Real-time"
-  - "MCU"
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Edge Impulse
+  - Linux
+ai_models:
+  - MobileNet V2
+topics_tools:
+  - Computer Vision
+  - IoT
+  - Real-time
+  - MCU
+  - Anomaly Detection
+peripherals_sensors:
+  - USB webcam
+  - LED matrix
+picture: assets/images/uno_q_anomolydetction_app.png

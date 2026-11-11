@@ -1,12 +1,21 @@
-name: "Image Classification (ONNX)"
-description: "A simple image classification application using an ONNX model."
-category:
-  - "CV_VR"
-  - "AI_PC"
+long_name: Image Classification (ONNX)
+shortname: image-classification
+description: A simple image classification application using an ONNX model.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Image Classification"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - ResNet101
+topics_tools:
+  - Image Classification
+  - ONNX
+  - Python
+peripherals_sensors: []
+picture: images/demo_1.png

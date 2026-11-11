@@ -1,11 +1,23 @@
-name: "vLLM QAIC Concurrency Benchmark on AIC100"
-description: "Provides a reference benchmark for evaluating vLLM serving performance on Qualcomm AIC100 (QAIC), focusing on concurrency scaling, throughput, and multi-request LLM inference behavior."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: vLLM QAIC Concurrency Benchmark on AIC100
+shortname: v-llm-qaic-concurren
+description: >-
+  Provides a reference benchmark for evaluating vLLM serving performance on Qualcomm AIC100 (QAIC),
+  focusing on concurrency scaling, throughput, and multi-request LLM inference behavior.
+technology:
+  - Generative AI
 platforms:
-  - "AIC100 Ultra"
-tags:
-  - "vLLM"
-  - "LLM Benchmark"
-  - "QAIC"
+  - CloudAI-Playground
+  - AIC100 Ultra
+hardware:
+  - AIC100 Ultra
+software_tools:
+  - Linux
+ai_models:
+  - Llama 3.2 3B
+  - Qwen
+topics_tools:
+  - vLLM
+  - LLM Benchmark
+  - QAIC
+peripherals_sensors: []
+picture: images/docker-images-show.png

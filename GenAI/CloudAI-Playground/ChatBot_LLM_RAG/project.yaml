@@ -1,12 +1,19 @@
-name: "ChatBot LLM RAG (Cloud)"
-description: "RAG-based chatbot using Cloud AI Playground with ChromaDB for document querying."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: ChatBot LLM RAG (Cloud)
+shortname: chat-bot-llm-rag
+description: RAG-based chatbot using Cloud AI Playground with ChromaDB for document querying.
+technology:
+  - Generative AI
 platforms:
-  - "Cloud AI Playground"
-tags:
-  - "LLM"
-  - "RAG"
-  - "Chatbot"
-  - "ChromaDB"
+  - CloudAI-Playground
+hardware: []
+software_tools: []
+ai_models:
+  - Llama 3.1 8B
+topics_tools:
+  - LLM
+  - RAG
+  - Chatbot
+  - ChromaDB
+  - Streamlit
+peripherals_sensors: []
+picture: images/PlaygroundDemo.gif

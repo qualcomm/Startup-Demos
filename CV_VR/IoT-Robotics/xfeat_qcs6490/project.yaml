@@ -1,12 +1,28 @@
-name: "Feature Extraction"
-description: "A project to port the XFeat model to QCS6490 for NPU acceleration and use it on RB3 Gen2 for feature‑point detection."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Feature Extraction
+shortname: xfeat-qcs6490
+description: >-
+  A project to port the XFeat model to QCS6490 for NPU acceleration and use it on RB3 Gen2 for
+  feature‑point detection.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "RB3 Gen2"
-  - "Qualcomm AI Hub"
-tags:
-  - "Feature Point Detection"
-  - "Computer Vision"
-  - "Real-time"
+  - IoT-Robotics
+  - RB3 Gen2
+hardware:
+  - QCS6490
+software_tools:
+  - Qualcomm AI Hub
+  - Linux
+  - Ubuntu
+ai_models:
+  - XFeat
+topics_tools:
+  - Feature Point Detection
+  - Computer Vision
+  - Real-time
+  - ONNX
+  - PyTorch
+  - GStreamer
+peripherals_sensors:
+  - USB webcam
+picture: images/application-workflow.png

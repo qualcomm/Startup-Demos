@@ -1,11 +1,23 @@
-name: "OpenClaw Local LLM Agent with vLLM"
-description: "A sample demonstrating how to build a tool-enabled AI agent by integrating OpenClaw with a locally hosted vLLM service."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: OpenClaw Local LLM Agent with vLLM
+shortname: open-claw-local-llm
+description: >-
+  A sample demonstrating how to build a tool-enabled AI agent by integrating OpenClaw with a locally
+  hosted vLLM service.
+technology:
+  - Generative AI
 platforms:
-  - "AIC100 Ultra"
-tags:
-  - "vLLM"
-  - "OpenClaw"
-  - "Agent"
+  - CloudAI-Playground
+  - AIC100 Ultra
+hardware:
+  - AIC100 Ultra
+software_tools:
+  - Linux
+ai_models:
+  - Llama 3.1 8B
+  - Gemma
+topics_tools:
+  - vLLM
+  - OpenClaw
+  - Agent
+peripherals_sensors: []
+picture: images/openclaw-local-llm-agent-telegram-demo.gif

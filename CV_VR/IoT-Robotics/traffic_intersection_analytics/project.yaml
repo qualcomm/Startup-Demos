@@ -1,13 +1,26 @@
-name: "Intersection Traffic Flow & Queue Measurement"
-description: "RB3 Gen2 sample for measuring traffic flow and queue using YOLOv8, with visualization and agent-ready outputs."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Intersection Traffic Flow & Queue Measurement
+shortname: traffic-intersection
+description: Measures traffic flow and queue length with YOLOv8, with visualization and agent-ready outputs.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "RB3 Gen2"
-tags:
-  - "Qualcomm AI Hub"
-  - "Computer Vision"
-  - "Real-time"
-  - "Object Detection"
-  - "Smart City"
+  - IoT-Robotics
+  - RB3 Gen2
+hardware:
+  - QCS6490
+software_tools:
+  - Qualcomm AI Hub
+  - Linux
+  - Ubuntu
+ai_models:
+  - YOLOv8
+topics_tools:
+  - Computer Vision
+  - Real-time
+  - Object Detection
+  - Smart City
+  - PyTorch
+  - TensorFlow
+  - GStreamer
+peripherals_sensors: []
+picture: demo_output.gif

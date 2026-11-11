@@ -1,12 +1,20 @@
-name: "Patient_Monitoring_Agent"
-description: "Agent-driven health monitoring using AI for continuous patient condition analysis"
-category:
-  - "GenAI"
-  - "IoT-Robotics"
+long_name: Patient Monitoring Agent
+shortname: patient-monitoring-a
+description: Agent-driven health monitoring using AI for continuous patient condition analysis
+technology:
+  - Generative AI
 platforms:
-  - "Arduino UNO-Q"
-tags:
-  - "IoT"
-  - "Llama Models"
-license: "MIT"
-
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Linux
+ai_models:
+  - Llama 3.1 8B
+topics_tools:
+  - IoT
+  - Llama Models
+  - Arduino App Lab
+peripherals_sensors: []
+picture: images/patient_monitoring_agent_dashboard.gif

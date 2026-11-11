@@ -1,20 +1,30 @@
-#===--project.yaml-------------------------------------------===//
-# Part of the Startup-Demos Project, under the MIT License
-# See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt
-# for license information.
-# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-# SPDX-License-Identifier: MIT License
-#===--------------------------------------------------------===//
-
-name: "Smart Door Access Controller"
-description: "A project for face-recognition based access control using Arduino UNO-Q with an on-device MobileFaceNet model."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Smart Door Access Controller
+shortname: smart-door-access-co
+description: >-
+  A project for face-recognition based access control using Arduino UNO-Q with an on-device
+  MobileFaceNet model.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "Arduino UNO-Q"
-tags:
-  - "Face Recognition"
-  - "Computer Vision"
-  - "Access Control"
-  - "Real-time"
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Linux
+ai_models:
+  - MobileFaceNet
+topics_tools:
+  - Face Recognition
+  - Computer Vision
+  - Access Control
+  - Real-time
+  - ONNX
+  - PyTorch
+  - TensorFlow
+  - LiteRT
+  - Arduino App Lab
+peripherals_sensors:
+  - Camera
+  - LED matrix
+picture: assets/demo_led.jpg

@@ -1,11 +1,25 @@
-name: "Text to Speech"
-description: "An audio-based edge-AI demo on Arduino UNO-Q that generate speech audio from input text using piper-tts model."
-category:
-  - "Others"
-  - "IoT-Robotics"
+long_name: Text to Speech
+shortname: text2-speech
+description: >-
+  A web-based Arduino UNO Q text-to-speech app uses Piper and ONNX voice models to generate playable
+  audio.
+technology:
+  - Other applications
 platforms:
-  - "Arduino UNO-Q"
-tags:
-  - "IoT"
-  - "Audio"
-  - "Text to Speech
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Linux
+ai_models:
+  - Piper TTS
+topics_tools:
+  - IoT
+  - Audio
+  - Text to Speech
+  - ONNX
+  - Arduino App Lab
+peripherals_sensors:
+  - Headphones
+picture: assets/docs_assets/demo-ui.gif

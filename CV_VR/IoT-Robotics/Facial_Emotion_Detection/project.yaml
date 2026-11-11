@@ -1,15 +1,29 @@
-name: "Facial Emotion Detection"
-description: "A real-time facial emotion detection application running on RB3 Gen2."
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Facial Emotion Detection
+shortname: facial-emotion-detec
+description: A real-time facial emotion detection application running on RB3 Gen2.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "RB3 Gen2"
-  - "Qualcomm AI Hub"
-tags:
-  - "Facial Emotion Detection"
-  - "Computer Vision"
-  - "Real-time"
-  - "MediaPipe"
-  - "ResNet-50"
-  - "AffectNet"
+  - IoT-Robotics
+  - RB3 Gen2
+hardware:
+  - QCS6490
+software_tools:
+  - Qualcomm AI Hub
+  - Linux
+  - Ubuntu
+ai_models:
+  - ResNet-50
+topics_tools:
+  - Facial Emotion Detection
+  - Computer Vision
+  - Real-time
+  - MediaPipe
+  - ResNet-50
+  - AffectNet
+  - ONNX
+  - PyTorch
+  - GStreamer
+peripherals_sensors:
+  - Camera
+picture: Images/emotion_detection_output.gif

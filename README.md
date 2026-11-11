@@ -31,133 +31,151 @@ This repository is a collection of demo applications that highlight the capabili
     <td align="left"><strong>AI PC</strong></td>
     <td>
       <a href="./GenAI/AI_PC/AnythingLLMChat_RAG/" title="A RAG-based chatbot using AnythingLLM.">
-        <img src="https://img.shields.io/badge/AnythingLLM_Chat_RAG-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="AnythingLLM Chat RAG"/>
+        <img src="https://img.shields.io/badge/anything--llmchat--rag-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="AnythingLLM Chat RAG"/>
       </a><br>
       <a href="./GenAI/AI_PC/History_LLM/" title="An LLM-based application for historical queries.">
-        <img src="https://img.shields.io/badge/History_LLM-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="History LLM"/>
+        <img src="https://img.shields.io/badge/history--llm-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="History LLM"/>
       </a><br>
       <a href="./GenAI/AI_PC/Multimodal_LLM/" title="A multimodal model application accelerated by NPU.">
-        <img src="https://img.shields.io/badge/Multimodal_LLM-2026.03.02-grey?style=flat-square&labelColor=brightgreen" alt="Multimodal LLM"/>
+        <img src="https://img.shields.io/badge/multimodal--llm-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Multimodal LLM"/>
       </a><br>
       <a href="./GenAI/AI_PC/NPU-ChatBot_LLM_RAG/" title="A RAG-based chatbot accelerated by an NPU.">
-        <img src="https://img.shields.io/badge/NPU_ChatBot_LLM_RAG-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="NPU ChatBot LLM RAG"/>
+        <img src="https://img.shields.io/badge/npu--chat--bot--llm--rag-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="NPU ChatBot LLM RAG"/>
       </a><br>
       <a href="./GenAI/AI_PC/Ticket_Counter/" title="A GenAI-powered ticket counter simulation.">
-        <img src="https://img.shields.io/badge/Ticket_Counter-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Ticket Counter"/>
+        <img src="https://img.shields.io/badge/ticket--counter-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Ticket Counter"/>
       </a><br>
       <a href="./GenAI/AI_PC/Transcribe_AIChatBot/" title="An AI chatbot that can transcribe audio.">
-        <img src="https://img.shields.io/badge/Transcribe_AI_ChatBot-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Transcribe AI ChatBot"/>
+        <img src="https://img.shields.io/badge/transcribe--aichat--bo-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Transcribe AI ChatBot"/>
       </a>
     </td>
     <td>
+      <a href="./3rdParty/AI_PC/DailyVision/" title="An application that uses AI to analyze daily activities from a camera feed.">
+        <img src="https://img.shields.io/badge/daily--vision-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Daily Vision"/>
+      </a><br>
       <a href="./CV_VR/AI_PC/EasyOCR/" title="A real-time Optical Character Recognition (OCR) application running on Snapdragon X Elite.">
-        <img src="https://img.shields.io/badge/EasyOCR_(ONNX)-2026.05.15-grey?style=flat-square&labelColor=blueviolet" alt="EasyOCR (ONNX)"/>
+        <img src="https://img.shields.io/badge/easy--ocr--demo-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="EasyOCR (ONNX)"/>
+      </a><br>
+      <a href="./3rdParty/AI_PC/face-recognition-attendance/" title="A system to take attendance using face recognition technology.">
+        <img src="https://img.shields.io/badge/face--recognition--att-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Face Recognition Attendance"/>
       </a><br>
       <a href="./CV_VR/AI_PC/ImageClassification/" title="A simple image classification application using an ONNX model.">
-        <img src="https://img.shields.io/badge/Image_Classification_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Image Classification (ONNX)"/>
+        <img src="https://img.shields.io/badge/image--classification-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Image Classification (ONNX)"/>
       </a><br>
       <a href="./CV_VR/AI_PC/ObjectDetection/" title="An object detection application using an ONNX model.">
-        <img src="https://img.shields.io/badge/Object_Detection_(ONNX)-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection (ONNX)"/>
+        <img src="https://img.shields.io/badge/object--detection-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection (ONNX)"/>
       </a><br>
       <a href="./CV_VR/AI_PC/Segmentation/" title="A segmentation application using an ONNX model.">
-        <img src="https://img.shields.io/badge/Segmentation_(ONNX)-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Segmentation (ONNX)"/>
+        <img src="https://img.shields.io/badge/segmentation-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Segmentation (ONNX)"/>
       </a><br>
       <a href="./CV_VR/AI_PC/SuperResolution/" title="A real-time image super resolution application running on Snapdragon X Elite.">
-        <img src="https://img.shields.io/badge/Super_Resolution_(ONNX)-2026.04.29-grey?style=flat-square&labelColor=blueviolet" alt="Super Resolution (ONNX)"/>
+        <img src="https://img.shields.io/badge/super--resolution-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Super Resolution (ONNX)"/>
+      </a><br>
+      <a href="./3rdParty/AI_PC/yolov4-object-detection/" title="High-performance object detection using YOLOv4 with ONNX and Pytorch conversion scripts.">
+        <img src="https://img.shields.io/badge/yolov4--object--detect-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="YOLOv4 Object Detection"/>
       </a>
     </td>
     <td align="center">—</td>
     <td>
       <a href="./Others/AI_PC/Automatic_Speech_Recognition/" title="An automatic speech recognition application with both transcription and translation features using an ONNX model.">
-        <img src="https://img.shields.io/badge/Automatic_Speech_Recognition:_Transcription_and_Translation_(ONNX)-2026.05.12-grey?style=flat-square&labelColor=orange" alt="Automatic Speech Recognition: Transcription and Translation (ONNX)"/>
+        <img src="https://img.shields.io/badge/automatic--speech--rec-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Automatic Speech Recognition: Transcription and Translation (ONNX)"/>
       </a><br>
       <a href="./Others/AI_PC/Noise_Suppression/" title="A noise suppression application using an ONNX model.">
-        <img src="https://img.shields.io/badge/Noise_Suppression_(ONNX)-2026.05.14-grey?style=flat-square&labelColor=orange" alt="Noise Suppression (ONNX)"/>
+        <img src="https://img.shields.io/badge/noise--suppression-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Noise Suppression (ONNX)"/>
       </a>
     </td>
   </tr>
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
     <td>
-      <a href="./GenAI/IoT-Robotics/VLM_Story_Narrator/" title="On-device pipeline (Vision Language Model image understanding -> generated short story -> MeloTTS narration) using Arduino App Lab Bricks (arduino:vlm, arduino:tts) on VentunoQ. An image goes in, a narrated story is generated and synthesized to speech.">
-        <img src="https://img.shields.io/badge/Image_-->_VLM_Story_-->_TTS_Narrator_on_VentunoQ-2026.10.06-grey?style=flat-square&labelColor=brightgreen" alt="Image -> VLM Story -> TTS Narrator on VentunoQ"/>
+      <a href="./GenAI/IoT-Robotics/VLM_Story_Narrator/" title="An on-device VENTUNO Q pipeline turns an image into a short story and narrates it with MeloTTS using Arduino App Lab bricks.">
+        <img src="https://img.shields.io/badge/vlm--story--narrator-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Image -> VLM Story -> TTS Narrator on VENTUNO Q"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
-        <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=brightgreen" alt="Patient_Monitoring_Agent"/>
+        <img src="https://img.shields.io/badge/patient--monitoring--a-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Patient Monitoring Agent"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/video_event_detector/" title="Vision Language Model powered video analysis tool that detects prompt-defined events across video frames using on-device InternVL3-1B inference">
-        <img src="https://img.shields.io/badge/Video_Event_Detector-2026.10.11-grey?style=flat-square&labelColor=brightgreen" alt="Video Event Detector"/>
+        <img src="https://img.shields.io/badge/video--event--detector-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Video Event Detector"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
-        <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Voice Enabled Gate Control System"/>
+        <img src="https://img.shields.io/badge/voice--enabled--gate--c-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Voice Enabled Gate Control System"/>
       </a><br>
-      <a href="./GenAI/IoT-Robotics/WAV_ASR_LLM_TTS_Pipeline/" title="File-based, on-device voice pipeline (Whisper ASR -> Gemma 4 E2B LLM -> MeloTTS) using Arduino App Lab Bricks (arduino:asr, arduino:llm, arduino:tts) on VentunoQ. No microphone or speaker required — input and output are WAV files.">
-        <img src="https://img.shields.io/badge/WAV_-->_ASR_-->_LLM_-->_TTS_-->_WAV_Voice_Pipeline_on_VentunoQ-2026.10.05-grey?style=flat-square&labelColor=brightgreen" alt="WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VentunoQ"/>
+      <a href="./GenAI/IoT-Robotics/WAV_ASR_LLM_TTS_Pipeline/" title="An offline VENTUNO Q pipeline chains Whisper ASR, Gemma 4 E2B, and MeloTTS to convert an input WAV file to output WAV.">
+        <img src="https://img.shields.io/badge/wav--asr--llm--tts--pipe-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VENTUNO Q"/>
       </a>
     </td>
     <td>
       <a href="./CV_VR/IoT-Robotics/Facial_Emotion_Detection/" title="A real-time facial emotion detection application running on RB3 Gen2.">
-        <img src="https://img.shields.io/badge/Facial_Emotion_Detection-2026.02.11-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
+        <img src="https://img.shields.io/badge/facial--emotion--detec-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/xfeat_qcs6490/" title="A project to port the XFeat model to QCS6490 for NPU acceleration and use it on RB3 Gen2 for feature‑point detection.">
-        <img src="https://img.shields.io/badge/Feature_Extraction-2026.03.13-grey?style=flat-square&labelColor=blueviolet" alt="Feature Extraction"/>
+        <img src="https://img.shields.io/badge/xfeat--qcs6490-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Feature Extraction"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
-        <img src="https://img.shields.io/badge/Gesture_Detection-2026.03.25-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
+        <img src="https://img.shields.io/badge/gesture--detection-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Gesture Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
-        <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
+        <img src="https://img.shields.io/badge/helmet--detection--on-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Helmet Detection on Camera with LED"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Industrial_Anomaly_Detection/" title="This application enables real-time Anomaly recognition from a live video feed captured by a USB webcam and control the LED matrix for detects Anomalies and other status.">
-        <img src="https://img.shields.io/badge/Industrial_Anomaly_Detection-2026.05.14-grey?style=flat-square&labelColor=blueviolet" alt="Industrial_Anomaly_Detection"/>
+        <img src="https://img.shields.io/badge/industrial--anomaly--d-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Industrial Anomaly Detection"/>
       </a><br>
-      <a href="./CV_VR/IoT-Robotics/traffic_intersection_analytics/" title="RB3 Gen2 sample for measuring traffic flow and queue using YOLOv8, with visualization and agent-ready outputs.">
-        <img src="https://img.shields.io/badge/Intersection_Traffic_Flow_&_Queue_Measurement-2026.03.25-grey?style=flat-square&labelColor=blueviolet" alt="Intersection Traffic Flow & Queue Measurement"/>
+      <a href="./CV_VR/IoT-Robotics/traffic_intersection_analytics/" title="Measures traffic flow and queue length with YOLOv8, with visualization and agent-ready outputs.">
+        <img src="https://img.shields.io/badge/traffic--intersection-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Intersection Traffic Flow & Queue Measurement"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/ObjectDetection_on_IoT/" title="Running YOLOv8 quantized object detection models on RB3 Gen2 IoT device using Qualcomm AI Hub.">
-        <img src="https://img.shields.io/badge/Object_Detection_on_IoT-2026.02.03-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection on IoT"/>
-      </a><br>
-      <a href="./CV_VR/IoT-Robotics/object_detection_with_RealSense/" title="A quick guide to running RealSense D435i object detection on RB3 Gen2 using Python and GStreamer.">
-        <img src="https://img.shields.io/badge/Object_Detection_with_RealSense-2026.03.11-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection with RealSense"/>
+        <img src="https://img.shields.io/badge/object--detection--on-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection on IoT"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
-        <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blueviolet" alt="Object_detection_via_Tflite_model"/>
+        <img src="https://img.shields.io/badge/object--detection--via-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Object detection via Tflite model"/>
+      </a><br>
+      <a href="./CV_VR/IoT-Robotics/object_detection_with_RealSense/" title="A quick guide to running RealSense D435i object detection on RB3 Gen2 using Python and GStreamer.">
+        <img src="https://img.shields.io/badge/object--detection--wit-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Object Detection with RealSense"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection_arduino_uno_q/" title="A real-time people counting application using Arduino UNO-Q with Edge Impulse FOMO model for detecting and counting people in a designated area.">
-        <img src="https://img.shields.io/badge/People_Counter_using_Arduino_UNO--Q-2026.09.01-grey?style=flat-square&labelColor=blueviolet" alt="People Counter using Arduino UNO-Q"/>
+        <img src="https://img.shields.io/badge/people--detection--ard-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="People Counter using Arduino UNO-Q"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection/" title="A people counting application for retail use case running on RB3 Gen2 with YOLO model and Enhanced SDK.">
-        <img src="https://img.shields.io/badge/People_Detection_on_IoT-2026.10.30-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
+        <img src="https://img.shields.io/badge/people--detection-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="People Detection on IoT"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
-        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blueviolet" alt="Plant_Disease_Detection"/>
+        <img src="https://img.shields.io/badge/plant--disease--detect-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Plant Disease Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/smart_door_access_controller/" title="A project for face-recognition based access control using Arduino UNO-Q with an on-device MobileFaceNet model.">
-        <img src="https://img.shields.io/badge/Smart_Door_Access_Controller-2026.09.18-grey?style=flat-square&labelColor=blueviolet" alt="Smart Door Access Controller"/>
+        <img src="https://img.shields.io/badge/smart--door--access--co-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Smart Door Access Controller"/>
       </a><br>
-      <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="">
-        <img src="https://img.shields.io/badge/tile_based_small_object_detection-2026.04.21-grey?style=flat-square&labelColor=blueviolet" alt="tile_based_small_object_detection"/>
+      <a href="./CV_VR/IoT-Robotics/tile_based_small_object_detection/" title="A tile-based image-processing pipeline improves small-object detection on the IQ9 platform.">
+        <img src="https://img.shields.io/badge/tile--based--small--obj-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Tile Based Small Object Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/vslam-npu-6490/" title="Real-time Visual SLAM (monocular Visual Odometry) pipeline** running on **Radxa Dragon Q6A (QCS6490 platform)">
-        <img src="https://img.shields.io/badge/Visual_SLAM_Demo_on_QCS6490_(Monocular_VO_with_NPU_Acceleration)-2026.05.18-grey?style=flat-square&labelColor=blueviolet" alt="Visual SLAM Demo on QCS6490 (Monocular VO with NPU Acceleration)"/>
+        <img src="https://img.shields.io/badge/vslam--npu--6490-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Visual SLAM Demo on QCS6490 (Monocular VO with NPU Acceleration)"/>
       </a>
     </td>
     <td align="center">—</td>
     <td>
       <a href="./Others/IoT-Robotics/Data_Payload_Monitor/" title="Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT monitoring.">
-        <img src="https://img.shields.io/badge/Data_Payload_Monitor-2026.02.03-grey?style=flat-square&labelColor=orange" alt="Data Payload Monitor"/>
+        <img src="https://img.shields.io/badge/data--payload--monitor-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Data Payload Monitor"/>
       </a><br>
       <a href="./Others/IoT-Robotics/Dog_Bark_Detector/" title="An audio-based edge-AI demo on Arduino UNO-Q that detects dog barking sounds using a machine-learning model trained with Edge Impulse">
-        <img src="https://img.shields.io/badge/Dog_Bark_Detector-2026.02.09-grey?style=flat-square&labelColor=orange" alt="Dog Bark Detector"/>
+        <img src="https://img.shields.io/badge/dog--bark--detector-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Dog Bark Detector"/>
       </a><br>
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
-        <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=orange" alt="LED Matrix Generator"/>
+        <img src="https://img.shields.io/badge/led--matrix--generator-2026.11.11-grey?style=flat-square&labelColor=orange" alt="LED Matrix Generator"/>
       </a><br>
-      <a href="./Others/IoT-Robotics/Smart_Guide_Cane/" title="UnoGuide is a smart guide cane prototype built on Arduino UNO Q with Edge Impulse vision inference. It provides traffic‑light recognition and obstacle awareness, delivering voice feedback and buzzer alerts.">
-        <img src="https://img.shields.io/badge/Smart_Guide_Cane-2026.05.28-grey?style=flat-square&labelColor=orange" alt="Smart Guide Cane"/>
+      <a href="./Others/IoT-Robotics/Smart_Guide_Cane/" title="An Arduino UNO Q guide cane uses vision for traffic-light recognition and obstacle awareness, with voice feedback and buzzer alerts.">
+        <img src="https://img.shields.io/badge/smart--guide--cane-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Smart Guide Cane"/>
+      </a><br>
+      <a href="./Others/IoT-Robotics/Text2Speech/" title="A web-based Arduino UNO Q text-to-speech app uses Piper and ONNX voice models to generate playable audio.">
+        <img src="https://img.shields.io/badge/text2--speech-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Text to Speech"/>
       </a><br>
       <a href="./Others/IoT-Robotics/Vibration_Based_Condition_Monitoring/" title="A vibration-based edge-AI demo that detects machine health using vibration data on Arduino UNO-Q">
-        <img src="https://img.shields.io/badge/Vibration--Based_Condition_Monitoring-2026.02.11-grey?style=flat-square&labelColor=orange" alt="Vibration-Based Condition Monitoring"/>
+        <img src="https://img.shields.io/badge/vibration--based--cond-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Vibration-Based Condition Monitoring"/>
+      </a><br>
+      <a href="./GenAI/IoT-Robotics/video_event_detector/" title="Vision Language Model powered video analysis tool that detects prompt-defined events across video frames using on-device InternVL3-1B inference">
+        <img src="https://img.shields.io/badge/video--event--detector-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Video Event Detector"/>
+      </a><br>
+      <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
+        <img src="https://img.shields.io/badge/voice--enabled--gate--c-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Voice Enabled Gate Control System"/>
       </a>
     </td>
   </tr>
@@ -165,15 +183,15 @@ This repository is a collection of demo applications that highlight the capabili
     <td align="left"><strong>Android Phones</strong></td>
     <td>
       <a href="./GenAI/Android/InferenceCloudChat/" title="Android RAG chatbot application using Cloud AI Playground for intelligent document querying.">
-        <img src="https://img.shields.io/badge/Inference_Cloud_Chat-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Inference Cloud Chat"/>
+        <img src="https://img.shields.io/badge/inference--cloud--chat-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Inference Cloud Chat"/>
       </a><br>
       <a href="./GenAI/Android/LiteRT_LM/" title="Android demo application for fully offline, on-device LLM chat using LiteRT-LM with Gemma-4 models.">
-        <img src="https://img.shields.io/badge/LiteRT--LM_On--Device_Chat_Application-2026.05.15-grey?style=flat-square&labelColor=brightgreen" alt="LiteRT-LM On-Device Chat Application"/>
+        <img src="https://img.shields.io/badge/lite--rt--lm-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="LiteRT-LM On-Device Chat Application"/>
       </a>
     </td>
     <td>
       <a href="./CV_VR/Android/bokeh/" title="This sample app performs semantic segmentation on live camera input and generate Bokeh effect output.">
-        <img src="https://img.shields.io/badge/Selfie_Bokeh_Sample_Using_Semantic_Segmentation_App-2026.05.18-grey?style=flat-square&labelColor=blueviolet" alt="Selfie Bokeh Sample Using Semantic Segmentation App"/>
+        <img src="https://img.shields.io/badge/bokeh--demo-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Selfie Bokeh Sample Using Semantic Segmentation App"/>
       </a>
     </td>
     <td align="center">—</td>
@@ -190,28 +208,28 @@ This repository is a collection of demo applications that highlight the capabili
     <td align="left"><strong>CloudAI-Playground</strong></td>
     <td>
       <a href="./GenAI/CloudAI-Playground/Agentic_Incident_Image_Analyzer/" title="An agentic system for analyzing incident images using multi-modal vision language models on the AIC100 Ultra.">
-        <img src="https://img.shields.io/badge/Agentic_Incident_Image_Analyzer-2026.09.11-grey?style=flat-square&labelColor=brightgreen" alt="Agentic Incident Image Analyzer"/>
+        <img src="https://img.shields.io/badge/agentic--incident--ima-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Agentic Incident Image Analyzer"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/ChatBot_LLM_RAG/" title="RAG-based chatbot using Cloud AI Playground with ChromaDB for document querying.">
-        <img src="https://img.shields.io/badge/ChatBot_LLM_RAG_(Cloud)-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="ChatBot LLM RAG (Cloud)"/>
+        <img src="https://img.shields.io/badge/chat--bot--llm--rag-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="ChatBot LLM RAG (Cloud)"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/llama3.3_70b_chatbot/" title="High-performance chatbot using Llama 3.3 70B model on AIC100 Ultra accelerator.">
-        <img src="https://img.shields.io/badge/Llama3.3_70B_Chatbot-2026.02.03-grey?style=flat-square&labelColor=brightgreen" alt="Llama3.3 70B Chatbot"/>
+        <img src="https://img.shields.io/badge/llama3--3--70b--chatbot-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Llama3.3 70B Chatbot"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/Multi‑VLM_Serving_on_AIC100_with_vLLM/" title="A Guide to Building a Multi‑VLM Model Server and WebUI Client using vLLM on the AIC100.">
-        <img src="https://img.shields.io/badge/Multi‑VLM_Serving_on_AIC100_with_vLLM-2026.03.27-grey?style=flat-square&labelColor=brightgreen" alt="Multi‑VLM Serving on AIC100 with vLLM"/>
+        <img src="https://img.shields.io/badge/multi--vlm--serving--on-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Multi‑VLM Serving on AIC100 with vLLM"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/online_server_endpoint_stream/" title="Online service server endpoint with streaming support (stream=true) using Llama 3.3 70B 32K ctx_len on AIC100 Ultra.">
-        <img src="https://img.shields.io/badge/Online_server_endpoint_stream-2026.03.24-grey?style=flat-square&labelColor=brightgreen" alt="Online server endpoint stream"/>
+        <img src="https://img.shields.io/badge/online--server--endpoi-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Online server endpoint stream"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/OpenClaw_Local_LLM_Agent_with_vLLM/" title="A sample demonstrating how to build a tool-enabled AI agent by integrating OpenClaw with a locally hosted vLLM service.">
-        <img src="https://img.shields.io/badge/OpenClaw_Local_LLM_Agent_with_vLLM-2026.05.11-grey?style=flat-square&labelColor=brightgreen" alt="OpenClaw Local LLM Agent with vLLM"/>
+        <img src="https://img.shields.io/badge/open--claw--local--llm-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="OpenClaw Local LLM Agent with vLLM"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/traffic_ai_agent/" title="An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra.">
-        <img src="https://img.shields.io/badge/Traffic_AI_Agent_–_Dual_Intersection_(On‑Prem,_Analysis)-2026.05.04-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
+        <img src="https://img.shields.io/badge/traffic--ai--agent-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"/>
       </a><br>
       <a href="./GenAI/CloudAI-Playground/vLLM_QAIC_Concurrency_Benchmark_on_AIC100/" title="Provides a reference benchmark for evaluating vLLM serving performance on Qualcomm AIC100 (QAIC), focusing on concurrency scaling, throughput, and multi-request LLM inference behavior.">
-        <img src="https://img.shields.io/badge/vLLM_QAIC_Concurrency_Benchmark_on_AIC100-2026.06.04-grey?style=flat-square&labelColor=brightgreen" alt="vLLM QAIC Concurrency Benchmark on AIC100"/>
+        <img src="https://img.shields.io/badge/v--llm--qaic--concurren-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="vLLM QAIC Concurrency Benchmark on AIC100"/>
       </a>
     </td>
     <td align="center">—</td>
@@ -234,45 +252,48 @@ This repository is a collection of demo applications that highlight the capabili
     <td align="left"><strong><a href="https://www.arduino.cc/product-uno-q">Arduino UNO Q</a></strong></td>
     <td>
       <a href="./Others/IoT-Robotics/Dog_Bark_Detector/" title="An audio-based edge-AI demo on Arduino UNO-Q that detects dog barking sounds using a machine-learning model trained with Edge Impulse">
-        <img src="https://img.shields.io/badge/Dog_Bark_Detector-2026.02.09-grey?style=flat-square&labelColor=blue" alt="Dog Bark Detector"/>
+        <img src="https://img.shields.io/badge/dog--bark--detector-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Dog Bark Detector"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/GestureDetection/" title="A project for detecting hand gestures using Arduino UNO-Q with Edge Impulse AI model.">
-        <img src="https://img.shields.io/badge/Gesture_Detection-2026.03.25-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
+        <img src="https://img.shields.io/badge/gesture--detection-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Gesture Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/helmet-detection-on-camera-with-led/" title="This application enables real-time helmet recognition from a live video feed captured by a USB webcam and control the LED matrix for detected helmet and other status.">
-        <img src="https://img.shields.io/badge/Helmet_Detection_on_Camera_with_LED-2026.03.05-grey?style=flat-square&labelColor=blue" alt="Helmet Detection on Camera with LED"/>
+        <img src="https://img.shields.io/badge/helmet--detection--on-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Helmet Detection on Camera with LED"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Industrial_Anomaly_Detection/" title="This application enables real-time Anomaly recognition from a live video feed captured by a USB webcam and control the LED matrix for detects Anomalies and other status.">
-        <img src="https://img.shields.io/badge/Industrial_Anomaly_Detection-2026.05.14-grey?style=flat-square&labelColor=blue" alt="Industrial_Anomaly_Detection"/>
+        <img src="https://img.shields.io/badge/industrial--anomaly--d-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Industrial Anomaly Detection"/>
       </a><br>
       <a href="./Others/IoT-Robotics/LED_Matrix_Generator/" title="Convert images to animated LED matrix displays with AI-powered effects like edge detection, morphological operations, and wave distortions for 13x8 LED matrices.">
-        <img src="https://img.shields.io/badge/LED_Matrix_Generator-2026.02.03-grey?style=flat-square&labelColor=blue" alt="LED Matrix Generator"/>
+        <img src="https://img.shields.io/badge/led--matrix--generator-2026.11.11-grey?style=flat-square&labelColor=blue" alt="LED Matrix Generator"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/Object_detection_via_Tflite_model/" title="Integrate YOLOX TFLite model for real-time object detection on UNO Q">
-        <img src="https://img.shields.io/badge/Object_detection_via_Tflite_model-2026.03.10-grey?style=flat-square&labelColor=blue" alt="Object_detection_via_Tflite_model"/>
+        <img src="https://img.shields.io/badge/object--detection--via-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Object detection via Tflite model"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Patient_Monitoring_Agent/" title="Agent-driven health monitoring using AI for continuous patient condition analysis">
-        <img src="https://img.shields.io/badge/Patient_Monitoring_Agent-2026.06.09-grey?style=flat-square&labelColor=blue" alt="Patient_Monitoring_Agent"/>
+        <img src="https://img.shields.io/badge/patient--monitoring--a-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Patient Monitoring Agent"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/people_detection_arduino_uno_q/" title="A real-time people counting application using Arduino UNO-Q with Edge Impulse FOMO model for detecting and counting people in a designated area.">
-        <img src="https://img.shields.io/badge/People_Counter_using_Arduino_UNO--Q-2026.09.01-grey?style=flat-square&labelColor=blue" alt="People Counter using Arduino UNO-Q"/>
+        <img src="https://img.shields.io/badge/people--detection--ard-2026.11.11-grey?style=flat-square&labelColor=blue" alt="People Counter using Arduino UNO-Q"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/plant_disease_detection/" title="This application enables real-time plant disease classification from a live video feed captured by a USB webcam.">
-        <img src="https://img.shields.io/badge/Plant_Disease_Detection-2026.06.03-grey?style=flat-square&labelColor=blue" alt="Plant_Disease_Detection"/>
+        <img src="https://img.shields.io/badge/plant--disease--detect-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Plant Disease Detection"/>
       </a><br>
       <a href="./CV_VR/IoT-Robotics/smart_door_access_controller/" title="A project for face-recognition based access control using Arduino UNO-Q with an on-device MobileFaceNet model.">
-        <img src="https://img.shields.io/badge/Smart_Door_Access_Controller-2026.09.18-grey?style=flat-square&labelColor=blue" alt="Smart Door Access Controller"/>
+        <img src="https://img.shields.io/badge/smart--door--access--co-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Smart Door Access Controller"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
-        <img src="https://img.shields.io/badge/Voice_Enabled_Gate_Control_System-2026.03.24-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
+        <img src="https://img.shields.io/badge/voice--enabled--gate--c-2026.11.11-grey?style=flat-square&labelColor=blue" alt="Voice Enabled Gate Control System"/>
       </a>
     </td>
     <td>
-      <a href="./Others/IoT-Robotics/Smart_Guide_Cane/" title="UnoGuide is a smart guide cane prototype built on Arduino UNO Q with Edge Impulse vision inference. It provides traffic‑light recognition and obstacle awareness, delivering voice feedback and buzzer alerts.">
-        <img src="https://img.shields.io/badge/Smart_Guide_Cane-2026.05.28-grey?style=flat-square&labelColor=cyan" alt="Smart Guide Cane"/>
+      <a href="./Others/IoT-Robotics/Smart_Guide_Cane/" title="An Arduino UNO Q guide cane uses vision for traffic-light recognition and obstacle awareness, with voice feedback and buzzer alerts.">
+        <img src="https://img.shields.io/badge/smart--guide--cane-2026.11.11-grey?style=flat-square&labelColor=cyan" alt="Smart Guide Cane"/>
+      </a><br>
+      <a href="./Others/IoT-Robotics/Text2Speech/" title="A web-based Arduino UNO Q text-to-speech app uses Piper and ONNX voice models to generate playable audio.">
+        <img src="https://img.shields.io/badge/text2--speech-2026.11.11-grey?style=flat-square&labelColor=cyan" alt="Text to Speech"/>
       </a><br>
       <a href="./Others/IoT-Robotics/Vibration_Based_Condition_Monitoring/" title="A vibration-based edge-AI demo that detects machine health using vibration data on Arduino UNO-Q">
-        <img src="https://img.shields.io/badge/Vibration--Based_Condition_Monitoring-2026.02.11-grey?style=flat-square&labelColor=cyan" alt="Vibration-Based Condition Monitoring"/>
+        <img src="https://img.shields.io/badge/vibration--based--cond-2026.11.11-grey?style=flat-square&labelColor=cyan" alt="Vibration-Based Condition Monitoring"/>
       </a>
     </td>
     <td align="center">—</td>

@@ -1,13 +1,25 @@
-name: "Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)"
-description: "An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: Traffic AI Agent – Dual Intersection (On‑Prem, Analysis)
+shortname: traffic-ai-agent
+description: An on‑prem traffic AI demo with real‑time decisions and LLM explanations on Cloud AI 100 Ultra.
+technology:
+  - Generative AI
 platforms:
-  - "AIC100Ultra"
-tags:
-  - "AI Agent"
-  - "On-Prem"
-  - "LLM"
-  - "vLLM"
-  - "Smart City"
+  - CloudAI-Playground
+  - AIC100 Ultra
+hardware:
+  - AIC100 Ultra
+software_tools:
+  - Linux
+ai_models:
+  - Llama 3.3 70B
+  - Llama 3.2 1B
+topics_tools:
+  - AI Agent
+  - On-Prem
+  - LLM
+  - vLLM
+  - Smart City
+  - PyTorch
+  - Streamlit
+peripherals_sensors: []
+picture: demo.gif

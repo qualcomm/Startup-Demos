@@ -1,15 +1,24 @@
-name: "EasyOCR (ONNX)"
-description: "A real-time Optical Character Recognition (OCR) application running on Snapdragon X Elite."
-category:
-  - "CV_VR"
-  - "AI_PC"
+long_name: EasyOCR (ONNX)
+shortname: easy-ocr-demo
+description: A real-time Optical Character Recognition (OCR) application running on Snapdragon X Elite.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Computer Vision"
-  - "Optical Character Recognition"
-  - "OCR"
-  - "Real-time"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - EasyOCR
+topics_tools:
+  - Computer Vision
+  - Optical Character Recognition
+  - OCR
+  - Real-time
+  - ONNX
+  - Python
+peripherals_sensors: []
+picture: images/demo_1.png

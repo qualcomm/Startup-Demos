@@ -1,13 +1,22 @@
-name: "Multimodal LLM"
-description: "A multimodal model application accelerated by NPU."
-category:
-  - "GenAI"
-  - "AI_PC"
+long_name: Multimodal LLM
+shortname: multimodal-llm
+description: A multimodal model application accelerated by NPU.
+technology:
+  - Generative AI
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "LLM"
-  - "VLM"
-  - "Multimodal"
-  - "Nexa AI"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Windows
+ai_models:
+  - Qwen3-VL
+  - Qwen3
+topics_tools:
+  - LLM
+  - VLM
+  - Multimodal
+  - Nexa AI
+peripherals_sensors: []
+picture: images/demo.png

@@ -1,13 +1,22 @@
-name: "LiteRT-LM On-Device Chat Application"
-description: "Android demo application for fully offline, on-device LLM chat using LiteRT-LM with Gemma-4 models."
-category:
-  - "GenAI"
-  - "Android"
+long_name: LiteRT-LM On-Device Chat Application
+shortname: lite-rt-lm
+description: >-
+  Android demo application for fully offline, on-device LLM chat using LiteRT-LM with Gemma-4
+  models.
+technology:
+  - Generative AI
 platforms:
-  - "Android"
-  - "LiteRT-LM"
-tags:
-  - "GenAI"
-  - "Chatbot"
-  - "On-device LLM"
-  - "Gemma-4"
+  - Android Phones
+hardware: []
+software_tools:
+  - Android
+ai_models:
+  - Gemma
+topics_tools:
+  - GenAI
+  - Chatbot
+  - On-device LLM
+  - Gemma-4
+  - LiteRT
+peripherals_sensors: []
+picture: resource/hero.jpg

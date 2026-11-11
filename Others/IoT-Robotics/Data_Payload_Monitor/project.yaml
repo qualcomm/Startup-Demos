@@ -1,14 +1,25 @@
-name: "Data Payload Monitor"
-description: "Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT monitoring."
-category:
-  - "Others"
-  - "IoT-Robotics"
+long_name: Data Payload Monitor
+shortname: data-payload-monitor
+description: >-
+  Real-time sensor data simulation, processing on RB3 Gen2, and visualization dashboard for IoT
+  monitoring.
+technology:
+  - Other applications
 platforms:
-  - "RB3 Gen2"
-tags:
-  - "IoT"
-  - "Monitoring"
-  - "Data"
-  - "Streamlit"
-  - "Real-time"
-  - "Health Metrics"
+  - IoT-Robotics
+  - RB3 Gen2
+hardware:
+  - QCS6490
+software_tools:
+  - Linux
+  - Ubuntu
+ai_models: []
+topics_tools:
+  - IoT
+  - Monitoring
+  - Data
+  - Streamlit
+  - Real-time
+  - Health Metrics
+peripherals_sensors: []
+picture: Images/rb3_gen2_hms_data_process.png

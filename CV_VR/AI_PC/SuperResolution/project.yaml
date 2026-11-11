@@ -1,14 +1,22 @@
-name: "Super Resolution (ONNX)"
-description: "A real-time image super resolution application running on Snapdragon X Elite."
-category:
-  - "CV_VR"
-  - "AI_PC"
+long_name: Super Resolution (ONNX)
+shortname: super-resolution
+description: A real-time image super resolution application running on Snapdragon X Elite.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Computer Vision"
-  - "Super Resolution"
-  - "Real-time"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models: []
+topics_tools:
+  - Computer Vision
+  - Super Resolution
+  - Real-time
+  - ONNX
+  - Python
+peripherals_sensors: []
+picture: images/demo_1.png

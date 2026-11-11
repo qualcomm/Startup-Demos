@@ -1,14 +1,22 @@
-name: "YOLOv4 Object Detection"
-description: "High-performance object detection using YOLOv4 with ONNX and Pytorch conversion scripts."
-category:
-  - "AI_PC"
-  - "3rdParty"
+long_name: YOLOv4 Object Detection
+shortname: yolov4-object-detect
+description: High-performance object detection using YOLOv4 with ONNX and Pytorch conversion scripts.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "YOLOv4"
-  - "Object Detection"
-  - "ONNX"
-  - "Pytorch"
-is_third_party: true
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - YOLOv4
+topics_tools:
+  - YOLOv4
+  - Object Detection
+  - ONNX
+  - Pytorch
+peripherals_sensors: []
+picture: null

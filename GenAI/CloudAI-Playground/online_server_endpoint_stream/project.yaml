@@ -1,13 +1,24 @@
-name: "Online server endpoint stream"
-description: "Online service server endpoint with streaming support (stream=true) using Llama 3.3 70B 32K ctx_len on AIC100 Ultra."
-category:
-  - "GenAI"
-  - "CloudAI-Playground"
+long_name: Online server endpoint stream
+shortname: online-server-endpoi
+description: >-
+  Online service server endpoint with streaming support (stream=true) using Llama 3.3 70B 32K
+  ctx_len on AIC100 Ultra.
+technology:
+  - Generative AI
 platforms:
-  - "AIC100 Ultra"
-tags:
-  - "LLM"
-  - "Chatbot"
-  - "QEfficient"
-  - "vLLM"
-  - "OpenAI"
+  - CloudAI-Playground
+  - AIC100 Ultra
+hardware:
+  - AIC100 Ultra
+software_tools:
+  - Linux
+ai_models:
+  - Llama 3.3 70B
+topics_tools:
+  - LLM
+  - Chatbot
+  - QEfficient
+  - vLLM
+  - OpenAI
+peripherals_sensors: []
+picture: card_status.jpg

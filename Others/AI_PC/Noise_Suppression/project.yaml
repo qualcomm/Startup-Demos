@@ -1,13 +1,25 @@
-name: "Noise Suppression (ONNX)"
-description: "A noise suppression application using an ONNX model."
-category:
-  - "Others"
-  - "AI_PC"
+long_name: Noise Suppression (ONNX)
+shortname: noise-suppression
+description: A noise suppression application using an ONNX model.
+technology:
+  - Other applications
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "Audio"
-  - "Noise Suppression"
-  - "ONNX"
-  - "Python"
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Qualcomm AI Hub
+  - Windows
+ai_models:
+  - ResNet-50
+  - RNNoise
+topics_tools:
+  - Audio
+  - Noise Suppression
+  - ONNX
+  - Python
+  - PyTorch
+  - TensorFlow
+peripherals_sensors: []
+picture: docs/Media1.gif

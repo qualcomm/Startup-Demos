@@ -78,13 +78,11 @@ def parse_project_metadata(yaml_path: Path, repo_root: Path) -> Optional[Dict]:
             print(f"ΓÜá Empty YAML: {yaml_path}")
             return None
         
-        # Required fields
-        if 'name' not in data:
-            print(f"ΓÜá Missing 'name' field: {yaml_path}")
-            return None
-        
-        if 'category' not in data or not isinstance(data['category'], list) or len(data['category']) < 2:
-            print(f"ΓÜá Invalid 'category' field: {yaml_path}")
+        # Required fields in the current project metadata schema.
+        required_lists = ('technology', 'platforms', 'topics_tools')
+        missing_lists = [key for key in required_lists if not isinstance(data.get(key), list)]
+        if not data.get('long_name') or not data.get('shortname') or not data.get('description') or missing_lists:
+            print(f"ΓÜá Invalid project metadata (long_name, shortname, description, {', '.join(missing_lists)}): {yaml_path}")
             return None
         
         # Extract path components (Category/Platform/ProjectName)
@@ -112,13 +110,13 @@ def parse_project_metadata(yaml_path: Path, repo_root: Path) -> Optional[Dict]:
         last_updated = get_last_commit_date(project_dir_path)
         
         metadata = {
-            'name': data['name'],
+            'name': data['long_name'],
+            'shortname': data['shortname'],
             'description': data.get('description', ''),
-            'category': data['category'][0],  # Main category (GenAI, CV_VR, etc.)
-            'platform': data['category'][1],  # Platform (AI_PC, IoT-Robotics, etc.)
+            'categories': [normalize_category_name(category) for category in data['technology']],
+            'platform': data['platforms'][0],  # Canonical platform group
             'platforms': data.get('platforms', []),  # List of target platforms
-            'tags': data.get('tags', []),
-            'is_third_party': data.get('is_third_party', False),
+            'tags': data.get('topics_tools', []),
             'path': rel_path,
             'yaml_path': str(yaml_path),
             'last_updated': last_updated
@@ -140,6 +138,11 @@ def normalize_category_name(category: str) -> str:
         'GenAI': 'Generative AI',
         'CV_VR': 'CV & VR',
         '5G+AI': '5G + AI',
+        'Computer Vision & VR': 'CV & VR',
+        '5G & AI': '5G + AI',
+        'Edge AI': 'Others',
+        'Speech & Audio': 'Others',
+        'Other applications': 'Others',
         'Others': 'Others',
     }
     return mapping.get(category, category)
@@ -160,8 +163,7 @@ def normalize_platform_name(platform: str) -> str:
 def generate_main_table(projects: List[Dict]) -> str:
     """Generate the main Applications & Releases table with uniform grey Shields.io badges."""
     
-    # Filter out third-party projects
-    filtered = [p for p in projects if not p['is_third_party']]
+    filtered = projects
     
     # Define table structure with colors
     categories = [
@@ -183,17 +185,16 @@ def generate_main_table(projects: List[Dict]) -> str:
     grid = defaultdict(lambda: defaultdict(list))
     
     for proj in filtered:
-        cat_name = normalize_category_name(proj['category'])
         plat_name = normalize_platform_name(proj['platform'])
         
         category_keys = [c[1] for c in categories]
         platform_keys = [p[1] for p in platforms]
-        
-        if cat_name in category_keys and plat_name in platform_keys:
-            # Find the color for this category
-            cat_color = next((c[2] for c in categories if c[1] == cat_name), 'blue')
-            proj['category_color'] = cat_color
-            grid[plat_name][cat_name].append(proj)
+        if plat_name in platform_keys:
+            for cat_name in dict.fromkeys(proj['categories']):
+                if cat_name in category_keys:
+                    cat_color = next((c[2] for c in categories if c[1] == cat_name), 'blue')
+                    proj['category_color'] = cat_color
+                    grid[plat_name][cat_name].append(proj)
     
     # Sort projects within each cell alphabetically
     for plat in grid:
@@ -247,7 +248,7 @@ def generate_main_table(projects: List[Dict]) -> str:
                 links = []
                 for proj in projects_in_cell:
                     # Create category-colored Shields.io badge (category color for name, grey for date)
-                    badge_name = proj['name'].replace(' ', '_').replace('-', '--')
+                    badge_name = proj['shortname'].replace('-', '--')
                     badge_date = proj['last_updated'].replace('-', '.')
                     cat_color_badge = proj.get('category_color', 'blue')
                     badge_url = f'https://img.shields.io/badge/{badge_name}-{badge_date}-grey?style=flat-square&labelColor={cat_color_badge}'
@@ -316,7 +317,7 @@ def generate_arduino_table(projects: List[Dict]) -> str:
     """Generate the Arduino Applications & Releases table with uniform grey Shields.io badges."""
     
     # Filter Arduino projects
-    arduino_projects = [p for p in projects if is_arduino_project(p['platforms']) and not p['is_third_party']]
+    arduino_projects = [p for p in projects if is_arduino_project(p['platforms'])]
     
     if not arduino_projects:
         print("ΓÜá No Arduino projects found")
@@ -385,7 +386,7 @@ def generate_arduino_table(projects: List[Dict]) -> str:
                 links = []
                 for proj in projects_in_cat:
                     # Create category-colored Shields.io badge (category color for name, grey for date)
-                    badge_name = proj['name'].replace(' ', '_').replace('-', '--')
+                    badge_name = proj['shortname'].replace('-', '--')
                     badge_date = proj['last_updated'].replace('-', '.')
                     badge_url = f'https://img.shields.io/badge/{badge_name}-{badge_date}-grey?style=flat-square&labelColor={cat_color}'
                     link = f'<a href="{proj["path"]}" title="{proj["description"]}">\n        <img src="{badge_url}" alt="{proj["name"]}"/>\n      </a>'

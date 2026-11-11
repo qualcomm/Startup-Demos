@@ -1,14 +1,29 @@
-name: "Visual SLAM Demo on QCS6490 (Monocular VO with NPU Acceleration)"
-description: "Real-time Visual SLAM (monocular Visual Odometry) pipeline** running on **Radxa Dragon Q6A (QCS6490 platform)"
-category:
-  - "CV_VR"
-  - "IoT-Robotics"
+long_name: Visual SLAM Demo on QCS6490 (Monocular VO with NPU Acceleration)
+shortname: vslam-npu-6490
+description: >-
+  Real-time Visual SLAM (monocular Visual Odometry) pipeline** running on **Radxa Dragon Q6A
+  (QCS6490 platform)
+technology:
+  - Computer Vision & VR
 platforms:
-  - "Radxa Dragon Q6A"
-tags:
-  - "Qualcomm AI Hub"
-  - "Computer Vision"
-  - "Real-time"
-  - "Feature Points Detection"
-  - "Smart City"
-  - "VSLAM"
+  - IoT-Robotics
+  - Radxa Dragon Q6A
+hardware:
+  - QCS6490
+software_tools:
+  - Qualcomm AI Hub
+  - Linux
+  - Ubuntu
+ai_models:
+  - XFeat
+topics_tools:
+  - Computer Vision
+  - Real-time
+  - Feature Points Detection
+  - Smart City
+  - VSLAM
+  - ONNX
+  - PyTorch
+peripherals_sensors:
+  - Camera
+picture: output.gif

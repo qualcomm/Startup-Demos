@@ -1,17 +1,26 @@
-name: "Voice Enabled Gate Control System"
-description: "Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection"
-category:
-  - "GenAI"
-  - "IoT-Robotics"
-  - "Edge-AI"
+long_name: Voice Enabled Gate Control System
+shortname: voice-enabled-gate-c
+description: >-
+  Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close
+  command detection
+technology:
+  - Generative AI
+  - Edge AI
 platforms:
-  - "Arduino UNO-Q"
-tags:
-  - "IoT"
-  - "Speech Recognition"
-  - "Whisper Model"
-license: "MIT"
-estimated_setup_time: "5 minutes"
-hardware_requirements:
-  - "USB MIC"
-
+  - IoT-Robotics
+  - Arduino UNO Q
+hardware:
+  - QRB2210
+software_tools:
+  - Linux
+ai_models:
+  - Whisper
+topics_tools:
+  - IoT
+  - Speech Recognition
+  - Whisper Model
+  - Arduino App Lab
+peripherals_sensors:
+  - USB microphone
+picture: images/voice_control_gate_output.png
+estimated_setup_time: 5 minutes

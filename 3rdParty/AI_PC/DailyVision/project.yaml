@@ -1,13 +1,25 @@
-name: "Daily Vision"
-description: "An application that uses AI to analyze daily activities from a camera feed."
-category:
-  - "AI_PC"
-  - "3rdParty"
+long_name: Daily Vision
+shortname: daily-vision
+description: An application that uses AI to analyze daily activities from a camera feed.
+technology:
+  - Computer Vision & VR
 platforms:
-  - "AI PC"
-  - "XElite"
-tags:
-  - "AI"
-  - "Vision"
-  - "ONNX"
-is_third_party: true
+  - AI PC
+  - Snapdragon X Elite
+hardware:
+  - Snapdragon X Elite
+software_tools:
+  - Windows
+ai_models:
+  - YOLOv8
+  - EasyOCR
+topics_tools:
+  - AI
+  - Vision
+  - ONNX
+  - YOLOv8
+  - EasyOCR
+  - Text-to-Speech
+peripherals_sensors:
+  - Speaker
+picture: images/demo_image.jpg
