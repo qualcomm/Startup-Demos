@@ -95,10 +95,10 @@ This repository is a collection of demo applications that highlight the capabili
         <img src="https://img.shields.io/badge/patient--monitoring--a-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Patient Monitoring Agent"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/video_event_detector/" title="Vision Language Model powered video analysis tool that detects prompt-defined events across video frames using on-device InternVL3-1B inference">
-        <img src="https://img.shields.io/badge/video--event--detector-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Video Event Detector"/>
+        <img src="https://img.shields.io/badge/video--event--detector-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Video Event Detector"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
-        <img src="https://img.shields.io/badge/voice--enabled--gate--c-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Voice Enabled Gate Control System"/>
+        <img src="https://img.shields.io/badge/voice--enabled--gate--c-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Voice Enabled Gate Control System"/>
       </a><br>
       <a href="./GenAI/IoT-Robotics/WAV_ASR_LLM_TTS_Pipeline/" title="An offline VENTUNO Q pipeline chains Whisper ASR, Gemma 4 E2B, and MeloTTS to convert an input WAV file to output WAV.">
         <img src="https://img.shields.io/badge/wav--asr--llm--tts--pipe-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="WAV -> ASR -> LLM -> TTS -> WAV Voice Pipeline on VENTUNO Q"/>
@@ -170,12 +170,6 @@ This repository is a collection of demo applications that highlight the capabili
       </a><br>
       <a href="./Others/IoT-Robotics/Vibration_Based_Condition_Monitoring/" title="A vibration-based edge-AI demo that detects machine health using vibration data on Arduino UNO-Q">
         <img src="https://img.shields.io/badge/vibration--based--cond-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Vibration-Based Condition Monitoring"/>
-      </a><br>
-      <a href="./GenAI/IoT-Robotics/video_event_detector/" title="Vision Language Model powered video analysis tool that detects prompt-defined events across video frames using on-device InternVL3-1B inference">
-        <img src="https://img.shields.io/badge/video--event--detector-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Video Event Detector"/>
-      </a><br>
-      <a href="./GenAI/IoT-Robotics/Voice_Enabled_Gate_Control_System/" title="Voice-controlled intelligent gate system powered by on-device Whisper AI for real-time open/close command detection">
-        <img src="https://img.shields.io/badge/voice--enabled--gate--c-2026.11.11-grey?style=flat-square&labelColor=orange" alt="Voice Enabled Gate Control System"/>
       </a>
     </td>
   </tr>
