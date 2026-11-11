@@ -1,3 +1,11 @@
+//--catalog-app.js---------------------------------------------------------//
+// Part of the Startup-Demos Project, under the MIT License                 //
+// See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt      //
+// for license information.                                                 //
+// Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.       //
+// SPDX-License-Identifier: MIT License                                     //
+//--------------------------------------------------------------------------//
+
 import { createIcons, Search, ArrowUpRight, ArrowRight, LayoutGrid, List, SlidersHorizontal, X, ChevronDown, ChevronLeft, ChevronRight, ScanEye, Monitor, Tags, CodeXml, Cpu, GitBranch, Box, Clock, RotateCcw, ExternalLink, BookOpen, Play, Check, LoaderCircle, Menu, Wrench } from 'lucide';
 import { facetDefinitions, prepareCatalog, emptyState, selectProjects, facetOptions, readState, writeState } from './catalog.js';
 import './catalog.css';

@@ -1,3 +1,11 @@
+//--repository.test.js-----------------------------------------------------//
+// Part of the Startup-Demos Project, under the MIT License                 //
+// See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt      //
+// for license information.                                                 //
+// Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.       //
+// SPDX-License-Identifier: MIT License                                     //
+//--------------------------------------------------------------------------//
+
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { repositoryInfo } from '../scripts/repository.js';
