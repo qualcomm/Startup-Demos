@@ -1,3 +1,11 @@
+//--repository.js----------------------------------------------------------//
+// Part of the Startup-Demos Project, under the MIT License                 //
+// See https://github.com/qualcomm/Startup-Demos/blob/main/LICENSE.txt      //
+// for license information.                                                 //
+// Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.       //
+// SPDX-License-Identifier: MIT License                                     //
+//--------------------------------------------------------------------------//
+
 import { spawnSync } from 'node:child_process';
 
 export function repositoryInfo(environment = process.env, cwd = process.cwd(), git = args => {
