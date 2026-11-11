@@ -5,7 +5,6 @@ description: >-
   frames using on-device InternVL3-1B inference
 technology:
   - Generative AI
-  - Edge AI
 platforms:
   - IoT-Robotics
   - IQ-9075 Evaluation Kit
