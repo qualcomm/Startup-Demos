@@ -16,10 +16,19 @@ module.exports = async function run({ github, membership, context, core }) {
   const group = context.payload.merge_group;
   const targets = new Set(group ? [group.head_sha] : []);
   if (context.payload.pull_request) targets.add(context.payload.pull_request.head.sha);
-  const publish = async (sha, state, description) => github.rest.repos.createCommitStatus({
-    ...repository, sha, state, context: statusContext,
-    description: description.slice(0, 140), target_url: targetUrl,
-  });
+  const publish = async (sha, state, description) => {
+    try {
+      await github.rest.repos.createCommitStatus({
+        ...repository, sha, state, context: statusContext,
+        description: description.slice(0, 140), target_url: targetUrl,
+      });
+    } catch (error) {
+      const statusLimit = error.status === 422 &&
+        String(error.response?.data?.errors || '').includes('This SHA and context has reached the maximum number of statuses.');
+      if (!statusLimit) throw error;
+      core.info(`Skipping status update for ${sha}: GitHub's status limit was reached.`);
+    }
+  };
 
   try {
     const branch = process.env.SOURCE_BRANCH;

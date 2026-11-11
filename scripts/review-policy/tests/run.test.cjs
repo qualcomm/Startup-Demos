@@ -47,7 +47,15 @@ function fixture(options = {}) {
         },
       },
       repos: {
-        createCommitStatus: async status => { statuses.push(status); },
+        createCommitStatus: async status => {
+          if (status.sha === options.statusLimitSha) {
+            throw Object.assign(new Error('Validation Failed'), {
+              status: 422,
+              response: { data: { errors: 'This SHA and context has reached the maximum number of statuses.' } },
+            });
+          }
+          statuses.push(status);
+        },
         compareCommitsWithBasehead: async () => ({ data: { status: options.unrelated ? 'diverged' : 'ahead' } }),
       },
     },
@@ -116,6 +124,23 @@ test('scheduled evaluation continues to check every open pull request', async ()
   ] });
   await setup.execute();
   assert.deepEqual(setup.logs.filter(message => message.startsWith('Evaluating PR')), ['Evaluating PR #1', 'Evaluating PR #2']);
+});
+test('scheduled evaluation skips a saturated status and publishes results for remaining PRs', async () => {
+  const secondRequest = { number: 2, user: { login: 'other-author' }, head: { sha: 'other-head' }, base: { ref: 'main' } };
+  const setup = fixture({ fullSweep: true, statusLimitSha: 'head', requests: [
+    { number: 1, user: { login: 'author' }, head: { sha: 'head' }, base: { ref: 'main' } },
+    secondRequest,
+  ], reviews: ['peer1', 'peer2'].map((login, index) => ({
+    id: index + 1, user: { login }, state: 'APPROVED', commit_id: 'other-head', body: checklist,
+    submitted_at: new Date(Date.UTC(2026, 9, 27, 0, index)).toISOString(),
+  })) });
+  await setup.execute();
+  assert.deepEqual(setup.logs.filter(message => message.startsWith('Evaluating PR')), ['Evaluating PR #1', 'Evaluating PR #2']);
+  assert.deepEqual(setup.statuses.map(status => [status.sha, status.state]), [
+    ['other-head', 'pending'], ['other-head', 'success'],
+  ]);
+  assert.ok(setup.logs.some(message => message.includes('Skipping status update for head')));
+  assert.equal(setup.errors.length, 0);
 });
 test('closed signal PR is skipped without touching other open PRs', async () => {
   const setup = fixture({ closed: true });
