@@ -1,0 +1,122 @@
+name: Project YAML Validation
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, edited]
+  push:
+    branches: [main]
+  merge_group:
+    types: [checks_requested]
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: PR number to recheck; leave empty for a full metadata audit
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  statuses: write
+  pull-requests: write
+
+concurrency:
+  group: project-yaml-${{ github.event.pull_request.number || inputs.pull_request_number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Evaluate Project YAML
+    runs-on: self-hosted
+    timeout-minutes: 15
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+
+      - name: Classify changes and validate selected metadata through API
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        env:
+          RECHECK_PR: ${{ inputs.pull_request_number || '' }}
+        with:
+          retries: 3
+          script: |
+            const fs = require('node:fs');
+            const path = require('node:path');
+            const serverUrl = process.env.GITHUB_SERVER_URL || 'https://github.com';
+            let pullRequest = context.payload.pull_request;
+            if (process.env.RECHECK_PR) {
+              if (!/^[1-9][0-9]*$/.test(process.env.RECHECK_PR)) throw new Error('Invalid PR number.');
+              pullRequest = (await github.rest.pulls.get({
+                ...context.repo, pull_number: Number(process.env.RECHECK_PR),
+              })).data;
+            }
+            const evaluationContext = {
+              repo: context.repo, runId: context.runId, serverUrl,
+              sha: pullRequest?.head.sha || context.sha,
+              eventName: pullRequest ? 'pull_request_target' : context.eventName,
+              payload: { ...context.payload, pull_request: pullRequest },
+            };
+            const statusTarget = {
+              ...context.repo, sha: evaluationContext.sha, context: 'Project YAML Validity',
+              target_url: `${serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            };
+            await github.rest.repos.createCommitStatus({
+              ...statusTarget, state: 'pending', description: 'Evaluating project metadata.',
+            });
+            const script = path.join(process.env.RUNNER_TEMP, `project-yaml-${context.runId}-${process.env.GITHUB_RUN_ATTEMPT}.cjs`);
+            let result;
+            try {
+              const branch = await github.rest.repos.getBranch({
+                ...context.repo, branch: context.payload.repository.default_branch,
+              });
+              const trustedSha = branch.data.commit.sha;
+              const response = await github.rest.repos.getContent({
+                ...context.repo, path: 'scripts/project-yaml/run.cjs', ref: trustedSha,
+              });
+              if (response.data.type !== 'file' || response.data.encoding !== 'base64') {
+                throw new Error('Cannot load trusted Project YAML classifier.');
+              }
+              fs.writeFileSync(script, Buffer.from(response.data.content, 'base64'));
+              result = await require(script).run({ github, context: evaluationContext, core, trustedSha });
+            } catch (error) {
+              result = { status: 'failed', infrastructureError: error.message };
+              core.setFailed(error.message);
+            } finally {
+              fs.rmSync(script, { force: true });
+              const label = result?.infrastructureError ? 'ERROR' : result?.status === 'passed' ? 'PASS' : result?.status === 'skipped' ? 'SKIP' : 'FAIL';
+              await github.rest.repos.createCommitStatus({
+                ...statusTarget,
+                state: label === 'ERROR' ? 'error' : label === 'FAIL' ? 'failure' : 'success',
+                description: `Project YAML: ${label}${result?.errors?.length ? ` (${result.errors.length} errors)` : ''}`,
+              });
+              if (pullRequest) {
+                const current = await github.rest.pulls.get({
+                  ...context.repo, pull_number: pullRequest.number,
+                });
+                if (current.data.head.sha !== evaluationContext.sha) {
+                  core.info('Skipping outdated PR comment: the head commit changed.');
+                  return;
+                }
+                const marker = '<!-- project-yaml-validation -->';
+                const body = `${marker}\n${result?.report || result?.infrastructureError || 'Validation did not complete.'}`;
+                const comments = await github.paginate(github.rest.issues.listComments, {
+                  ...context.repo, issue_number: pullRequest.number, per_page: 100,
+                });
+                const existing = comments.find(comment => comment.user?.type === 'Bot' && comment.body?.startsWith(marker));
+                if (existing) {
+                  await github.rest.issues.updateComment({ ...context.repo, comment_id: existing.id, body: body.slice(0, 60000) });
+                } else {
+                  await github.rest.issues.createComment({ ...context.repo, issue_number: pullRequest.number, body: body.slice(0, 60000) });
+                }
+              }
+            }
+
+      - name: Publish validation report and guidelines
+        if: always()
+        timeout-minutes: 2
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: project-yaml-validation
+          path: ${{ runner.temp }}/project-yaml-report-${{ github.run_id }}-${{ github.run_attempt }}/

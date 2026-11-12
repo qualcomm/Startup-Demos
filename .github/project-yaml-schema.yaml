@@ -1,0 +1,64 @@
+$schema: http://json-schema.org/draft-07/schema#
+title: Project metadata
+type: object
+additionalProperties: false
+required:
+  - long_name
+  - shortname
+  - description
+  - technology
+  - platforms
+  - hardware
+  - software_tools
+  - ai_models
+  - topics_tools
+  - peripherals_sensors
+  - picture
+properties:
+  long_name:
+    type: string
+  shortname:
+    type: string
+    minLength: 10
+    maxLength: 20
+  description:
+    type: string
+    maxLength: 200
+  technology:
+    type: array
+    items: {type: string, enum: [Computer Vision & VR, Generative AI, Other applications, Connectivity]}
+  platforms:
+    type: array
+    items: {type: string, enum: [AI PC, IoT-Robotics, Android Phones, CloudAI-Playground, Connectivity, AIC100 Ultra, Arduino UNO Q, IQ-9075 Evaluation Kit, RB3 Gen2, Radxa Dragon Q6A, Snapdragon X Elite, VENTUNO Q]}
+  hardware:
+    type: array
+    items: {type: string, enum: [AIC100 Ultra, IQ-8275, IQ-9075, QCS6490, QRB2210, Snapdragon X Elite]}
+  software_tools:
+    type: array
+    items: {type: string, enum: [Android, Edge Impulse, Linux, Qualcomm AI Hub, Ubuntu, Windows]}
+  ai_models:
+    type: array
+    items: {type: string}
+  topics_tools:
+    type: array
+    items: {type: string}
+  peripherals_sensors:
+    type: array
+    items: {type: string}
+  picture:
+    type: string
+  estimated_setup_time:
+    type: string
+  difficulty_level:
+    type: string
+    enum: [beginner, intermediate, advanced]
+  related_projects:
+    type: array
+    uniqueItems: true
+    items: {type: string}
+  homepage:
+    type: string
+    pattern: ^https?://[^\s]+$
+  demo_video:
+    type: string
+    pattern: ^https?://[^\s]+$

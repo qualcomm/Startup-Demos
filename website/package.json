@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
+    "ajv": "^8.20.0",
     "fast-glob": "^3.3.3",
     "glob": "^13.0.0",
     "js-yaml": "^4.1.1",
