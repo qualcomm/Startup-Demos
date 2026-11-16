@@ -18,7 +18,7 @@
   "dependencies": {
     "@picocss/pico": "^2.1.1",
     "fast-glob": "^3.3.3",
-    "glob": "^13.0.0",
+    "glob": "^14.0.4",
     "js-yaml": "^4.1.1",
     "lucide": "^1.72.0"
   }
