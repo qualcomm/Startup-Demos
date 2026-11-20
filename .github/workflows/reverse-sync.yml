@@ -82,7 +82,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Mark reverse sync pending on merge group and open PRs
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const targets = new Map();
@@ -149,7 +149,7 @@ jobs:
 
       - name: Report reverse sync result to merge group and open PRs
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           SYNC_OUTCOME: ${{ steps.sync.outcome || 'failure' }}
           DRY_RUN: ${{ inputs.dry_run || false }}
