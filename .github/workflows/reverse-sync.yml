@@ -205,7 +205,7 @@ jobs:
 
       - name: Upload log
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: reverse-sync-log
           path: scripts/reverse-sync/reverse_sync.log
