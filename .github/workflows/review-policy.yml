@@ -75,7 +75,7 @@ jobs:
             exit 1
           fi
           echo "pull_request_number=$number" >> "$GITHUB_OUTPUT"
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v9
         env:
           MEMBERSHIP_TOKEN: ${{ secrets.SYNC_SOURCE_TOKEN }}
           SOURCE_BRANCH: ${{ secrets.SYNC_SOURCE_BRANCH || github.event.repository.default_branch }}
