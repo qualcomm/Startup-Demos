@@ -88,6 +88,9 @@ This repository is a collection of demo applications that highlight the capabili
   <tr>
     <td align="left"><strong>IoT-Robotics</strong></td>
     <td>
+      <a href="./GenAI/IoT-Robotics/ai_guard_system/" title="An on-device dual-camera surveillance system with LLM-powered analytics running on IQ-9075 (QCS9075).">
+        <img src="https://img.shields.io/badge/edge--ai--guard-2026.11.13-grey?style=flat-square&labelColor=brightgreen" alt="Edge AI Guard System"/>
+      </a><br>
       <a href="./GenAI/IoT-Robotics/VLM_Story_Narrator/" title="An on-device VENTUNO Q pipeline turns an image into a short story and narrates it with MeloTTS using Arduino App Lab bricks.">
         <img src="https://img.shields.io/badge/vlm--story--narrator-2026.11.11-grey?style=flat-square&labelColor=brightgreen" alt="Image -> VLM Story -> TTS Narrator on VENTUNO Q"/>
       </a><br>
@@ -105,6 +108,9 @@ This repository is a collection of demo applications that highlight the capabili
       </a>
     </td>
     <td>
+      <a href="./GenAI/IoT-Robotics/ai_guard_system/" title="An on-device dual-camera surveillance system with LLM-powered analytics running on IQ-9075 (QCS9075).">
+        <img src="https://img.shields.io/badge/edge--ai--guard-2026.11.13-grey?style=flat-square&labelColor=brightgreen" alt="Edge AI Guard System"/>
+      </a><br>
       <a href="./CV_VR/IoT-Robotics/Facial_Emotion_Detection/" title="A real-time facial emotion detection application running on RB3 Gen2.">
         <img src="https://img.shields.io/badge/facial--emotion--detec-2026.11.11-grey?style=flat-square&labelColor=blueviolet" alt="Facial Emotion Detection"/>
       </a><br>
