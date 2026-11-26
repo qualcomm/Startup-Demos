@@ -1,0 +1,11 @@
+long_name: Edge AI Guard System
+shortname: edge-ai-guard
+description: An on-device dual-camera surveillance system with LLM-powered analytics running on IQ-9075 (QCS9075).
+technology: [Computer Vision & VR, Generative AI]
+platforms: [IoT-Robotics, IQ-9075 Evaluation Kit]
+hardware: [IQ-9075]
+software_tools: [Qualcomm AI Hub]
+ai_models: []
+topics_tools: [Computer Vision, LLM]
+peripherals_sensors: [Camera]
+picture: Images/inference_result.png
